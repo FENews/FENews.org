@@ -48,7 +48,6 @@ export const Sidebar = (props) => (
                 github
                 email
                 rss
-                vkontakte
               }
             }
           }

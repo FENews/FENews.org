@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  url: 'https://lumen.netlify.com',
-  title: 'Blog by John Doe',
+  url: 'http://fenews.org',
+  title: 'FENews',
   subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
   copyright: '© All rights reserved.',
   disqusShortname: '',
@@ -10,29 +10,24 @@ module.exports = {
   googleAnalyticsId: 'UA-73379983-2',
   menu: [
     {
-      label: 'Articles',
+      label: '文章列表',
       path: '/'
     },
     {
-      label: 'About me',
+      label: '关于我们',
       path: '/pages/about'
     },
-    {
-      label: 'Contact me',
-      path: '/pages/contacts'
-    }
   ],
   author: {
-    name: 'John Doe',
+    name: 'FENews',
     photo: '/photo.jpg',
-    bio: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+    bio: 'FENews 是一个前端技术分享的组织',
     contacts: {
-      email: '#',
+      email: 'lifeyun@outlook.com',
       telegram: '#',
       twitter: '#',
-      github: '#',
+      github: 'fenews',
       rss: '#',
-      vkontakte: '#'
     }
   }
 };
