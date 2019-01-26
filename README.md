@@ -7,32 +7,6 @@ FENews 是由一群热爱技术的前端小伙伴自发组成的团队。团队�
 
 ![公众号](https://github.com/FENews/FENews.org/blob/master/static/media/qrcode.jpg)
 
-## FENews相关主题及负责人
-
-轮值主席：@leyayun 
-
-顾问：@danielhe
-
-- React/Vue/Angular
-  - 组长 - @lzbSun 
-  - 组员
-- Flluter/ RN 
-  - 组长 - @itxuye  
-  - 组员
-- Webpack/Parcel/rollup
-  - 组长 - @fengshenhai-0727 
-  - 组员
-- Rust/wasm
-  - 组长 - @leyayun 
-  - 组员
-- V8/JS
-  - 组长 - @xueqingxiao 
-  - 组员
-- deno / typescript
-  - 组长 - @jkchao 
-  - 组员
-
-
 ## 开始写作
 1. 首先，fork 这个项目。
 2. `clone` 你 fork 后的项目到你的本地。
