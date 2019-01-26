@@ -14,3 +14,5 @@ script:
 cache:
   directories:
     - node_modules
+notifications:
+   webhooks: https://oapi.dingtalk.com/robot/send?access_token=06e372a60c06a3ac3760611ed14e2f3c68d7bd8dd72e1d9fdc662a6a53c4a819
