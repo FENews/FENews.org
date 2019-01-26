@@ -24,8 +24,6 @@ module.exports = {
     bio: 'FENews 是一个前端技术分享的组织',
     contacts: {
       email: 'lifeyun@outlook.com',
-      telegram: '#',
-      twitter: '#',
       github: 'fenews',
       rss: '#',
     }
