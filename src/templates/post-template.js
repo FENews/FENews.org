@@ -29,9 +29,6 @@ export const query = graphql`
       siteMetadata {
         author {
           name
-          contacts {
-            twitter
-          }
         }
         disqusShortname
         subtitle
