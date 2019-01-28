@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'gatsby';
+<<<<<<< HEAD
 // import Author from './Author';
 // import Comments from './Comments';
+=======
+import Comments from './Comments';
+>>>>>>> chore: remove author
 import Content from './Content';
 import Meta from './Meta';
 import Tags from './Tags';
