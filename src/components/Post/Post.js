@@ -28,12 +28,12 @@ const Post = ({ post }) => {
       <div className={styles['post__footer']}>
         <Meta date={date} />
         <Tags tags={tags} tagSlugs={tagSlugs} />
-        <Author />
+        {/* <Author /> */}
       </div>
 
-      <div className={styles['post__comments']}>
+      {/* <div className={styles['post__comments']}>
         <Comments postSlug={post.fields.slug} postTitle={post.frontmatter.title} />
-      </div>
+      </div> */}
     </div>
   );
 };
