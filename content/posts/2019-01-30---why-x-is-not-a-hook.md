@@ -65,7 +65,7 @@ function MyComponent() {
 
 Hooks 是非常有用的，你可以在 Hooks *之间*传递值：
 
-```js{4,12,14}
+```js
 function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth);
   // ...
@@ -111,7 +111,7 @@ function Comment() {
 
 `React.memo()` 接收一个组件作为参数并返回一个组件：
 
-```js{4}
+```js
 function Button(props) {
   // ...
 }
@@ -141,7 +141,7 @@ function Button({ color }) {
 
 让我们尝试将 `useBailout()` 在两个自定义的 Hooks 中使用：
 
-```js{4,5,19,20}
+```js
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
 
@@ -176,7 +176,7 @@ function useWindowWidth() {
 如果现在在同一个组件中使用这两个自定义的 Hooks 会发生什么？
 
 
-```js{2,3}
+```js
 function ChatThread({ friendID, isTyping }) {
   const width = useWindowWidth();
   const isOnline = useFriendStatus(friendID);
