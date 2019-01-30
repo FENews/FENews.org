@@ -27,9 +27,9 @@ description: "我们可以这样做，但并不是意味着我们应该这样做
 
 我们想让 React 的 API 保持以下非常重要的两点:
 
-1. **组合:** 对于 Hooks API来说，可以[自定义 Hooks](https://reactjs.org/docs/hooks-custom.html) 是让我们感到非常兴奋的. 我们期望大家都可以来构建自己的Hooks API, 并且我们需要确保不同人写的 Hooks API [不会造成冲突](/why-do-hooks-rely-on-call-order/#flaw-4-the-diamond-problem)。 (我们是不是已经被自由的组合组件而不用担心相互造成影响给惯坏了？)
+1. **组合:** 对于 Hooks API来说，可以[自定义 Hooks](https://reactjs.org/docs/hooks-custom.html) 是让我们感到非常兴奋的. 我们期望大家都可以来构建自己的Hooks API, 并且我们需要确保不同人写的 Hooks API [不会造成冲突](https://overreacted.io/why-do-hooks-rely-on-call-order/#flaw-4-the-diamond-problem)。 (我们是不是已经被自由的组合组件而不用担心相互造成影响给惯坏了？)
 
-2. **调试:** 我们希望随着应用规模的不断增长 [bug 是很容易发现的](/the-bug-o-notation/)的。React最棒的一个特性就是如果某些内容被错误的渲染了，你可以轻松的找到对应的组件的 prop 或者 state 导致了这个问题。
+2. **调试:** 我们希望随着应用规模的不断增长 [bug 是很容易发现的](https://overreacted.io/the-bug-o-notation/)的。React最棒的一个特性就是如果某些内容被错误的渲染了，你可以轻松的找到对应的组件的 prop 或者 state 导致了这个问题。
 
 结合这两点来看，我们就可以知道哪些是*不能*成为一个 Hook。我们可以用一些例子来说明：
 
@@ -98,7 +98,7 @@ function Comment() {
 
 我们直接查看有问题的那个实现，重复这个步骤就可以确定问题具体问题发生在什么地方。
 
-如果自定义 Hooks 的嵌套层级增加了，那么这个就变的更加重要。想象一下，我们有三层嵌套的自定义 Hook，每层使用了三个不同的自定 Hooks。 定位**3个有问题的地方**和定位 **3 + 3×3 + 3×3×3 = 39个有问题地方**，二者之间的成本[差别](/the-bug-o-notation/)是非常大的。幸运的是，`useState()` 不会对其他 Hooks 或者组件造成莫名其妙的影响。雁过留痕，一个 Hooks 返回的错误值，和普通的变量是没有任何区别的。🐛
+如果自定义 Hooks 的嵌套层级增加了，那么这个就变的更加重要。想象一下，我们有三层嵌套的自定义 Hook，每层使用了三个不同的自定 Hooks。 定位**3个有问题的地方**和定位 **3 + 3×3 + 3×3×3 = 39个有问题地方**，二者之间的成本[差别](https://overreacted.io/the-bug-o-notation/)是非常大的。幸运的是，`useState()` 不会对其他 Hooks 或者组件造成莫名其妙的影响。雁过留痕，一个 Hooks 返回的错误值，和普通的变量是没有任何区别的。🐛
 
 **结论:** ✅ `useState()` 不会隐藏我们代码中的因果关系。我们可以一步步的定位到对应的bug。
 
@@ -197,7 +197,7 @@ function ChatThread({ friendID, isTyping }) {
 
 更糟糕的是，如果我们使用这种语义，**任何新添加到 `ChatThread` 里的 Hooks 如果没有*同样*调用 `useBailout()`，那么这些 Hooks 也同样会被阻断**。不然 `useBailout()` 也没有办法在 `useWindowWidth()` 和 `useFriendStatus()` 阻止更新时 “投上反对票（vote against）”。
 
-**结论:** 🔴 `useBailout()` 违反了组合原则. 添加 `useBailout()` 到一个 Hook 里面就会影响其他 Hooks 的状态更新。我希望和 API 是[健壮的(antifragile)](/optimized-for-change/), 但是 `useBailout()` 的行为是完完全全相反的。
+**结论:** 🔴 `useBailout()` 违反了组合原则. 添加 `useBailout()` 到一个 Hook 里面就会影响其他 Hooks 的状态更新。我希望和 API 是[健壮的(antifragile)](https://overreacted.io/optimized-for-change/), 但是 `useBailout()` 的行为是完完全全相反的。
 
 ### 调试
 
@@ -222,7 +222,7 @@ function ChatThread({ friendID, isTyping }) {
 
 **通常，你会很自信的回答这个问题，我们只需要去看*上层组件*。** 如果 `ChatThread` 没有获得 `isTyping` 的新值。我们可以打开渲染 `<ChatThread isTyping={myVar} />` 的组件，然后去检查 `myVar` 等等。在同级组件中，我们可能在 `shouldComponentUpdate()` 中发现被阻止了，或者 `isTyping` 的值没有正确的传递过去。检查在这个链中的每一个组件通常也能轻松的定位到问题的根源。
 
-如果 `useBailout()` Hook 是一个真实的 API。在你深度地检查 `ChatThread` 和 `ChatThread` 里所有组件*中使用到的每一个自定义 Hook* 之前，你永远不知道跳过更新的原因。由于每一个父组件*同样*可以使用自定义 Hooks，这个[情况（scales）](/the-bug-o-notation/)就变的更加复杂了。
+如果 `useBailout()` Hook 是一个真实的 API。在你深度地检查 `ChatThread` 和 `ChatThread` 里所有组件*中使用到的每一个自定义 Hook* 之前，你永远不知道跳过更新的原因。由于每一个父组件*同样*可以使用自定义 Hooks，这个[情况（scales）](https://overreacted.io/the-bug-o-notation/)就变的更加复杂了。
 
 这就像你在一个抽屉柜里有一堆小抽屉的其中一个找到一把小螺丝刀一样。你永远不知道这个“坑”到底有多深。
 
@@ -237,3 +237,5 @@ function ChatThread({ friendID, isTyping }) {
 现在明白为什么了吗?
 
 *(低头嘀咕: 组合... 调试...)*
+
+原文地址：[https://overreacted.io/why-isnt-x-a-hook/](https://overreacted.io/why-isnt-x-a-hook/)
