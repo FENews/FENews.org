@@ -239,3 +239,6 @@ function ChatThread({ friendID, isTyping }) {
 *(低头嘀咕: 组合... 调试...)*
 
 原文地址：[https://overreacted.io/why-isnt-x-a-hook/](https://overreacted.io/why-isnt-x-a-hook/)
+
+![请关注我们的公众号](/media/qrcode.jpg)
+>请关注我们的公众号
