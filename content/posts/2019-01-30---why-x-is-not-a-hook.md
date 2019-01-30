@@ -13,7 +13,7 @@ description: "我们可以这样做，但并不是意味着我们应该这样做
 ---
 
 
-自从 [React Hooks](https://reactjs.org/hooks) 发布 alpha 版本, 就有很多人对一些问题的讨论，比如: “为什么有些 API 不是一个 Hook?”。
+自从 [React Hooks](https://reactjs.org/hooks) 发布 alpha 版本以来, 就有很多人开始讨论一些问题，比如: “为什么有些 API 不是一个 Hook?”。
 
 比如下面这些就是一些 Hooks API：
 
@@ -21,19 +21,19 @@ description: "我们可以这样做，但并不是意味着我们应该这样做
 * [`useEffect()`](https://reactjs.org/docs/hooks-reference.html#useeffect) 可以用来声明 `side effects`。
 * [`useContext()`](https://reactjs.org/docs/hooks-reference.html#usecontext) 可以用来读取 `context`。
 
-但是有些 API 就不是 hooks，比如 `React.memo()` 和 `<Context.Provider>`。一般大家提出来的 Hook 基本上是*不可组合（noncompositional）*和*反模块化（antimodular）*的，这篇文章会帮助你理解为什么。
+但是有些 API 就不是 hooks，比如 `React.memo()` 和 `<Context.Provider>`。一般大家提出来的关于 Hooks API 的提案基本上是*不可组合（noncompositional）*和*反模块化（antimodular）*的，这篇文章会帮助你理解为什么。
 
-**注：这篇文章是一篇深入探讨的文章，阅读对象应该是对 API 的讨论是非常感兴趣的，而不是为了考虑使用 React 来提升效率的！**
+**注：这篇文章是一篇深入探讨的文章，阅读对象应该是对 React API 的讨论是非常感兴趣的，而不是为了考虑使用 React 来提升效率的！**
 
 我们想让 React 的 API 保持以下非常重要的两点:
 
-1. **组合:** 对于 Hooks API来说，可以[自定义 Hooks](https://reactjs.org/docs/hooks-custom.html) 是让我们感到非常兴奋的. 我们期望大家都可以来构建自己的Hooks API, 并且我们需要确保不同人写的 Hooks API [不会造成冲突](https://overreacted.io/why-do-hooks-rely-on-call-order/#flaw-4-the-diamond-problem)。 (我们是不是已经被自由的组合组件而不用担心相互造成影响给惯坏了？)
+1. **组合:** 对于 Hooks API来说，可以[自定义 Hooks](https://reactjs.org/docs/hooks-custom.html) 是让我们感到非常兴奋的。 我们期望大家都可以来构建自己的Hooks API， 并且我们需要确保不同人写的 Hooks API [不会造成冲突](https://overreacted.io/why-do-hooks-rely-on-call-order/#flaw-4-the-diamond-problem)。 (我们是不是已经被随意的组合组件而不用担心相互造成影响给惯坏了？)
 
 2. **调试:** 我们希望随着应用规模的不断增长 [bug 是很容易发现的](https://overreacted.io/the-bug-o-notation/)的。React最棒的一个特性就是如果某些内容被错误的渲染了，你可以轻松的找到对应的组件的 prop 或者 state 导致了这个问题。
 
 结合这两点来看，我们就可以知道哪些是*不能*成为一个 Hook。我们可以用一些例子来说明：
 
-##  一个 Hook: `useState()`
+##  一个 Hook：`useState()`
 
 ### 组合
 
@@ -57,9 +57,9 @@ function MyComponent() {
 }
 ```
 
-添加一个不在条件判断里的 `useState()` ， 调用这个 API 是很安全的。你不需要了解在一个组件里面声明了新的 state 变量被其他 Hooks 使用了。也不会因为更新了其他状态导致 state 变量被破坏。
+添加一个不在条件判断里的 `useState()` ， 调用这个 API 是很安全的。你不需要了解在一个组件里面声明了新的 state 变量被其他 Hooks 使用了。也不会因为更新了其他状态导致 state 变量被影响。
 
-**结论:** ✅ `useState()` 不会对其他自定义的 Hooks 造成破坏。 
+**结论:** ✅ `useState()` 不会对其他自定义的 Hooks 造成影响。 
 
 ### 调试
 
@@ -224,11 +224,11 @@ function ChatThread({ friendID, isTyping }) {
 
 如果 `useBailout()` Hook 是一个真实的 API。在你深度地检查 `ChatThread` 和 `ChatThread` 里所有组件*中使用到的每一个自定义 Hook* 之前，你永远不知道跳过更新的原因。由于每一个父组件*同样*可以使用自定义 Hooks，这个[情况（scales）](https://overreacted.io/the-bug-o-notation/)就变的更加复杂了。
 
-这就像你在一个抽屉柜里有一堆小抽屉的其中一个找到一把小螺丝刀一样。你永远不知道这个“坑”到底有多深。
+这就像一个抽屉柜里有一堆小抽屉，你需要在其中一个找到一把小螺丝刀一样。你永远不知道这个“坑”到底有多深。
 
 **结论:** 🔴 `useBailout()` Hook 不仅仅破坏可组合性, 为了找到有 bug 的阻止更新代码，大大的增加了调试步骤和认知负荷 —— 在某些情况下，这是指数级别的。
 
-我们讨论了一个真正存在的 Hook - `useState()`，和另一个看上去是 Hook，但是实际上*不*是一个 Hook - `useBailout()` 的例子，我们比较了组合和调试，并讨论了为什么其中一个是有效的，另一个事无效的。
+我们讨论了一个真正存在的 Hook - `useState()`，和另一个看上去是 Hook，但是实际上*不*是一个 Hook - `useBailout()` 的例子，我们通过一些组合和调试列子比较了一下，并讨论了为什么其中一个是有效的，另一个是无效的。
 
 虽然没有 “Hook 版本” 的 `memo()` 和 `shouldComponentUpdate()`，但是React确实提供了一个叫 [`useMemo()`](https://reactjs.org/docs/hooks-reference.html#usememo) 的 API. 虽然有相同的用途，但是 `useMemo()` 本身的语义是不一样的，不会遇到上面所说的问题。
 
