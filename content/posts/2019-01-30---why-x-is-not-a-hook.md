@@ -222,7 +222,7 @@ function ChatThread({ friendID, isTyping }) {
 
 **通常，你会很自信的回答这个问题，我们只需要去看*上层组件*。** 如果 `ChatThread` 没有获得 `isTyping` 的新值。我们可以打开渲染 `<ChatThread isTyping={myVar} />` 的组件，然后去检查 `myVar` 等等。在同级组件中，我们可能在 `shouldComponentUpdate()` 中发现被阻止了，或者 `isTyping` 的值没有正确的传递过去。检查在这个链中的每一个组件通常也能轻松的定位到问题的根源。
 
-如果 `useBailout()` Hook 是一个真实的 API。在你深度地检查 `ChatThread` 和里所有组件*中使用到的每一个自定义 Hook* 之前，你永远不知道跳过更新的原因。由于每一个父组件*同样*可以使用自定义 Hooks，这个[情况（scales）](https://overreacted.io/the-bug-o-notation/)就变的更加复杂了。
+如果 `useBailout()` Hook 是一个真实的 API。在你深度地检查 `ChatThread` 和所有组件*中使用到的每一个自定义 Hook* 之前，你永远不知道跳过更新的原因。由于每一个父组件*同样*可以使用自定义 Hooks，这个[情况（scales）](https://overreacted.io/the-bug-o-notation/)就变的更加复杂了。
 
 这就像一个抽屉柜里有一堆小抽屉，你需要在其中一个找到一把小螺丝刀一样。你永远不知道这个“坑”到底有多深。
 
