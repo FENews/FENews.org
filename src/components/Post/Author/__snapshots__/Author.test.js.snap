@@ -8,6 +8,11 @@ exports[`Author renders correctly 1`] = `
     className="author__bio"
   >
     test
+     如果你喜欢我们的文章，请关注我们的公众号:
+    <img
+      alt="qrcode"
+      src="file"
+    />
   </p>
 </div>
 `;
