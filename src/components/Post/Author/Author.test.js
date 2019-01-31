@@ -11,9 +11,6 @@ describe('Author', () => {
             author: {
               name: 'test',
               bio: 'test',
-              contacts: {
-                twitter: 'test'
-              }
             }
           }
         }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
-import { getContactHref } from '../../../utils';
+// import { getContactHref } from '../../../utils';
 import styles from './Author.module.scss';
+
+const qrcode = require('../../../../static/media/qrcode.jpg');
 
 export const PureAuthor = ({ data }) => {
   const { author } = data.site.siteMetadata;
@@ -9,15 +11,8 @@ export const PureAuthor = ({ data }) => {
   return (
     <div className={styles['author']}>
       <p className={styles['author__bio']}>
-        {author.bio}
-        <a
-          className={styles['author__bio-twitter']}
-          href={getContactHref('twitter', author.contacts.twitter)}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <strong>{author.name}</strong> on Twitter
-        </a>
+        {author.bio} 如果你喜欢我们的文章，请关注我们的公众号:
+        <img src={qrcode} alt="qrcode" />
       </p>
     </div>
   );
@@ -32,9 +27,6 @@ export const Author = (props) => (
             author {
               name
               bio
-              contacts {       
-                twitter
-              }
             }
           }
         }
