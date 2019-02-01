@@ -21,7 +21,7 @@ module.exports = {
   author: {
     name: 'FENews',
     photo: '/photo.jpg',
-    bio: 'FENews 是一个前端技术分享的组织',
+    bio: 'FENews 是一个前端技术分享的组织，我们会定期原创/翻译前端相关技术文章。',
     contacts: {
       email: 'lifeyun@outlook.com',
       github: 'fenews',
