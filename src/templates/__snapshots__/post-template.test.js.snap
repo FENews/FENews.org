@@ -75,6 +75,9 @@ exports[`PostTemplate renders correctly 1`] = `
           </li>
         </ul>
       </div>
+      <StaticQuery
+        render={[Function]}
+      />
     </div>
   </div>
 </div>
