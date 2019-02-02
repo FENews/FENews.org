@@ -21,7 +21,7 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 ![FENews 团队首发阵容](images/fenews-team.jpg)
 
 <div style="text-align: center; font-size: 12px">
-  FENews 首发阵容（由于地点和时间的原因由三位小伙伴不在图中）
+  FENews 首发阵容（由于地点和时间的原因有三位小伙伴不在图中）
 </div>
 
 ## 2019 年规划
@@ -30,17 +30,30 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
+
+
+
 ### Webpack / Parcel / Rollup
+
+
 
 ### TypeScript
 
+
+
 ### Flutter / React Native
 
+
+
 ### GraphQL
+
+
 
 ### Rust / WebAssembly
 
 Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大型互联网客户端和服务端而设计的，发行于 2010 年， 算是一门比较年轻的编程语言。沃特 ? 那它与前端到底又啥关系呢？
+
+
 
 ### Deno
 
