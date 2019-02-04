@@ -16,7 +16,7 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ## 关于我们
 
-在此新春来领之际，首先祝大家春节快乐（手动笔芯 ❤️）！从 2019 年 1 月 19 日 FENews 的第一条微信公众号消息的发出到 1 月 23 日的串店撸串，短短几天的时间，我们就吸引了一批志同道合有激情的优秀的小伙伴加入我们（截止发稿时间我们已经是一个 13 人的团队啦）。我们并不是完全是由什么资深大牛组成，我们是一个成长中的团队，我们是由一群热爱技术、有技术追求的年轻小伙伴组成。**FENews** 成立的初衷是一起学习交流，并把我们的学习过程和经验分享给大家。我们会定期原创或翻译前端相关的技术文章，未来我们可能由于自己理解的原因或者什么其他原因而犯错，希望大家能够纠正我们。如果你对我们感兴趣或想加入我们欢迎随时联系。
+在此新春来临之际，首先祝大家春节快乐、猪年大吉（手动笔芯 ❤️）！从 2019 年 1 月 19 日 FENews 的第一条微信公众号消息的发出到 1 月 23 日的串店撸串，短短几天的时间，我们就吸引了一批志同道合有激情的优秀的小伙伴加入我们（截止发稿时间我们已经是一个 13 人的团队啦）。我们并不是完全是由什么资深大牛组成，我们是一个成长中的团队，我们是由一群热爱技术、有技术追求的年轻小伙伴组成。**FENews** 成立的初衷是一起学习交流，并把我们的学习过程和经验分享给大家。我们会定期原创或翻译前端相关的技术文章，未来我们可能由于自己理解的原因或者什么其他原因而犯错，希望大家能够纠正我们。如果你对我们感兴趣或想加入我们欢迎随时联系。
 
 ## 2019 年规划
 
@@ -30,15 +30,19 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 这一年 React 依然保持着积极更新的速度，发布了很多的特新，不久前 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。React Hooks 解决了有状态逻辑代码在 React 组件间公用的问题，提升了 React 组件的可维护性。接下来即将在今年第二季度发布的 Concurrent Mode 和第三季度发布的 Suspense API 同样让社区兴奋不已。React 社区新特性的跟进速度可以称得上神速。Hooks 发布后各种关于 React 的工具库都对其做了支持。
 
-![redux-hooks](images/redux-hooks.png)
-
 得益于上述新特性，相信接下来使用 React 开发 Web 应用的开发体验以及应用性能和用户体验都将得到显著提升。
 
 Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。3.0 版本的 Vue 将全面拥抱 TypeScript。从 2018 年 6 月底的 Vue 和 React 的 star 赛跑事件，Vue 和 React 的star 双双破 10w，可以看出 Vue 还是很受欢迎的。Vue 得益于上手门槛低比较受初学者的青睐，随着初学者的成长也会对  Vue 的扩张起到促进作用。期待 Vue 今年会给我们带来更多的惊喜。
 
-Angular 继 AngularJS 之后，google 设计的面向未来的 JS 框架。从目前的使用情况来看并没能继承 AngularJS 的辉煌。由于目前我还未对 Angular 有过深入的研究，所以无法给出更多的评价。
+Angular 继 AngularJS 之后，google 设计的面向未来的 JS 框架。从目前的使用情况来看并没能继承 AngularJS 的辉煌。但是未来 Angular 的发展还是很值得关注的。由于目前我还未对 Angular 有过深入的研究，暂时无法给出更多的评价。
 
-### Webpack / Parcel / Rollup
+### Webpack / Rollup / Parcel
+
+作为目前受关注比较高的三款前端打包工具，这三个打包工具的诞生都有一定的年份了，相信大家都有所了解。
+
+其中起步最早的是 Webpack，创建于 2012 年 3 月。从 npm trending 图可以看出，它是一骑绝尘远远的甩开了另外的两个个竞争对手。Webpack 是为 Web 应用打包而设计，它的设计理念是将一切资源文件都当作模块通过 plugins 和 loaders 处理。Rollup 定位于 JavaScript 打包，它对 ES Module 有着较好的支持。tree shaking 的优化理念也是最先在 rollup 中提出。相对于 webpack 它打包速度更快，打出来的包的体积也更小。Rollup 是 JS 库打包的首选。Parcel 是三个中起步最晚的，创建于 2017 年 8 月，它的使用场景和 webpack 基本一致。 Parcel 的诞生是以零配置为噱头，当时也是赚足了眼球。它与前面两个工具最大的不同之处在于它是以 html 做为入口文件，这点比较契合浏览器的文件加载过程。正是因为 Parcel 的零配置和以 html 文件为入口，所以我之前一直把它当作一个快捷的本地的开发服务器来使用（捂脸。随着应用的膨胀，零配置基本是不可能的。但是 Parcel 的出现倒是引起了 webpack 的紧张，所以 webpack 在 4.0 版本添加了很多默认配置项。从目前来看 Parcel 还是比较难以撼动 webpack 的大哥地位，毕竟 webpack 积累了这么多年的生态。Parcel 未来还是值得关注的。
+
+ ![webpack、rollup、parcel npm trending](images/webpack-rollup-parcel-trending.jpg)
 
 ### TypeScript
 
@@ -96,7 +100,7 @@ Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大
 
 ![Deno](images/deno-ryan.jpg)
 
-<div style="text-align: center; font-size: 12px">图片来源：2018 年 11 月，Ryan 在台湾 JSDC 的演讲视频</div>
+<div style="text-align: center; font-size: 12px">图片来源：2018 年 11 月，Ryan 在台湾省 JSDC 的演讲视频</div>
 
 ## 总结
 
