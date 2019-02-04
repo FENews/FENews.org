@@ -30,6 +30,26 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
+根据 npm trends 过去一年 React/Vue/Angular 的下载情况看，2018年总体上来讲还是 React 依然占统治地位的。
+
+![React/Vue/Angular](images/react-vue-angular.png)
+
+
+我们可以看到这一年 React 依然保持着积极更新的速度，发布了很多特色的新功能，刚刚不久 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。社区对 React Hooks 功能兴奋不已，Suspense API 也是令人期待的新功能。
+
+React 社区新功能的跟进进度一直以来都是以神速来定义的。当 Hooks 功能发布后各种关于 React 的工具都做了更新 Hooks 的进度。
+
+![redux-hooks](images/redux-hooks.png)
+
+期待19年 React 社区更加蓬勃的发展。
+
+Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。
+从 Vue 的 star 数量超过 React 可以看出，Vue 还是很受欢迎的，Vue 在设计上其实也借鉴了很多 React 和 Angular 的思想，如果用过 React 和 Angular 的同学，其实可以很轻松的切换到 Vue 开发中，期待19年该项目给我们带来更多的惊喜。
+
+Augular 其实也是一直处于活跃状态的，这点我们从最新的更新时间可以看出
+![angular](images/angular-trend.png)
+
+但是相较于 React/Vue Augular 的使用者反而更加的理性。
 ### Webpack / Rollup / Parcel
 
 ###Webpack
@@ -58,8 +78,15 @@ Rollup和Parcel的出现和发展伴随着Webpack更新和迭代。拿Webpack�
 
 Web工程化、工具化，始终伴随着前端的发展，2019年，我们持续关注这一块更新。
 
-
 ### TypeScript
+
+近两年来，TypeScript 迎来了爆发式增长：
+
+![近两年来 TypeScript npm 下载](images/typescript-downloads.png)
+
+其提供的静态类型系统，大大增强了代码的可读性以及可维护性；同时，它提供最新和不断发展的 JavaScript 特性，能让我们建立更健壮的组件。
+
+随着 FaceBook Yarn 团队与 Jest 团队决定从 Flow 移植到 TypeScript，并且 Vue 3.0 也计划用 TypeScript 重写，相信在今年（2019），TypeScript 将迎来更大的增长。
 
 ### Flutter / React Native
 
@@ -93,6 +120,12 @@ GraphQL 的官方定义是一种用于 API 的查询语言，GraphQL 既是一�
 
 ### Rust / WebAssembly
 
-Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大型互联网客户端和服务端而设计的，发行于 2010 年， 算是一门比较年轻的编程语言。沃特 ? 那它与前端到底又啥关系呢？
+WebAssembly 简称 Wasm 是一种二进制格式的编码，可以在现代浏览器中执行。Wasm 起源于 Mozilla 早期开发的 asm.js。它的开发团队主要来自Mozilla、Google、Microsoft、Apple，代表着四大主流浏览器 Firefox、Chrome、Microsoft Edge、Safari 。Wasm 被设计的目的是为了让浏览器的 JavaScript 引擎执行脚本的速度可以接近原生机器码。为了让人类能够阅读和编辑， Wasm 还提供了类汇编的文本格式表达。卧槽！这是要让我们手写汇编吗？当然不是！Wasm 被设计成一种可移植的编译目标，可以由其他高级语言，像：C/C++/Rust/Golang，编译而来。WebAssembly 在 2017 年开始进入国外大众开发者的视野，2018 年在国内有很多技术大会都出现 WebAssembly 相关主题的演讲。截止目前，全球 80.62% 的用户的浏览器已经支持 Wasm。
+
+![Wasm 在浏览器中的支持情况](images/wasm-can-i-use.jpg)
+
+Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大型互联网客户端和服务端而设计的，发行于 2010 年， 算是一门比较年轻的编程语言。沃特？那它与前端到底又啥关系呢？细心的同学可能已经注意到了 Rust 和 Wasm 同出一门。为了让 Rust 能够成为 Web 开发中占据一席之地，Mozilla 成立了致力于打造 Rust 到 WebAssembly 的生态 rustwasm 工作组。rustwasm 工作组每周都会有一次例会讨论这一周的工作情况，如果你感兴趣可以订阅这个 [issue](https://github.com/rustwasm/team/issues/252)。分享一个我之前在 tweet 上看到的小八卦，有人问 React 团队是否有出 TS 版 React 的计划。Andrew(React 团队的核心开发者) 说他们团队未来也许会用 Rust 重写 React 。
+
+![聊天记录](images/rust-react.jpg)
 
 ### Deno
