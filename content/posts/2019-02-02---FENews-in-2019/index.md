@@ -34,6 +34,14 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### TypeScript
 
+近两年来，TypeScript 迎来了爆发式增长：
+
+![近两年来 TypeScript npm 下载](images/typescript-downloads.png)
+
+其提供的静态类型系统，大大增强了代码的可读性以及可维护性；同时，它提供最新和不断发展的 JavaScript 特性，能让我们建立更健壮的组件。
+
+随着 FaceBook Yarn 团队与 Jest 团队决定从 Flow 移植到 TypeScript，并且 Vue 3.0 也计划用 TypeScript 重写，相信在今年（2019），TypeScript 将迎来更大的增长。
+
 ### Flutter / React Native
 
 #### Flutter
