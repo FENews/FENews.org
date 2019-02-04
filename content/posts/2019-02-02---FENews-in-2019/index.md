@@ -30,7 +30,34 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
-### Webpack / Parcel / Rollup
+### Webpack / Rollup / Parcel
+
+###Webpack
+
+Webpack是打包模块化JavaScript工具，它会根据代码的内容解析模块依赖，帮助把多个模块代码打包成一个文件。借用Webpack官网图片，形象展示了Webpack的定义，如图：
+
+![webpack](images/webpack.png)
+
+Webpack优点是有良好的开发体验，有十分丰富的配置项，提供了十分强大的扩展能力。它的社区庞大活跃，能为常用场景找到plugin和loader。
+
+Webpack缺点是它Tree Shaking不如Rollup，虽然Webpack3+已经支持Tree Shaking，但仍需要额外配置第三方插件。
+
+### Rollup
+
+Rollup号称下一代模块打包工具。它和Webpack很类似，但它有两个重要特性，其中一个是采用ES6的模块标准。例如可以直接使用`import`和`export`，不需要引入babel。另一点在于，能针对ES6进行Tree Shaking，去除那些定义未使用的代码。
+
+Rollup用于打包JavaScript库比Webpack更有优势，因为其打包出来的代码体积更小、更快。它配置和使用要比Webpack简单，但社区和生态不如Webpack完善，很多场景下找不到现成的解决方案。目前大家常用Rollup来开发纯的JavaScript库。
+
+### Parcel
+
+Parcel也是款打包工具，它侧重点在于零配置和多核编译。Parcel 使用工作进程启用多核编译，并具有文件系统缓存，即使在重新启动后也可快速重新构建。Parcel 支持JS，CSS，HTML，文件资源等等 - 不需要安装任何插件。Parcel 使用动态 import() 语法拆分您的输出包，所以只加载初始加载时所需的内容。还有一些其他特性就不一一列举了。
+
+Parcel解决了一些打包工具配置繁琐和编译慢的问题。有些打包工具的配置，动辄几百行，而且要为每个应用程序复制一份。另一点，现在打包工具编译很慢，具有很多文件和依赖的大型应用将花费数分钟去构建，随着时间的推移，这将会相当痛苦的事情。Parcel利用现代的多核处理能力和工作线程去并行编译你的代码，将极大的提升了构建速度。
+
+Rollup和Parcel的出现和发展伴随着Webpack更新和迭代。拿Webpack举例，它发展这么多年，Webpack1的时候新出茅庐，2和3时有了Rollup，号称是下一代打包神器，它主要最核心的是Tree Shaking，那Webpack一看不干，不能丢了自己的地位。于是更新Tree Shaking，后来Parcel有了些升级，号称零配置，那Webpack又不干，于是又升级Webpack4，又增加了零配置，目前Webpack5向多核编译方向发力。它们各有自己的优势和应用场景。
+
+Web工程化、工具化，始终伴随着前端的发展，2019年，我们持续关注这一块更新。
+
 
 ### TypeScript
 
