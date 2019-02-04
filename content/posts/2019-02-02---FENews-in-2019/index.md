@@ -24,26 +24,20 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
-根据 npm trends 过去一年 React/Vue/Angular 的下载情况看，2018年总体上来讲还是 React 依然占统治地位的。
+根据 npm trending 的统计 React、Vue 和 Angular 的 npm 包安装数据来看，2018年 React 依然是独领风骚。
 
-![React/Vue/Angular](images/react-vue-angular.png)
+![React/Vue/Angular](images/react-vue-angular-trending.jpg)
 
-
-我们可以看到这一年 React 依然保持着积极更新的速度，发布了很多特色的新功能，刚刚不久 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。社区对 React Hooks 功能兴奋不已，Suspense API 也是令人期待的新功能。
-
-React 社区新功能的跟进进度一直以来都是以神速来定义的。当 Hooks 功能发布后各种关于 React 的工具都做了更新 Hooks 的进度。
+这一年 React 依然保持着积极更新的速度，发布了很多的特新，不久前 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。React Hooks 解决了有状态逻辑代码在 React 组件间公用的问题，提升了 React 组件的可维护性。接下来即将在今年第二季度发布的 Concurrent Mode 和第三季度发布的 Suspense API 同样让社区兴奋不已。React 社区新特性的跟进速度可以称得上神速。Hooks 发布后各种关于 React 的工具库都对其做了支持。
 
 ![redux-hooks](images/redux-hooks.png)
 
-期待19年 React 社区更加蓬勃的发展。
+得益于上述新特性，相信接下来使用 React 开发 Web 应用的开发体验以及应用性能和用户体验都将得到显著提升。
 
-Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。
-从 Vue 的 star 数量超过 React 可以看出，Vue 还是很受欢迎的，Vue 在设计上其实也借鉴了很多 React 和 Angular 的思想，如果用过 React 和 Angular 的同学，其实可以很轻松的切换到 Vue 开发中，期待19年该项目给我们带来更多的惊喜。
+Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。3.0 版本的 Vue 将全面拥抱 TypeScript。从 2018 年 6 月底的 Vue 和 React 的 star 赛跑事件，Vue 和 React 的star 双双破 10w，可以看出 Vue 还是很受欢迎的。Vue 得益于上手门槛低比较受初学者的青睐，随着初学者的成长也会对  Vue 的扩张起到促进作用。期待 Vue 今年会给我们带来更多的惊喜。
 
-Augular 其实也是一直处于活跃状态的，这点我们从最新的更新时间可以看出
-![angular](images/angular-trend.png)
+Angular 继 AngularJS 之后，google 设计的面向未来的 JS 框架。从目前的使用情况来看并没能继承 AngularJS 的辉煌。由于目前我还未对 Angular 有过深入的研究，所以无法给出更多的评价。
 
-但是相较于 React/Vue Augular 的使用者反而更加的理性。
 ### Webpack / Parcel / Rollup
 
 ### TypeScript
@@ -84,7 +78,7 @@ GraphQL 的官方定义是一种用于 API 的查询语言，GraphQL 既是一�
 
 目前在国外有众多大厂在使用 GraphQL ，FB 自家肯定在使用，此外熟知的 github、twitter、airbnb 都有比较成熟的 GraphQL 实践。国内大厂阿里、百度、携程有在使用，阿里的 egg.js 框架也有相应的 GraphQL 插件，携程最近还发表了[从前后端分离到 GraphQL，携程如何用 Node 实现？](https://mp.weixin.qq.com/s/lFKZRtigONGuSHDL4ww9FA)
 
-虽然 GraphQL 越来越受到更多开发者的关注，但是却没有彻底火起来，因为需要前后端一起铺开啊，此外要使用 GraphQL 对数据源进行管理，相当于要对整个服务端进行一次换血，对大体量的企业服务来说真是伤筋动骨。另一方面，实践太少，相关生产级别的分享少之又少，现在社区的中流砥柱 [Apollo](https://github.com/apollographql) 贡献了 GraphQL 前后端技术栈的各种实现，却没有中文站点。而团队在 Medium 上的博客，Youtube 上 Conference 的 Talk，都是翻译极少的。我们 FENews 立个 flag，今年会对 Apollo/GraphQL 的周边进行翻译分享，敬请期待。
+虽然 GraphQL 越来越受到更多开发者的关注，但是却没有彻底火起来，因为需要前后端一起铺开啊，此外要使用 GraphQL 对数据源进行管理，相当于要对整个服务端进行一次换血，对大体量的企业服务来说真是伤筋动骨。另一方面，实践太少，相关生产级别的分享少之又少，现在社区的中流砥柱 [Apollo](https://github.com/apollographql) 贡献了 GraphQL 前后端技术栈的各种实现，却没有中文站点。今年我们将会对 Apollo/GraphQL 的周边进行翻译分享，敬请期待。
 
 ### Rust / WebAssembly
 
