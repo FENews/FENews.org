@@ -3,7 +3,7 @@ title: 关于 FENews 在 2019 的规划
 date: "2019-02-04"
 template: "post"
 draft: false
-slug: "/posts/the-future-of-frontend-in-2019"
+slug: "/posts/fenews-in-2019"
 category: "其他"
 tags:
   - "React"
@@ -16,13 +16,7 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ## 关于我们
 
-在此新春来领之际，首先祝大家春节快乐（手动笔芯 ❤️）！从 2019 年 1 月 19 日 FENews 的第一条微信公众号消息的发出到 1 月 23 日的串店撸串，短短几天的时间，我们就吸引了一批志同道合有激情的优秀的小伙伴加入我们（截止发稿时间我们已经是一个 13 人的团队啦）。我们并不是完全是由什么资深大牛组成，我们是一个成长中的团队，我们是由一群热爱技术、有技术追求的年轻小伙伴组成。**FENews** 成立的初衷是一起学习交流，并把我们的学习过程和经验分享给大家。我们会定期原创或翻译前端相关的技术文章，未来我们可能由于自己理解的原因或者什么其他原因而犯错，希望大家能够纠正我们。如果你对我们感兴趣或想加入我们欢迎随时联系。
-
-![FENews 团队首发阵容](images/fenews-team.jpg)
-
-<div style="text-align: center; font-size: 12px">
-  FENews 首发阵容（由于地点和时间的原因有三位小伙伴不在图中）
-</div>
+wow，猪年到了耶！首先祝大家春节快乐、猪年大吉（手动笔芯 ❤️）！从 2019 年 1 月 19 日 FENews 的第一条微信公众号消息的发出到 1 月 23 日的串店撸串，短短几天的时间，我们就吸引了一批志同道合有激情的优秀的小伙伴加入我们（截止发稿时间我们已经是一个 13 人的团队啦）。我们并不是完全是由什么资深大牛组成，我们是一个成长中的团队，我们是由一群热爱技术、有技术追求的年轻小伙伴组成。**FENews** 成立的初衷是一起学习交流，并把我们的学习过程和经验分享给大家。我们会定期原创或翻译前端相关的技术文章，未来我们可能由于自己理解的原因或者什么其他原因而犯错，希望大家能够纠正我们。如果你对我们感兴趣或想加入我们欢迎随时联系。
 
 ## 2019 年规划
 
@@ -30,27 +24,21 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
-根据 npm trends 过去一年 React/Vue/Angular 的下载情况看，2018年总体上来讲还是 React 依然占统治地位的。
+根据 npm trending 的统计 React、Vue 和 Angular 的 npm 包安装数据来看，2018年 React 依然是独领风骚。
 
-![React/Vue/Angular](images/react-vue-angular.png)
+![React/Vue/Angular](images/react-vue-angular-trending.jpg)
 
+这一年 React 依然保持着积极更新的速度，发布了很多的特新，不久前 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。React Hooks 解决了有状态逻辑代码在 React 组件间公用的问题，提升了 React 组件的可维护性。接下来即将在今年第二季度发布的 Concurrent Mode 和第三季度发布的 Suspense API 同样让社区兴奋不已。React 社区新特性的跟进速度可以称得上神速。Hooks 发布后各种关于 React 的工具库都对其做了支持。得益于上述新特性，相信接下来使用 React 开发 Web 应用的开发体验以及应用性能和用户体验都将得到显著提升。
 
-我们可以看到这一年 React 依然保持着积极更新的速度，发布了很多特色的新功能，刚刚不久 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。社区对 React Hooks 功能兴奋不已，Suspense API 也是令人期待的新功能。
+Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。3.0 版本的 Vue 将全面拥抱 TypeScript。从 2018 年 6 月底的 Vue 和 React 的 star 赛跑事件，Vue 和 React 的star 双双破 10w，可以看出 Vue 还是很受欢迎的。Vue 得益于上手门槛低比较受初学者的青睐，随着初学者的成长也会对  Vue 的扩张起到促进作用。期待 Vue 今年会给我们带来更多的惊喜。
 
-React 社区新功能的跟进进度一直以来都是以神速来定义的。当 Hooks 功能发布后各种关于 React 的工具都做了更新 Hooks 的进度。
+Angular 继 AngularJS 之后，Google 设计的面向未来的 JS 框架。从目前的使用情况来看并没能继承 AngularJS 的辉煌。但是未来 Angular 的发展还是很值得关注的。由于目前我还未对 Angular 有过深入的研究，暂时无法给出更多的评价。
 
-![redux-hooks](images/redux-hooks.png)
+### Webpack / Rollup / Parcel
 
-期待19年 React 社区更加蓬勃的发展。
+作为目前受关注比较高的三款前端打包工具，这三个打包工具的诞生都有一定的年份了，相信大家都有所了解。其中起步最早的是 Webpack，创建于 2012 年 3 月。从 npm trending 图可以看出，它是一骑绝尘远远的甩开了另外的两个个竞争对手。Webpack 是为 Web 应用打包而设计，它的设计理念是将一切资源文件都当作模块通过 plugins 和 loaders 处理。Rollup 定位于 JavaScript 打包，它对 ES Module 有着较好的支持。tree shaking 的优化理念也是最先在 rollup 中提出。相对于 webpack 它打包速度更快，打出来的包的体积也更小。Rollup 是 JS 库打包的首选。Parcel 是三个中起步最晚的，创建于 2017 年 8 月，它的使用场景和 webpack 基本一致。 Parcel 的诞生是以零配置为噱头，当时也是赚足了眼球。它与前面两个工具最大的不同之处在于它是以 html 做为入口文件，这点比较契合浏览器的文件加载过程。正是因为 Parcel 的零配置和以 html 文件为入口，所以我之前一直把它当作一个快捷的本地的开发服务器来使用（捂脸。随着应用的膨胀，零配置基本是不可能的。但是 Parcel 的出现倒是引起了 webpack 的紧张，所以 webpack 在 4.0 版本添加了很多默认配置项。从目前来看 Parcel 还是比较难以撼动 webpack 的大哥地位，毕竟 webpack 积累了这么多年的生态。Parcel 未来还是值得关注的。
 
-Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。
-从 Vue 的 star 数量超过 React 可以看出，Vue 还是很受欢迎的，Vue 在设计上其实也借鉴了很多 React 和 Angular 的思想，如果用过 React 和 Angular 的同学，其实可以很轻松的切换到 Vue 开发中，期待19年该项目给我们带来更多的惊喜。
-
-Augular 其实也是一直处于活跃状态的，这点我们从最新的更新时间可以看出
-![angular](images/angular-trend.png)
-
-但是相较于 React/Vue Augular 的使用者反而更加的理性。
-### Webpack / Parcel / Rollup
+ ![webpack、rollup、parcel npm trending](images/webpack-rollup-parcel-trending.jpg)
 
 ### TypeScript
 
@@ -64,17 +52,11 @@ Augular 其实也是一直处于活跃状态的，这点我们从最新的更新
 
 ### Flutter / React Native
 
-#### Flutter
-
-Flutter 是 Google 推出并开源的移动应用开发框架，并且支持 Google 下一代操作系统 Fuchsia，主打跨平台、高保真、高性能。开发者可以通过 Dart 语言开发 App，一套代码同时运行在 iOS 和 Android 平台。 Flutter 提供了丰富的组件、接口，开发者可以很快地为 Flutter 添加 native 扩展。同时 Flutter 还使用 Native 引擎渲染视图，这无疑能为用户提供良好的体验。
-
-此外 Flutter 跨全平台不止是 Android 和 iOS 目标剑指所有主流平台 UI 开发、PC 桌面以及 包括正在搞的 [Hummingbird](https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8) 来实现 web 的支持。
-
-#### React Native
+Flutter 是 Google 推出并开源的移动应用开发框架，并且支持 Google 下一代操作系统 Fuchsia，主打跨平台、高保真、高性能。开发者可以通过 Dart 语言开发 App，一套代码同时运行在 iOS 和 Android 平台。 Flutter 提供了丰富的组件、接口，开发者可以很快地为 Flutter 添加 native 扩展。同时 Flutter 还使用 Native 引擎渲染视图，这无疑能为用户提供良好的体验。此外 Flutter 跨全平台不止是 Android 和 iOS 目标剑指所有主流平台 UI 开发、PC 桌面以及 包括正在搞的 [Hummingbird](https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8) 来实现 web 的支持。
 
 React Native 是 Facebook 在 F8 大会开源的 JavaScript 框架,在 2015 年 9 月 15 日发布，可以让广大开发者使用 JavaScript 和 React 开发跨平台的移动应用。开发者可以灵活的使用 HTML 和 CSS 布局，使用 React 语法构建组件，实现 Android，iOS 两端代码的复用,核心设计理念: 既拥有 Native 的用户体验，又保留 React 的开发效率。
 
-#### 对比
+#### Flutter vs React Native
 
 - 速度与性能：React Native 用 JavaScript 调用对应系统渲染器进行渲染展示，中间就有 JavaScript 解析到调用 Native 过程的许多中间环节，Flutter 是将 Dart 代码 AOT 编译为本地代码，其次，Flutter 使用自己的渲染引擎来绘制 UI，布局数据等由 Dart 语言直接控制，所以在布局过程中不需要像 React Native 那样要在 JavaScript 和 Native 之间通信，速度和性能上一般 Flutter 是要优于 React Native 的。
 
@@ -88,9 +70,9 @@ GraphQL 是 Facebook 于 2012 年在内部开发的数据查询语言，在 2015
 
 GraphQL 的官方定义是一种用于 API 的查询语言，GraphQL 既是一种用于 API 的查询语言也是一个满足你数据查询的运行时。 GraphQL 对你的 API 中的数据提供了一套易于理解的完整描述，使得客户端能够准确地获得它需要的数据，而且没有任何冗余，也让 API 更容易地随着时间推移而演进，还能用于构建强大的开发者工具。
 
-目前在国外有众多大厂在使用 GraphQL ，FB 自家肯定在使用，此外熟知的 github、twitter、airbnb 都有比较成熟的 GraphQL 实践。国内大厂阿里、百度、携程有在使用，阿里的 egg.js 框架也有相应的 GraphQL 插件，携程最近还发表了[从前后端分离到 GraphQL，携程如何用 Node 实现？](https://mp.weixin.qq.com/s/lFKZRtigONGuSHDL4ww9FA)
+目前在国外有众多大厂在使用 GraphQL ，FB 自家肯定在使用，此外熟知的 Github、twitter、airbnb 都有比较成熟的 GraphQL 实践。国内大厂阿里、百度、携程有在使用，阿里的 egg.js 框架也有相应的 GraphQL 插件。
 
-虽然 GraphQL 越来越受到更多开发者的关注，但是却没有彻底火起来，因为需要前后端一起铺开啊，此外要使用 GraphQL 对数据源进行管理，相当于要对整个服务端进行一次换血，对大体量的企业服务来说真是伤筋动骨。另一方面，实践太少，相关生产级别的分享少之又少，现在社区的中流砥柱 [Apollo](https://github.com/apollographql) 贡献了 GraphQL 前后端技术栈的各种实现，却没有中文站点。而团队在 Medium 上的博客，Youtube 上 Conference 的 Talk，都是翻译极少的。我们 FENews 立个 flag，今年会对 Apollo/GraphQL 的周边进行翻译分享，敬请期待。
+虽然 GraphQL 越来越受到更多开发者的关注，但是却没有彻底火起来，因为需要前后端一起铺开啊，此外要使用 GraphQL 对数据源进行管理，相当于要对整个服务端进行一次换血，对大体量的企业服务来说真是伤筋动骨。另一方面，实践太少，相关生产级别的分享少之又少，现在社区的中流砥柱 [Apollo](https://github.com/apollographql) 贡献了 GraphQL 前后端技术栈的各种实现，却没有中文站点。今年我们将会对 Apollo/GraphQL 的周边进行翻译分享，敬请期待。
 
 ### Rust / WebAssembly
 
@@ -103,3 +85,13 @@ Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大
 ![聊天记录](images/rust-react.jpg)
 
 ### Deno
+
+说到 Deno 相信大家都有所耳闻。 Deno 一诞生就占据了前端娱乐圈的头条封面。Deno 是由 Ryan Dahl（Ryan 在 2009 创造了 Node.js） 在 2018 年创造的一个基于 V8 的安全的运行时。现在距离 Ryan 在 2018 年欧洲 JSConf 上第一次把 Deno 带入到大众开发者前已经过去了大半年的时间，这半年的时间 Deno 发展如何？ Deno 的初始原型是使用 Go 开发，后来考虑到 Go 和 V8 都有复杂的垃圾回收机制，最终使用 Rust 重写。目前 Deno 内部已经内置了 TypeScript 编译器，并利用了 V8 的 snapshots 做了启动时的优化。 Deno 的文档目前也已经相对完善，如果大家想尝鲜也可以从 [deno.land](https://deno.land/) 开始。Deno 作为 Ryan 大神颠覆 Node.js 之作必然是值得关注的。
+
+![Deno](images/deno-ryan.jpg)
+
+<div style="text-align: center; font-size: 12px">图片来源：2018 年 11 月，Ryan 在台湾省 JSDC 的演讲视频</div>
+
+## 总结
+
+以上主题 **FENews** 在接下来的一年中都会保持持续关注，如果你感兴趣可以关注我们的微信公众号和我们一起来关注发展的最新动态。
