@@ -30,6 +30,26 @@ description: "FENews 成立的初衷是一起学习交流，并把我们的学�
 
 ### React / Vue / Angular
 
+根据 npm trends 过去一年 React/Vue/Angular 的下载情况看，2018年总体上来讲还是 React 依然占统治地位的。
+
+![React/Vue/Angular](images/react-vue-angular.png)
+
+
+我们可以看到这一年 React 依然保持着积极更新的速度，发布了很多特色的新功能，刚刚不久 Dan Abramov 也在 Twitter 上宣布 React Hooks 发布。社区对 React Hooks 功能兴奋不已，Suspense API 也是令人期待的新功能。
+
+React 社区新功能的跟进进度一直以来都是以神速来定义的。当 Hooks 功能发布后各种关于 React 的工具都做了更新 Hooks 的进度。
+
+![redux-hooks](images/redux-hooks.png)
+
+期待19年 React 社区更加蓬勃的发展。
+
+Vue 社区同时保持着很高的增长趋势，作者 Evan You 也在今年发布的 Twitter 上宣布即将推出 Vue3.0 的最新版本。
+从 Vue 的 star 数量超过 React 可以看出，Vue 还是很受欢迎的，Vue 在设计上其实也借鉴了很多 React 和 Angular 的思想，如果用过 React 和 Angular 的同学，其实可以很轻松的切换到 Vue 开发中，期待19年该项目给我们带来更多的惊喜。
+
+Augular 其实也是一直处于活跃状态的，这点我们从最新的更新时间可以看出
+![angular](images/angular-trend.png)
+
+但是相较于 React/Vue Augular 的使用者反而更加的理性。
 ### Webpack / Parcel / Rollup
 
 ### TypeScript
