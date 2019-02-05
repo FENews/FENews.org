@@ -36,7 +36,7 @@ Angular 继 AngularJS 之后，Google 设计的面向未来的 JS 框架。从�
 
 ### Webpack / Rollup / Parcel
 
-作为目前受关注比较高的三款前端打包工具，这三个打包工具的诞生都有一定的年份了，相信大家都有所了解。其中起步最早的是 Webpack，创建于 2012 年 3 月。从 npm trending 图可以看出，它是一骑绝尘远远的甩开了另外的两个个竞争对手。Webpack 是为 Web 应用打包而设计，它的设计理念是将一切资源文件都当作模块通过 plugins 和 loaders 处理。Rollup 定位于 JavaScript 打包，它对 ES Module 有着较好的支持。tree shaking 的优化理念也是最先在 rollup 中提出。相对于 webpack 它打包速度更快，打出来的包的体积也更小。Rollup 是 JS 库打包的首选。Parcel 是三个中起步最晚的，创建于 2017 年 8 月，它的使用场景和 webpack 基本一致。 Parcel 的诞生是以零配置为噱头，当时也是赚足了眼球。它与前面两个工具最大的不同之处在于它是以 html 做为入口文件，这点比较契合浏览器的文件加载过程。正是因为 Parcel 的零配置和以 html 文件为入口，所以我之前一直把它当作一个快捷的本地的开发服务器来使用（捂脸。随着应用的膨胀，零配置基本是不可能的。但是 Parcel 的出现倒是引起了 webpack 的紧张，所以 webpack 在 4.0 版本添加了很多默认配置项。从目前来看 Parcel 还是比较难以撼动 webpack 的大哥地位，毕竟 webpack 积累了这么多年的生态。Parcel 未来还是值得关注的。
+作为目前受关注比较高的三款前端打包工具，这三个打包工具的诞生都有一定的年份了，相信大家都有所了解。其中起步最早的是 Webpack，创建于 2012 年 3 月。从 npm trending 图可以看出，它一骑绝尘远远的甩开了另外的两个竞争对手。Webpack 是为 Web 应用打包而设计，它的设计理念是将一切资源文件都当作模块通过 plugins 和 loaders 处理。Rollup 定位于 JavaScript 打包，它对 ES Module 有着较好的支持。tree shaking 的优化理念也是最先在 rollup 中提出。相对于 webpack 它打包速度更快，打出来的包的体积也更小。Rollup 是 JS 库打包的首选。Parcel 是三个中起步最晚的，创建于 2017 年 8 月，它的使用场景和 webpack 基本一致。 Parcel 的诞生是以零配置为噱头，当时也是赚足了眼球。它与前面两个工具最大的不同之处在于它是以 html 做为入口文件，这点比较契合浏览器的文件加载过程。正是因为 Parcel 的零配置和以 html 文件为入口，所以我之前一直把它当作一个快捷的本地的开发服务器来使用（捂脸。随着应用的膨胀，零配置基本是不可能的。但是 Parcel 的出现倒是引起了 webpack 的紧张，所以 webpack 在 4.0 版本添加了很多默认配置项。从目前来看 Parcel 还是比较难以撼动 webpack 的大哥地位，毕竟 webpack 积累了这么多年的生态。Parcel 未来还是值得关注的。
 
  ![webpack、rollup、parcel npm trending](images/webpack-rollup-parcel-trending.jpg)
 
@@ -80,7 +80,7 @@ WebAssembly 简称 Wasm 是一种二进制格式的编码，可以在现代浏�
 
 ![Wasm 在浏览器中的支持情况](images/wasm-can-i-use.jpg)
 
-Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大型互联网客户端和服务端而设计的，发行于 2010 年， 算是一门比较年轻的编程语言。沃特？那它与前端到底又啥关系呢？细心的同学可能已经注意到了 Rust 和 Wasm 同出一门。为了让 Rust 能够成为 Web 开发中占据一席之地，Mozilla 成立了致力于打造 Rust 到 WebAssembly 的生态 rustwasm 工作组。rustwasm 工作组每周都会有一次例会讨论这一周的工作情况，如果你感兴趣可以订阅这个 [issue](https://github.com/rustwasm/team/issues/252)。分享一个我之前在 tweet 上看到的小八卦，有人问 React 团队是否有出 TS 版 React 的计划。Andrew(React 团队的核心开发者) 说他们团队未来也许会用 Rust 重写 React 。
+Rust 是由 Mozilla 主导开发的通用、编译型编程语言。它是为大型互联网客户端和服务端而设计的，发行于 2010 年， 算是一门比较年轻的编程语言。沃特？那它与前端到底又啥关系呢？细心的同学可能已经注意到了 Rust 和 Wasm 同出一门。为了让 Rust 能够成为 Web 开发中占据一席之地，Mozilla 成立了致力于打造 Rust 到 WebAssembly 的生态 rustwasm 工作组。rustwasm 工作组每周都会有一次例会讨论这一周的工作情况，如果你感兴趣可以订阅这个 [issue](https://github.com/rustwasm/team/issues/252)。分享一个我之前在 tweet 上看到的小八卦，有人问 React 团队是否有出 TS 版的计划。Andrew(React 团队的核心开发者) 说他们团队未来也许会用 Rust 重写 React 。
 
 ![聊天记录](images/rust-react.jpg)
 
