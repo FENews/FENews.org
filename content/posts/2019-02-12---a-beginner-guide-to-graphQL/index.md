@@ -1,6 +1,6 @@
 ---
 title: "「译」GraphQL入门指南"
-date: "2019-02-12"
+date: "2019-02-14"
 template: "post"
 draft: false
 slug: "/posts/a-beginner-guide-to-graphQL/"
