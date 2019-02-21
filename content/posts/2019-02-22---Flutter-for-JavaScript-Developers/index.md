@@ -22,7 +22,7 @@ description: "Flutter 是一款跨平台的移动应用 SDK，可通过同一套
 
 希望这篇文章能够为大多数 JavaScript 开发者提供快速简便的介绍，并且我会尝试使用 Flutter / Dart 和 [Pub](https://pub.dartlang.org/) 包来类比 JS 和 npm 生态系统。
 
-> 如果你有兴趣了解 Flutter 教程、库、公告和社区更新的最新信息，我建议您注册订阅 [Flutter Newsletter](http://flutternewsletter.com/) 。
+> 如果你有兴趣了解 Flutter 教程、库、公告和社区更新的最新信息，我建议你注册订阅 [Flutter Newsletter](http://flutternewsletter.com/) 。
 
 我在 [React Native EU](https://react-native.eu/) 的演讲 [React Native — Cross Platform & Beyond](https://www.youtube.com/watch?v=pFtvv0rJgPw) 中，讨论并演示了 React 生态系统中的一些不同技术， 包括 [React Native Web](https://github.com/necolas/react-native-web), [React Primitives](https://github.com/lelandrichardson/react-primitives) 和 [ReactXP](https://microsoft.github.io/reactxp/), 并且我也有机会讨论 [Weex](https://weex.incubator.apache.org/) 和 [Flutter](https://flutter.io/)。
 
@@ -66,7 +66,7 @@ description: "Flutter 是一款跨平台的移动应用 SDK，可通过同一套
 
 - Dart 是一种开箱即用的强类型语言，无需任何附加配置(比如: TypeScript / Flow)
 
-- 如果你使用过 React，那么您可能会习惯类似的状态机制 (即生命周期方法和 setState)
+- 如果你使用过 React，那么你可能会习惯类似的状态机制 (即生命周期方法和 setState)
 
 ## 缺点
 
@@ -90,7 +90,7 @@ description: "Flutter 是一款跨平台的移动应用 SDK，可通过同一套
 
 - 我一开始对 Dart 一无所知，但很快就学会了。 它让我想起了 TypeScript，也和 JavaScript 有一些相似之处
 
-- 文档中有一些非常棒的代码实验室和教程，它们对我有很大的帮助，我建议您查看一下: 1. [构建 UIS](https://codelabs.developers.google.com/codelabs/flutter/index.html#0) 2. [增加 Firebase](https://codelabs.developers.google.com/codelabs/flutter-firebase/index.html#0) 3. [构建布局](https://flutter.io/tutorials/layout/) 4. [添加交互](https://flutter.io/tutorials/interactive/)
+- 文档中有一些非常棒的代码实验室和教程，它们对我有很大的帮助，我建议你查看一下: 1. [构建 UIS](https://codelabs.developers.google.com/codelabs/flutter/index.html#0) 2. [增加 Firebase](https://codelabs.developers.google.com/codelabs/flutter-firebase/index.html#0) 3. [构建布局](https://flutter.io/tutorials/layout/) 4. [添加交互](https://flutter.io/tutorials/interactive/)
 
 ### 让我们开始创建一个新的项目吧
 
@@ -133,7 +133,7 @@ _要了解更多关于两个平台的信息，请参阅这里的[文档 (https:/
 flutter create myapp
 ```
 
-这将为您创建一个新的应用程序。 现在，切换到新目录，打开 iOS 模拟器或 android 模拟器，然后运行以下命令:
+这将为你创建一个新的应用程序。 现在，切换到新目录，打开 iOS 模拟器或 android 模拟器，然后运行以下命令:
 
 ```bash
 flutter run
@@ -211,7 +211,7 @@ Flutter [技术总览 (https://flutter.io/technical-overview/) ](https://flutter
 
 与 React 类似，Flutter 也有有状态和无状态组件或 Component 的概念。 有状态组件可以创建状态、更新状态和销毁状态，这在某种程度上类似于用 React 时可能使用的生命周期方法。
 
-甚至也有一个名为 setState 的方法更新状态。 您可以在我们刚刚生成的项目中的 `incrementCounter` 方法中看到这个方法。
+甚至也有一个名为 setState 的方法更新状态。 你可以在我们刚刚生成的项目中的 `incrementCounter` 方法中看到这个方法。
 
 了解更多查看 [StatefulWidget](https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html)、 [State](https://docs.flutter.io/flutter/widgets/State-class.html) 和 [StatelessWidget](https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html)。
 
