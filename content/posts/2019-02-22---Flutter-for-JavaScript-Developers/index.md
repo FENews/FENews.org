@@ -22,9 +22,9 @@ description: "Flutter 是一款跨平台的移动应用 SDK，可通过同一套
 
 希望这篇文章能够为大多数 JavaScript 开发者提供快速简便的介绍，并且我会尝试使用 Flutter / Dart 和 [Pub](https://pub.dartlang.org/) 包来类比 JS 和 npm 生态系统。
 
-> 如果你有兴趣了解 Flutter 教程、库、公告和社区更新的最新信息，我建议你注册订阅 [Flutter Newsletter](http://flutternewsletter.com/) 。
+> 如果你有兴趣了解 Flutter 教程、库、公告和社区更新的最新信息，我建议你关注订阅我们的公众号 FENEWS。
 
-我在 [React Native EU](https://react-native.eu/) 的演讲 [React Native — Cross Platform & Beyond](https://www.youtube.com/watch?v=pFtvv0rJgPw) 中，讨论并演示了 React 生态系统中的一些不同技术， 包括 [React Native Web](https://github.com/necolas/react-native-web), [React Primitives](https://github.com/lelandrichardson/react-primitives) 和 [ReactXP](https://microsoft.github.io/reactxp/), 并且我也有机会讨论 [Weex](https://weex.incubator.apache.org/) 和 [Flutter](https://flutter.io/)。
+我在 [React Native 欧洲](https://react-native.eu/) 的演讲 [《React Native — Cross Platform & Beyond》](https://www.youtube.com/watch?v=pFtvv0rJgPw) 中，讨论并演示了 React 生态系统中的一些不同技术， 包括 [React Native Web](https://github.com/necolas/react-native-web), [React Primitives](https://github.com/lelandrichardson/react-primitives) 和 [ReactXP](https://microsoft.github.io/reactxp/), 并且我也有机会讨论 [Weex](https://weex.incubator.apache.org/) 和 [Flutter](https://flutter.io/)。
 
 在我过去几年看过的所有前端技术中，我在尝试了 Flutter 后最为兴奋。在这篇文章中，我将讨论为什么它令我如此激动，并介绍如何尽快开始使用它。
 
@@ -121,7 +121,7 @@ flutter doctor
 
 ## 安装其他依赖项
 
-如果你想部署 iOS 系统，你必须安装 Xcode，对于 Android 系统，你必须安装 Android Studio。
+如果你想构建 iOS 应用，你必须安装 Xcode，对于构建 Android 应用，你必须安装 Android Studio。
 
 _要了解更多关于两个平台的信息，请参阅这里的[文档 (https://flutter.io/setup-macos/#platform-setup)](https://flutter.io/setup-macos/#platform-setup)._
 
