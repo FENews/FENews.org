@@ -1,4 +1,16 @@
-## 为 JavaScript 开发者准备的 Flutter 指南
+---
+title: "「译」为 JavaScript 开发者准备的 Flutter 指南"
+date: "2019-02-22"
+template: "post"
+draft: false
+slug: "/posts/Flutter-for-JavaScript-Developers/"
+category: "Flutter"
+tags:
+  - "Flutter"
+  - "Dart"
+  - "翻译"
+description: "Flutter 是一款跨平台的移动应用 SDK，可通过同一套代码构建高性能，高保真的 iOS 和 Android 应用。"
+---
 
 [Flutter](https://flutter.io/) 是一款跨平台的移动应用 SDK，可通过同一套代码构建高性能，高保真的 iOS 和 Android 应用。
 
