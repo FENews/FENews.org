@@ -2,7 +2,7 @@
 
 [Flutter](https://flutter.io/) 是一款跨平台的移动应用 SDK，可通过同一套代码构建高性能，高保真的 iOS 和 Android 应用。
 
-[文档中提到:](https://flutter.io/technical-overview/):
+[文档中提到 (https://flutter.io/technical-overview/):](https://flutter.io/technical-overview/)
 
 > Flutter 包括一个 **react 风格**的框架 , 一个 2D 渲染引擎, 现成的组件, 和开发者工具。
 
@@ -32,11 +32,11 @@
 
 ![](./images/3.png)
 
-## 优点:
+## 优点:  
 
-- 核心团队维护的内置 UI 库(Material，Cupertino)
+- 核心团队维护的内置 UI 库(Material，Cupertino)  
 
-- Dart＆Flutter 团队紧密合作，优化移动 Dart VM，专门满足 Flutter 的需求
+- Dart＆Flutter 团队紧密合作，优化移动 Dart VM，专门满足 Flutter 的需求  
 
 - 文档超级棒 😍
 
@@ -44,7 +44,7 @@
 
 - 我可以顺利轻松地启动和运行，而不会遇到很多障碍/错误
 
-- 调试体验很好，开箱即用的热重新加载以及[一系列关于调试技术的文档](https://flutter.io/debugging/)
+- 调试体验很好，开箱即用的热重新加载以及[一系列关于调试技术的文档 (https://flutter.io/debugging/)](https://flutter.io/debugging/)
 
 - 核心团队构建和维护的非常可靠的导航库
 
@@ -52,9 +52,9 @@
 
 - 对我来说比我预想的更容易理解
 
-- Dart 是一种开箱即用的强类型语言，无需任何附加配置(比如: TypeScript / Flow).
+- Dart 是一种开箱即用的强类型语言，无需任何附加配置(比如: TypeScript / Flow)
 
-- 如果你使用过 React，那么您可能会习惯类似的状态机制 (即生命周期方法和 setState).
+- 如果你使用过 React，那么您可能会习惯类似的状态机制 (即生命周期方法和 setState)
 
 ## 缺点
 
@@ -68,70 +68,78 @@
 
 - 布局 / 样式需要学习全新的范例 / API
 
-- 要学习不同的项目配置 (`pubspec.yaml` vs `package.json`).
+- 要学习不同的项目配置 (`pubspec.yaml` vs `package.json`)
 
 ## 入门及其它观点
 
 - 我正在使用 VS Code 作为我的编辑器，使用 [Dart Code 扩展](https://marketplace.visualstudio.com/items?itemName=DanTup.dart-code)，它可以提供非常好的开发体验。Flutter 文档强烈建议使用 IntelliJ IDE(https://www.jetbrains.com/idea/)，它有一些内置的支持，如热/动态加载，而 VSCode 不具备这些功能。
 
-- Flutter 有一个模块系统，或者叫[包管理系统](https://pub.dartlang.org/)，它与 npm 有很多不同点。它的好坏取决于你对 npm 的看法。
+- Flutter 有一个模块系统，或者叫[包管理系统 (https://pub.dartlang.org/)](https://pub.dartlang.org/)，它与 npm 有很多不同点。它的好坏取决于你对 npm 的看法。
 
 - 我一开始对 Dart 一无所知，但很快就学会了。 它让我想起了 TypeScript，也和 JavaScript 有一些相似之处
 
 - 文档中有一些非常棒的代码实验室和教程，它们对我有很大的帮助，我建议您查看一下: 1. [构建 UIS](https://codelabs.developers.google.com/codelabs/flutter/index.html#0) 2. [增加 Firebase](https://codelabs.developers.google.com/codelabs/flutter-firebase/index.html#0) 3. [构建布局](https://flutter.io/tutorials/layout/) 4. [添加交互](https://flutter.io/tutorials/interactive/)
 
-### 说够了，让我们开始创建一个新的项目吧
+### 让我们开始创建一个新的项目吧
 
 ## 安装 CLI (macOS)
 
-如果你使用的是 Windows，请查阅[此文档](https://flutter.io/setup/)。
-如需查看完整的 macOS 平台下的安装指南，请查看[此文档](https://flutter.io/setup-macos/)。
+如果你使用的是 Windows，请查阅[此文档 (https://flutter.io/setup/)](https://flutter.io/setup/)。
+如需查看完整的 macOS 平台下的安装指南，请查看[此文档 (https://flutter.io/setup-macos/)](https://flutter.io/setup-macos/)。
 
 首先，我们需要克隆包含 Flutter CLI 二进制文件的仓库，并将其添加到我们的路径中。我将这个仓库克隆到一个文件夹中，然后在`$ HOME / .bashrc` `/ $ HOME / .zshrc`文件中添加克隆目录路径。
 
 1. 克隆仓库:
 
-   ```bash
-   git clone -b stable [https://github.com/flutter/flutter.git](https://github.com/flutter/flutter.git)
-   ```
+```bash
+git clone -b stable https://github.com/flutter/flutter.git
+```  
 
 2. 添加路径:
 
-   ```bash
-   export PATH=$HOME/bin/flutter/bin:$PATH **(or whatever the path is to your installation)**
-   ```
+```bash
+export PATH=$HOME/bin/flutter/bin:$PATH (or whatever the path is to your installation)
+```  
 
 3. 从命令行运行 flutter doctor，以确保 flutter 路径被识别，并查看是否有任何依赖项需要安装来完成设置:
 
-   ```bash
-   flutter doctor
-   ```
+```bash
+flutter doctor
+```
 
 ## 安装其他依赖项
 
 如果你想部署 iOS 系统，你必须安装 Xcode，对于 Android 系统，你必须安装 Android Studio。
 
-_要了解更多关于两个平台的信息，请参阅这里的[文档](https://flutter.io/setup-macos/#platform-setup)._
+_要了解更多关于两个平台的信息，请参阅这里的[文档 (https://flutter.io/setup-macos/#platform-setup)](https://flutter.io/setup-macos/#platform-setup)._
 
 ## 创建你的第一个 Flutter 应用程序
 
 现在我们已经安装了 flutter CLI，我们可以创建我们的第一个应用程序。 为此，我们需要运行 flutter create 命令:
 
-    flutter create myapp
+```bash
+flutter create myapp
+```
 
 这将为您创建一个新的应用程序。 现在，切换到新目录，打开 iOS 模拟器或 android 模拟器，然后运行以下命令:
 
-    flutter run
+```bash
+flutter run
+```
 
 ![](./images/4.jpeg)
 
 这将在你已经打开的模拟器中启动应用程序。 如果你同时打开了 iOS 和 Android 模拟器，你可以通过模拟器来运行这个应用程序:
 
-    flutter run -d android / flutter run -d iPhone
+```bash
+flutter run -d android / flutter run -d iPhone
+```
 
 也可以同时运行
 
-    flutter run -d all
+```bash
+flutter run -d all
+```
 
 此时你应该在控制台中看到一些关于重启 app 的信息：
 
@@ -150,28 +158,30 @@ _要了解更多关于两个平台的信息，请参阅这里的[文档](https:/
 在文件的顶部我们看到一个 `import` :
 
 ```dart
-import ‘package:flutter/material.dart’;
+import 'package:flutter/material.dart';
 ```
 
 这是从哪里来的？ 在 `pubspec.yaml` 文件中，你会注意到在依赖项下我们有一个单独的 `flutter` 依赖项，我们在这里引用它作为包: `package:flutter/` 。 如果我们想要添加和导入其他依赖项，我们需要将新的依赖项加入 `pubspec.yaml`，使它们作为依赖可以导入。
 
 在这个文件中，我们还可以看到在顶部有一个名为 `main` 的函数。 在 Dart 中，[main](https://www.dartlang.org/guides/language/language-tour#the-main-function) 是一个特殊的、**必需**的顶级函数，在这个函数中应用程序开始执行。 因为 Flutter 是由 Dart 构建的，main 函数也是这个工程的主入口。
 
-    void main() {
-      runApp(new MyApp());
-    }
+```dart
+void main() {
+  runApp(new MyApp());
+}
+```
 
 这个函数调用 `new MyApp ()` ，它本身调用一个类等等，类似于 React app，我们有一个由其他组件组成的主组件，然后由 `ReactDOM.render` 或 `AppRegistry.registerComponent` 进行渲染。
 
 ## 组件
 
-Flutter [技术总览](https://flutter.io/technical-overview/)中的一个核心原则就是：“一切皆组件”。
+Flutter [技术总览 (https://flutter.io/technical-overview/) ](https://flutter.io/technical-overview/)中的一个核心原则就是：“一切皆组件”。
 
 > Widget 是每个 Flutter 应用程序的基本构件。 每个 Widget 都是用户界面部分的不可变声明。 与其他将视图、控制器、布局和其他属性分离开来的框架不同，Flutter 有一个一致的、统一的对象模型: Widget。
 
 在 web 术语 / JavaScript 方面，你可以将 Widget 看成与 Component 类似的东西。 Widget 通常由类内部组成，这些类中可能还有一些本地状态和方法，也可能没有。
 
-如果你查看 `main.dart`，可以发现类似 `StatelessWidget`、`StatefulWidget`、`Center`、`Text` 的类引用。这些都是 Widget。如果想了解所有可用的 Widget，请查阅[文档](https://docs.flutter.io/flutter/widgets/widgets-library.html)。
+如果你查看 `main.dart`，可以发现类似 `StatelessWidget`、`StatefulWidget`、`Center`、`Text` 的类引用。这些都是 Widget。如果想了解所有可用的 Widget，请查阅[文档 (https://docs.flutter.io/flutter/widgets/widgets-library.html)](https://docs.flutter.io/flutter/widgets/widgets-library.html)。
 
 ## 布局与样式
 
