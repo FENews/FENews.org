@@ -12,7 +12,7 @@
 
 > 如果你有兴趣了解 Flutter 教程、库、公告和社区更新的最新信息，我建议您注册订阅 [Flutter Newsletter](http://flutternewsletter.com/) 。
 
-我在 [React Native EU](https://react-native.eu/) 的演讲 [React Native — Cross Platform & Beyond](https://www.youtube.com/watch?v=pFtvv0rJgPw) 中，讨论并演示了 React 生态系统中的一些不同技术， 包括 [React Native Web](https://github.com/necolas/react-native-web), [React Primitives](https://github.com/lelandrichardson/react-primitives), 和 [ReactXP](https://microsoft.github.io/reactxp/), 并且我也有机会讨论 [Weex](https://weex.incubator.apache.org/) 和 [Flutter](https://flutter.io/).
+我在 [React Native EU](https://react-native.eu/) 的演讲 [React Native — Cross Platform & Beyond](https://www.youtube.com/watch?v=pFtvv0rJgPw) 中，讨论并演示了 React 生态系统中的一些不同技术， 包括 [React Native Web](https://github.com/necolas/react-native-web), [React Primitives](https://github.com/lelandrichardson/react-primitives) 和 [ReactXP](https://microsoft.github.io/reactxp/), 并且我也有机会讨论 [Weex](https://weex.incubator.apache.org/) 和 [Flutter](https://flutter.io/)。
 
 在我过去几年看过的所有前端技术中，我在尝试了 Flutter 后最为兴奋。在这篇文章中，我将讨论为什么它令我如此激动，并介绍如何尽快开始使用它。
 
