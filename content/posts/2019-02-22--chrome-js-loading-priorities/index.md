@@ -24,6 +24,6 @@ description: "知道浏览器如何调度和执行脚对 web 性能的优化有�
 
 这个优先级概要表在2019年2月份都是正确的。我个人对于其他浏览器 JavaScript 加载优先级的理解同样很感兴趣。希望这篇总览能够对你有所帮助。
 
-> 感谢 ***Kouhei***, ***Dom Faralino***, ***Pat Meenan***, ***Kenji Baheux*** 和 ***Yoav Weiss*** 帮助更好的解释 Chrome 网络栈的执行.
+> 感谢 ***Kouhei***、***Dom Faralino***、***Pat Meenan***、***Kenji Baheux*** 和 ***Yoav Weiss*** 帮助更好的解释 Chrome 网络栈的执行.
 
 原文: https://medium.com/dev-channel/javascript-loading-priorities-in-chrome-57c54cfa6672
