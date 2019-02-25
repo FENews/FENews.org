@@ -279,6 +279,6 @@ async function foo(v) {
 
 ### 揭开 `await` 的神秘面纱
 
-
+首先，V8 将这个函数标记成可恢复的（resumable），这意味着执行可以被暂停和恢复（在 `await` 的位置）。然后，创建一个做为你调用异步函数时返回的 promise -- `implicit_promise`，最终解析为异步函数的值。
 
 原文地址：[https://v8.dev/blog/fast-async](https://v8.dev/blog/fast-async)
