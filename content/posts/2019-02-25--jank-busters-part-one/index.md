@@ -12,6 +12,8 @@ tags:
 description: "了解一个事物的历史，有助于让我们了解事物的本质。"
 ---
 
+*作者： Michael Lippautz, Hannes Payer*  *译者：隔壁老王*
+
 Jank, or in other words visible stutters, can be noticed when Chrome fails to render a frame within 16.66ms (disrupting 60 frames per second motion). As of today most of the V8 garbage collection work is performed on the main rendering thread, c.f. Figure 1, often resulting in jank when too many objects need to be maintained. Eliminating jank has always been a high priority for the V8 team [ 1, 2, 3]. In this blog post we will discuss a few optimizations that were implemented between M41 and M46 which significantly reduce garbage collectione lists and instead detect detached buffers by inserting checks before every load and%ing="0" cellspacing="0">  Figure 1: Garbage collection performed on the main thread. 
 
 ![Figure 1: Garbage collection performed on the main thread](./images/gc-main-thread.png)
@@ -38,3 +40,5 @@ Most of V8’s garbage collection is performed on the main rendering thread. Mov
 The impact of the discussed optimizations is clearly visible in WebGL-based games, for example Turbolenz’s Oort Online demo. The following video compares Chrome 41 to Chrome 46:
 
 We are currently in the process of making more garbage collection components incremental, concurrent, and parallel, to shrink garbage collection pause times on the main thread even further. Stay tuned as we have some interesting patches in the pipeline.
+
+原文地址：[https://v8.dev/blog/jank-busters](https://v8.dev/blog/jank-busters)
