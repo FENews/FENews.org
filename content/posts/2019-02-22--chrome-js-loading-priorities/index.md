@@ -26,4 +26,6 @@ description: "知道浏览器如何调度和执行脚对 web 性能的优化有�
 
 > 感谢 ***Kouhei***、***Dom Faralino***、***Pat Meenan***、***Kenji Baheux*** 和 ***Yoav Weiss*** 帮助更好的解释 Chrome 网络栈的执行.
 
+
+
 原文: https://medium.com/dev-channel/javascript-loading-priorities-in-chrome-57c54cfa6672

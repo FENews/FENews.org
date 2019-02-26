@@ -10,10 +10,10 @@ tags:
   - "async"
   - "promise"
   - "翻译"
-description: ""
+description: "JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实时的 JavaScript 应用程序，特别是 Node.js 服务器，并非易事，特别是涉及到异步编程时。幸运的是，这个现象正在被改变。这篇文章将介绍我们是如何在 V8 （有一些其他的 JavaScript 引擎也一样） 中优化异步函数和 promise 的，还有我们如何提升异步代码的调试体验。"
 ---
 
-JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实时的 JavaScript 应用程序，特别是 Node.js 服务器，并非易事，特别是涉及到异步编程时。幸运的是，这个现象正在被改变。这篇文章将介绍我们是如何在 V8 （有一些其他的 JavaScript 引擎也一样） 中优化 `async` 函数和 promise 的，还有我们如何提升 `async` 代码的调试体验。
+JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实时的 JavaScript 应用程序，特别是 Node.js 服务器，并非易事，特别是涉及到异步编程时。幸运的是，这个现象正在被改变。这篇文章将介绍我们是如何在 V8 （有一些其他的 JavaScript 引擎也一样） 中优化异步函数和 promise 的，还有我们如何提升异步代码的调试体验。
 
 *⚠️ 相对于阅读文章，如果你更喜欢看演讲视频的话，可以直接观看下面的视频。否则，请跳过视频并继续阅读。*
 
@@ -280,5 +280,17 @@ async function foo(v) {
 ### 揭开 `await` 的神秘面纱
 
 首先，V8 将这个函数标记成可恢复的（resumable），这意味着执行可以被暂停和恢复（在 `await` 的位置）。然后，创建一个做为你调用异步函数时返回的 promise -- `implicit_promise`，最终解析为异步函数的值。
+
+![await under the hood](images/await-under-the-hood.jpg)
+<p style="text-align: center"><small>一个简单的异步函数和 V8 引擎转换后的代码比较</small></p>
+
+有趣的是：真实的 `await` 。传给 `await` 的第一个值被封装成一个 promise 。然后，暂停异步函数的执行，并为这个 promise 添加处理程序以便稍后 promise 被 `fulfilled` 的时候恢复异步函数执行，最终返回 `implicit_promise` 给调用者。一旦 promise 被置为 `fulfilled` ，异步函数恢复执行，异步函数内部获取到 `promise` 的值并赋值给 `w` 做为 resolve `implicit_promise` 的值。
+
+简而言之，`await v` 的初始化可以概括如下：
+1. 将传给 `await` 的值 `v` 封装成一个 promise
+1. 为恢复执行异步函数添加处理程序
+1. 暂停执行异步函数并返回 `implicit_promise` 给调用者
+
+让我们来一步步的看下这些操作。假设 `await` 后面跟的已经是一个 `fulfilled` 状态且值为 `42` 的 promise 。然后，V8 引擎创建一个新的 promise ，并且 resolve await 后面的 promise 。
 
 原文地址：[https://v8.dev/blog/fast-async](https://v8.dev/blog/fast-async)
