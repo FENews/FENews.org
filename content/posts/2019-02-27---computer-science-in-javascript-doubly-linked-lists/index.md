@@ -15,7 +15,7 @@ tags:
 description: "在 Javascript 中实现双向链表。"
 ---
 
-在我之前的文章中，讨论了在 JavaScript 中创建单链表（如果您还未读过之前那篇文章，我建议您先去阅读它）。单个链表由节点组成，每个节点都有一个指向列表中后一个节点的指针。单链表操作通常需要遍历整个链表，因此一般性能较差。提高性能的方法之一是在链表中每个节点上添加指向前一个节点的指针。每个节点有分别指向前一个节点和后一个节点的指针的链表称为双向链表。
+在我之前的 [文章](https://humanwhocodes.com/blog/2019/01/computer-science-in-javascript-linked-list/) 中，讨论了在 JavaScript 中创建单向链表（如果您还未读过之前那篇文章，我建议您先去阅读它）。单个链表由节点组成，每个节点都有一个指向列表中后一个节点的指针。单向链表的操作通常需要遍历整个链表，因此一般性能较差。提高性能的方法之一是在链表中每个节点上添加指向前一个节点的指针。每个节点有分别指向前一个节点和后一个节点的指针的链表称为双向链表。
 
 ### 双向链表的设计
 
@@ -31,7 +31,7 @@ class DoublyLinkedListNode {
 }
 ```
 
-在 DoublyLinkedListNode 类中，data 属性包含链表项应存储的值，后一个属性是指向列表中后一项的指针，而前一个属性是指向列表中前一项的指针。后一个和前一个指针都以null开头，因为在实例化类时未知后一个和前一个节点。然后，您可以使用 DoublyLinkedListNode 类创建双向链表，如下所示：
+在 `DoublyLinkedListNode` 类中，属性 `data` 包含链表项存储的值，属性 `next` 是指向列表中后一项的指针，而属性 `previous` 是指向列表中前一项的指针。`next` 和 `previous` 都以 `null` 开头，因为在实例化类时未知后一个和前一个节点。然后，您可以使用 `DoublyLinkedListNode` 类创建双向链表，如下所示：
 
 ```js
 // create the first node
@@ -51,11 +51,11 @@ const tail = thirdNode;
 
 ```
 
-同样与单向链表一样，双向链表中的第一个节点称之为头节点，通过标记前一个指针和后一个指针来确定第二个和第三个节点。下面这张图展示了生成的数据结构。
+同样与单向链表一样，双向链表中的第一个节点称之为头节点，通过标记 `next` 和 `previous` 来确定第二个和第三个节点。下面这张图展示了生成的数据结构。
 
 ![双向链表数据结构](./images/Doubly-linked-list.png)
 
-您可以按照每个节点上的后一个指针，以与单向链表相同的方式遍历双向链表，例如：
+您可以按照每个节点上的 `next` ，以与单向链表相同的方式遍历双向链表，例如：
 
 ```js
 let current = head;
@@ -66,7 +66,7 @@ while (current !== null) {
 }
 ```
 
-双向链表通常也跟踪链表中最后一个节点，这个节点被称作尾节点。尾节点更便于新节点的插入以及实现链表从后向前查询。为此，从尾节点开始直到没有更多的节点。以下代码将打印出反向遍历双向链表的每一个值：
+双向链表通常也跟踪链表中最后一个节点，这个节点被称作尾节点。尾节点更便于新节点的插入以及实现链表从后向前查询。为此，从尾节点开始跟踪 `previous` 直到没有更多的节点。以下代码将打印出反向遍历双向链表的每一个值：
 
 ```js
 let current = tail;
@@ -79,7 +79,7 @@ while (current !== null) {
 
 双向链表相较于单向链表的优势在于可以前后转换从两个方向遍历。
 
-### DoublyLinkedList 类
+### `DoublyLinkedList` 类
 
 与单链表一样，双向链表中节点的操作最好封装在一个类中。这里有一个简单的例子：
 
@@ -95,13 +95,11 @@ class DoublyLinkedList {
 }
 ```
 
-The DoublyLinkedList class represents a doubly linked list and will contain methods for interacting with the data it contains. There are two symbol properties, head and tail, to track the first and last nodes in the list, respectively. As with the singly linked list, the head and tail are not intended to be accessed from outside the class.
-
-DoublyLinkedList 类表示双向链表，并包含与数据进行交互的方法。属性 `head` 和 `tail` 分别用于跟踪列表中的第一个和最后一个节点。与单链表一样，`head` 和 `tail` 不推荐在类外访问。
+`DoublyLinkedList` 类表示双向链表，并包含与数据进行交互的方法。属性 `head` 和 `tail` 分别用于跟踪列表中的第一个和最后一个节点。与单链表一样，`head` 和 `tail` 不推荐在类外访问。
 
 ### 添加新数据到列表中
 
-将元素添加到双向链表和添加到单向链表非常相似。在这两种数据结构中，您必须先找到列表中的最后一个节点，然后在其后面添加一个新节点。在单向链表中，您必须遍历整个列表以查找最后一个节点，而在双向链表中， 直接使用 `this[tail]` 属性跟踪最后一个节点。这是 DoublyLinkedList 类的 `add()` 方法：
+将元素添加到双向链表和添加到单向链表非常相似。在这两种数据结构中，您必须先找到列表中的最后一个节点，然后在其后面添加一个新节点。在单向链表中，您必须遍历整个列表以查找最后一个节点，而在双向链表中， 直接使用 `this[tail]` 属性跟踪最后一个节点。这是 `DoublyLinkedList` 类的 `add()` 方法：
 
 ```js
 class DoublyLinkedList {
@@ -133,7 +131,7 @@ class DoublyLinkedList {
 }
 ```
 
-双向链表的 `add()` 方法接受一个参数，即要插入列表的数据。如果列表为空（`this[head]` 和 `[tail]` 都为 null），则将新节点分配给 `this[head]`。如果列表不为空，则在当前 `this[tail]` 节点之后添加新节点。最后一步是将 `this[tail]` 设置为 `newNode `，因为在空列表和非空列表中，新节点始终是最后一个节点。
+双向链表的 `add()` 方法接受一个参数，即要插入列表的数据。如果列表为空（`this[head]` 和 `[tail]` 都为 `null`），则将新节点分配给 `this[head]`。如果列表不为空，则在当前 `this[tail]` 节点之后添加新节点。最后一步是将 `this[tail]` 设置为 `newNode `，因为在空列表和非空列表中，新节点始终是最后一个节点。
 
 这里注意，在空列表的情况下，`this[head]` 和 `this[tail]` 为同一节点。因为单节点列表中的单个节点既是该列表中的第一个节点，也是最后一个节点。跟踪列表尾节点非常重要，这样必要时可以反向遍历列表。
 
@@ -265,7 +263,7 @@ class DoublyLinkedList {
 
 ### 创建反向迭代器
 
-您可以使用来自单向链表的相同的 `values()` 和 `Symbol.iterator` 方法在 JavaScript 中创建可迭代的双向链表。同时，在双向链表中，您还可以创建一个反向迭代器，它从 tail 开始向 head 生成数据。以下是一个 `reverse()` 方法的例子：
+您可以使用来自单向链表的相同的 `values()` 和 `Symbol.iterator` 方法在 JavaScript 中创建可迭代的双向链表。同时，在双向链表中，您还可以创建一个反向迭代器，它从 tail 开始向 head 生成数据。以下是一个 `reverse()` 生成器方法的例子：
 
 ```js
 class DoublyLinkedList {
@@ -286,21 +284,15 @@ class DoublyLinkedList {
 }
 ```
 
-The reverse() generator method follows the same algorithm as the values() generator method in the singly linked list with the exception that current starts equal to this[tail] and the current.previous is followed until the there are no more nodes. Creating a reverse iterator is helpful for discovering bugs in the implementation as well as avoiding rearranging nodes just to access the data in a different order.
+双向链表 `reverse()` 生成器方法遵循与单链接列表中的 `values()` 生成器方法相同的算法，除了 `current` 从 `this[tail]` 开始以 `current.previous` 查询直到没有更多节点。创建反向迭代器有助于发现问题和避免为了以不同的顺序访问数据而重新排列节点。
 
-Other methods
-Most other methods that don’t involve addition or removal of nodes follow the same algorithms as those in a singly linked list.
+### 其他方法
 
-Using the class
-Once complete, you can use the linked list implementation like this:
+大多数不涉及添加或删除节点的其他方法与单向链表相同。
 
-reverse（）生成器方法遵循与单链接列表中的values（）生成器方法相同的算法，除了当前开始等于此[tail]并且遵循current.previous直到没有更多节点。创建反向迭代器有助于发现实现中的错误，并避免重新排列节点只是为了以不同的顺序访问数据。
+### 使用类
 
-其他方法
-大多数不涉及添加或删除节点的其他方法遵循与单链表中相同的算法。
-
-使用课程
-完成后，您可以使用链接列表实现，如下所示：
+您可以使用类实现链表，如下所示：
 
 ```js
 const list = new DoublyLinkedList();
@@ -328,17 +320,12 @@ const array2 = [...list];
 const array3 = [...list.reverse()];
 ```
 
-The full source code is available on GitHub at my Computer Science in JavaScript project.
-
-完整的源代码可以在我的计算机科学JavaScript项目的GitHub上找到。
+完整的源代码可以在 GitHub 上我的项目 [Computer Science in JavaScript](https://github.com/humanwhocodes/computer-science-in-javascript) 找到。
 
 ### 总结：
-Doubly linked lists are similar to singly linked lists in that each node has a next pointer to the next node in the list. Each node also has a previous pointer to the previous node in the list, allowing you to move both backwards and forwards in the list easily. Doubly linked lists typically track both the first and last node in the list, and that makes adding a node into the list a O(1) operation instead of O(n) in a singly linked list.
 
-双链表与单链表类似，每个节点都有一个指向列表中下一个节点的下一个指针。每个节点还有一个指向列表中上一个节点的前一个指针，允许您轻松地在列表中向后和向前移动。双向链表通常跟踪列表中的第一个和最后一个节点，并且这使得在单个链接列表中将节点添加到列表中是O（1）操作而不是O（n）
+双链表与单链表类似，每个节点都有一个指向列表中下一个节点的 `next` 指针。每个节点还有一个指向列表中上一个节点的 `previous` 指针，便于实现列表中从后向前移动。双向链表通常跟踪列表中的第一个和最后一个节点，这使得在单个链接列表中添加节点的复杂度从O(n)简化到O(1)。
 
-However, the complexity of other doubly linked list operations is the same as with a singly linked list because you always end up traversing most of the list. As such, doubly linked lists don’t offer any real advantage over the built-in JavaScript Array class for storing a collection of unrelated data (though related data, such as sibling DOM nodes in the browser) might be useful to represent in some kind of linked list.
-
-但是，其他双向链表操作的复杂性与单链表相同，因为您总是最终遍历列表的大部分内容。因此，双链表没有提供任何真正的优势，比内置的JavaScript Array类存储一组不相关的数据（虽然相关数据，如浏览器中的兄弟DOM节点）可能有助于表示某种类型链表。
+但是，双向链表其他操作的复杂性与单链表相同，因为总是遍历列表的大部分节点。因此，双向链表没有真正的优势在内置的 JavaScript `Array` 类存储一组不相关的数据（虽然有关数据，如浏览器中的 DOM 节点）上，可能有助于表示某种类型链表。
 
 原文地址：[https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/](https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/)
