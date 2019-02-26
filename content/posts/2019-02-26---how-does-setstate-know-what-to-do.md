@@ -28,7 +28,7 @@ class Button extends React.Component {
 ReactDOM.render(<Button />, document.getElementById('container'));
 ```
 
-React 根据 state 改变后的 `{ clicked: true }` 状态来更新 DOM 然后返回 `<h1>Thanks</h1>`.
+React 根据 state 改变后的 `{ clicked: true }` 状态来更新 DOM 然后返回 `<h1>Thanks</h1>`。
 
 看起来很简单，是吧。但是，到底是 React 去做了逻辑还是 React DOM ?
 
@@ -47,20 +47,20 @@ React 根据 state 改变后的 `{ clicked: true }` 状态来更新 DOM 然后�
 
 你可能对 React Test 或者 Shadllow Render 熟悉一些。这两种测试策略都允许你渲染组件，也可以在它们内部调用 `this.setState()` 。 但是它们都不工作在 DOM 环境中。
 
-如果你用过像是 [React ART](https://github.com/facebook/react/tree/master/packages/react-art) 这样的渲染器（renderer），你可能也知道可以在一个页面里用多个渲染器（renderer）。（比如说，ART 组件可以运行在 React DOM 树中）基于这种情况，那么也就意味着全局的标识或变量这种方案是不可能的。
+如果你用过例如 [React ART](https://github.com/facebook/react/tree/master/packages/react-art) 这样的渲染器（renderer），你可能也知道可以在一个页面里用多个渲染器（renderer）。（比如说，ART 组件可以运行在 React DOM 树中）基于这种情况，那么也就意味着全局的标识或变量这种方案是不可能的。
 
 因此 **React Component 是一种委托。委托特定的平台去处理 state 的状态更新**。在我们了解它是怎么做的之前，首先让我们来深入探讨下 React 是如果做分包的，和为什么它要这么做。
 
 ---
 
-有一种常见的误解认为 React渲染引擎 包含在 `react` 这个包中的。其实不是这样的。
+有一种常见的误解认为 React 渲染引擎包含在 `react` 这个包中。其实不是这样的。
 
-实际上，自从 [React 0.14 分包](https://reactjs.org/blog/2015/07/03/react-v0.14-beta-1.html#two-packages)后，`react` 包有意地只暴露了定义组件的API。 React渲染引擎的大部分实现都在 `renderer` 中。
+实际上，自从 [React 0.14](https://reactjs.org/blog/2015/07/03/react-v0.14-beta-1.html#two-packages)分包后，`react` 包有意地只暴露了定义组件的API。 React渲染引擎的大部分实现都在 `renderer` 中。
 
 
-`react-dom`、`react-dom/server`、 `react-native`、`react-test-renderer`、`react-art` 这些是一些 `renderer` 的例子（[你可以编写你的 `renderer`](https://github.com/facebook/react/blob/master/packages/react-reconciler/README.md#practical-examples)）
+`react-dom`、`react-dom/server`、 `react-native`、`react-test-renderer`、`react-art` 这是一些 `renderer` 的例子（[你可以编写你的 `renderer`](https://github.com/facebook/react/blob/master/packages/react-reconciler/README.md#practical-examples)）
 
-这就是为什么 `react` 包那么重要而不用关心你的目标平台是什么。它的所有导出，像是 `React.Component`、`React.createElement`、`React.Children`还有[Hooks](https://reactjs.org/docs/hooks-intro.html)，都是独立于目标平台的。不管你是在运行在 React DOM， React DOM Server，或者 React Native中，你的组件都将已相同的方式导入，使用。
+这就是为什么 `react` 包那么重要而不用关心你的目标平台是什么。它的所有导出，例如 `React.Component`、`React.createElement`、`React.Children`还有[Hooks](https://reactjs.org/docs/hooks-intro.html)，都是独立于目标平台的。不管你是运行在 React DOM、React DOM Server、或者 React Native 中，你的组件都将以相同的方式导入，使用。
 
 相比之下，渲染器（renderer）包公开了特定于平台的 API，比如说 `ReactDOM.render()` 它允许一个 React 的结构挂载到一个 DOM 节点中。每个渲染器（renderer）都提供了类似上面的 API。理想情况下，大部分的组件不需要从渲染器（renderer）中导入任何东西。这使得它们更加轻量。
 
@@ -141,7 +141,7 @@ React DOM Server [可能会忽略 State 的更新，然后警告你](https://git
 
 现在我们知道在在类中 `setState()` 是怎么处理的，那么问题来了，Hooks 是怎么处理的呢？
 
-当开发者第一次看到 [Hook API提案](https://reactjs.org/docs/hooks-intro.html)，他们总是在想： `useState` 是怎么知道该干嘛的？我们假设它比基于 `React.Component` 的 `setState()` 更加的神奇。
+当开发者第一次看到 [Hook API提案](https://reactjs.org/docs/hooks-intro.html)，他们总是在想： `useState` 是怎么知道该干什么的？我们假设它比基于 `React.Component` 的 `setState()` 更加神奇。
 
 但是正如我们今天所看到的，基于类的 `setState()` 实现是一种错觉。除了将调用转发给当前渲染器（renderer）之外，它不会执行任何操作。`useState` Hook [做了同样的事情](https://github.com/facebook/react/blob/ce43a8cd07c355647922480977b46713bd51883e/packages/react/src/ReactHooks.js#L55-L56)。
 
