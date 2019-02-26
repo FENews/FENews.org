@@ -28,7 +28,7 @@ class Button extends React.Component {
 ReactDOM.render(<Button />, document.getElementById('container'));
 ```
 
-React 根据 state 改变后的 `{ clicked: true }` 状态来更新 DOM 然后返回 `<h1>Thanks</h1>`.
+React 根据 state 改变后的 `{ clicked: true }` 状态来更新 DOM 然后返回 `<h1>Thanks</h1>`。
 
 看起来很简单，是吧。但是，到底是 React 去做了逻辑还是 React DOM ?
 
