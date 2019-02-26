@@ -291,6 +291,14 @@ async function foo(v) {
 1. 为恢复执行异步函数添加处理程序
 1. 暂停执行异步函数并返回 `implicit_promise` 给调用者
 
-让我们来一步步的看下这些操作。假设 `await` 后面跟的已经是一个 `fulfilled` 状态且值为 `42` 的 promise 。然后，V8 引擎创建一个新的 promise ，并且 resolve await 后面的 promise 。
+让我们来一步步的看下这些操作。假设 `await` 后面跟的已经是一个 `fulfilled` 状态且值为 `42` 的 promise 。然后，V8 引擎创建一个新的 promise ，并且对 await 后面的 promise 执行 resolve 操作。这样做使得这些 promise 链延迟到下一轮（微任务）执行，这个操作在规范中称为 [PromiseResolveThenableJob](https://tc39.github.io/ecma262/#sec-promiseresolvethenablejob) 。
+
+![await step 1](images/await-step-1.jpg)
+
+接着 V8 引擎创建另外一个叫做 `throwaway` 的 `promise` 。它被叫做 `throwaway` 因为没有其他程序链接到它，它只在引擎内部运行。这个 `throwaway` promise 会和一些适当的用来恢复异步函数执行的处理程序一起被链接到 `promise` 对象。`performPromiseThen` 操作的执行效果本质上和 [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) 是一样的。最终，异步函数的执行被暂停，执行控制权交还给调用者。
+
+![await step 2](images/await-step-2.jpg)
+
+执行继续在调用者中进行直到最终调用栈（call stack）为空。紧接着 V8 引擎开始执行 `microtaks` 
 
 原文地址：[https://v8.dev/blog/fast-async](https://v8.dev/blog/fast-async)
