@@ -18,7 +18,7 @@ JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实
 *⚠️ 相对于阅读文章，如果你更喜欢看演讲视频的话，可以直接观看下面的视频。否则，请跳过视频并继续阅读。*
 
 <div style="text-align: center">
-  <iframe width="100%" height="360px" frameborder=0 src="https://apd-889f99abe922d924156835f82af11cb8.v.smtcdns.com/vhot2.qqvideo.tc.qq.com/A5yk9ZWYW39qbID-Fc9aUoQnyPo6q5eAxqlis6Kvn7A0/n0843i7j2rq.p712.1.mp4?sdtfrom=v1010&guid=f214c0449e76f807e6e02dfd0248064a&vkey=D3E581EB47916F3C450C5B7173795C70C50B63B790F0B5EED69A40875394CAED1CB3CD2DF6119F340A9F59C30148E272C2EAA8B4FE0D7348B4C3E2C13CD26EDE9003783EA601D8E4697F176124315EF228F173F1C971F8D053B3CFD9EA6BD3E64309F04F6F1DE88E2BE0821E86A28FB6318A45ABED45396F" allowfullscreen=""></iframe>
+  <iframe width="100%" height="360px" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=n0843i7j2rq&tiny=0&auto=0" allowfullscreen="true"></iframe>
 </div>
 
 ## 异步编程的新方法
@@ -141,8 +141,8 @@ http.createServer(async (req, res) => {
 这些性能的提升是由于三个关键技术实现的结果：
 
 1. [TurboFan](https://v8.dev/docs/turbofan)，一个新的优化编译器 🎉
-1. [Orinoco]()，一个新的垃圾回收器 🚛
-1. 一个 Node.js 8 中导致 `await` 跳过 microtick 的 bug 修复 🐛 
+2. [Orinoco]()，一个新的垃圾回收器 🚛
+3. 一个 Node.js 8 中导致 `await` 跳过 microtick 的 bug 修复 🐛 
 
 我们在 Node.js 8 中使用 [TurboFan](https://v8.dev/blog/launching-ignition-and-turbofan) 极大的提升了性能。
 
