@@ -31,7 +31,7 @@ class DoublyLinkedListNode {
 }
 ```
 
-在 `DoublyLinkedListNode` 类中，属性 `data` 包含链表项存储的值，属性 `next` 是指向列表中后一项的指针，而属性 `previous` 是指向列表中前一项的指针。`next` 和 `previous` 都以 `null` 开头，因为在类实例化时后一个节点和前一个节点都还未知。您可以像下面这样使用 `DoublyLinkedListNode` 类创建双向链表：
+在 `DoublyLinkedListNode` 类中，属性 `data` 包含链表项存储的值，属性 `next` 是指向列表中后一项的指针，而属性 `previous` 是指向列表中前一项的指针。`next` 和 `previous` 指针初始都为 `null` ，因为在类实例化时后一个节点和前一个节点都还未知。您可以像下面这样使用 `DoublyLinkedListNode` 类创建双向链表：
 
 ```js
 // create the first node
@@ -320,7 +320,7 @@ const array2 = [...list];
 const array3 = [...list.reverse()];
 ```
 
-完整的源代码可以在我的 GitHub 上的项目 [Computer Science in JavaScript](https://github.com/humanwhocodes/computer-science-in-javascript) 找到。
+完整的源代码可以在我 GitHub 上的项目 [Computer Science in JavaScript](https://github.com/humanwhocodes/computer-science-in-javascript) 找到。
 
 ## 总结：
 
@@ -329,3 +329,4 @@ const array3 = [...list.reverse()];
 但是，双向链表其他操作的复杂性与单链表相同，基本都需要遍历列表中很多节点。因此，在存储一些毫无关联的数据（即使是有关联的数据，比如浏览器中的 DOM 节点）上，双向链表并不比内置的 JavaScript `Array` 储存性能好。这些数据可能用另外一种列表形式存储性能更好。
 
 原文地址：[https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/](https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/)
+
