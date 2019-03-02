@@ -26,7 +26,7 @@ JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实
 
 在 promise 成为 JavaScript 的一部分之前，基于回调的 API 是很常用的异步代码，特别是在 Node.js 中。这里有个栗子：
 
-``` javascript
+```javascript
 function handler(done) {
   validateParams((error) => {
     if (error) return done(error);
@@ -45,8 +45,8 @@ function handler(done) {
 
  幸运的是，现在 promise 已经成为了 JavaScript 语言的一部分。上面的代码有了更加优雅和可维护性的写法：
 
- ```javascript
- function handler() {
+```javascript
+function handler() {
   return validateParams()
     .then(dbQuery)
     .then(serviceCall)
@@ -55,7 +55,7 @@ function handler(done) {
       return result;
     });
 }
- ```
+```
 
 再后来，JavaScript 支持了异步函数。上面的异步代码，现在可以写的像同步代码一样了：
 
@@ -124,7 +124,7 @@ http.createServer(async (req, res) => {
 
 ![doxbee benchmark](images/doxbee-benchmark.svg)
 
-上图是了重度使用 promise 的代码的 [doxbee](https://github.com/v8/promise-performance-tests/blob/master/lib/doxbee-async.js) 基准测试结果。注意柱状体的高代表执行时间，所以越低代表性能越好。
+上图是重度使用 promise 的代码的 [doxbee](https://github.com/v8/promise-performance-tests/blob/master/lib/doxbee-async.js) 基准测试结果。注意柱状体的高代表执行时间，所以越低代表性能越好。
 
 并行测试的结果更让人兴奋，特别是 `Promise.all()` 的性能。
 
@@ -305,7 +305,7 @@ async function foo(v) {
 
 ![await step 3](images/await-step-3.svg)
 
-接下来是执行 [PromiseReactionJob](https://tc39.github.io/ecma262/#sec-promisereactionjob) ，它使用我们正在 `awaiting` 的值（找个例子中是 42）来完成 `promise` ，并且将响应程序（当 promise 被 resolve/ reject 时的处理程序）绑定到 `throwaway` 。现在还有最后一个微任务等待处理，V8 会继续循环执行微任务。
+接下来是执行 [PromiseReactionJob](https://tc39.github.io/ecma262/#sec-promisereactionjob) ，它使用我们正在 `awaiting` 的值（这个例子中是 42）来完成 `promise` ，并且将响应程序（当 promise 被 resolve/ reject 时的处理程序）绑定到 `throwaway` 。现在还有最后一个微任务等待处理，V8 会继续循环执行微任务。
 
 ![await step 4](images/await-step-4-final.svg)
 
@@ -324,7 +324,7 @@ async function foo(v) {
 
 ![await code comparison](images/await-code-comparison.svg)
 
-这个操作仍然是返回一个 promise ，但它只在需要的时候才会将跟在 `await` 后面的值封装到一个 promise 。通过这种方式在大多数情况（传给 `await` 的已经是 promise ）下可以节省一个额外的 promise 和两个微任务。这个优化已经在 [V8 v7.2](https://v8.dev/blog/v8-release-72#async%2Fawait) 默认开启。在 V8 v7.1 中可以通过使用 `--harmony-await-optimization` 开启。 同时，我们已经将找个优化提交给 [ECMAScript 规范](https://github.com/tc39/ecma262/pull/1250) 。一旦我们确定它与 web 兼容就会合并。
+这个操作仍然是返回一个 promise ，但它只在需要的时候才会将跟在 `await` 后面的值封装到一个 promise 。通过这种方式在大多数情况（传给 `await` 的已经是 promise ）下可以节省一个额外的 promise 和两个微任务。这个优化已经在 [V8 v7.2](https://v8.dev/blog/v8-release-72#async%2Fawait) 默认开启。在 V8 v7.1 中可以通过使用 `--harmony-await-optimization` 开启。 同时，我们已经将这个优化提交给 [ECMAScript 规范](https://github.com/tc39/ecma262/pull/1250) 。一旦我们确定它与 web 兼容就会合并。
 
 让我们一步一步来看下，这个针对 `await` 的优化是怎么执行的：
 
@@ -362,7 +362,7 @@ async function foo(v) {
 
 ![devtools](images/devtools@2x.png)
 
-这是一个在本地开发时非常有用的功能。然而，一旦你的应用部署上线，这个方法就帮不到你了。在事故发生后的调试中，你只能看到 `Error#stack` 输出的日志文件，它不能告诉你关于异步那部分代码发生了什么。
+这是一个在本地开发时非常有用的功能。然而，一旦你的应用部署上线，这个方法就帮不到你了。在事故发生后的调试中，你只能看到 `Error#stack` 输出的日志文件，它不能告诉你关于异步部分代码发生了什么。
 
 我们最近正在做 [零开销异步调用栈追踪](https://bit.ly/v8-zero-cost-async-stack-traces)，它将添加异步函数的调用信息到 `Error#stack` 的属性。“零开销”听起来很令人兴奋，真的能做到吗？在 Chrome 开发者工具的的功能开销很大的情况下，它如何做到零开销？举个栗子，`foo` 异步调用了 `bar`，`bar` 在 `await` 表达式之后抛出一个异常：
 
@@ -409,7 +409,7 @@ Error: BEEP BEEP
 
 在调用栈的追踪中，最顶层的函数出现在最前面，紧接着是剩余的异步追踪，然后是在 `foo` 函数中对 `bar` 的异步调用。这个变化已经在 V8 中实现，通过一个新的标识 `--async-stack-traces` 来使用(V8 v7.3 已经默认开启 `--async-stack-traces`)。
 
-然而，如果你拿这个和 Chrome 开发者工具里面的异步调用栈追踪相比，你会发现 `foo` 的调用站点不在异步调用栈的追踪信息中。正如前面提到的，这个方法是利用了 `await` 操作恢复和暂停执行位置相同的事实，但是常规情况下的 `Promise#then` 或 `Promise#catch` 的调用不是这样的。想了解更多，可以看 ***Mathias Bynens*** 关于[《为什么击败了 Promise#then》](https://mathiasbynens.be/notes/async-stack-traces) 的解释。
+然而，如果你拿这个和 Chrome 开发者工具里面的异步调用栈追踪相比，你会发现 `foo` 的调用站点不在异步调用栈的追踪信息中。正如前面提到的，这个方法是利用了 `await` 操作恢复和暂停执行位置相同的事实，但是常规情况下的 `Promise#then` 或 `Promise#catch` 的调用不是这样的。想了解更多，可以看 ***Mathias Bynens*** 关于[《为什么 await 打败了 Promise#then》](https://mathiasbynens.be/notes/async-stack-traces) 的解释。
 
 ## 总结
 我们通过以下两个有效的优化手段使异步函数变得更快：
