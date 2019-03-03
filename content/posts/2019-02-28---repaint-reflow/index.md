@@ -148,27 +148,44 @@ There’s always at least one initial page layout together with a paint (unless,
 在页面渲染的时候至少有一个初始页面布局和绘制，之后当更改构造渲染树的输入信息时可能至少会导致以下一种情况：
 
  1. parts of the render tree (or the whole tree) will need to be revalidated and the node dimensions recalculated. This is called a **reflow**, or layout, or layouting. Note that there’s at least one reflow — the initial layout of the page
+ 部分渲染树（或整个树）需要重新验证，并重新计算节点尺寸。我们把这称为回流、布局，这里需要注意下，页面至少有一个回流--页面的初始布局。
 
  2. parts of the screen will need to be updated, either because of changes in geometric properties of a node or because of stylistic change, such as changing the background color. This screen update is called a **repaint**, or a redraw.
+ 由于部分节点的几何属性发生了变化或者时样式发生了更改，比如更改了背景色，所以屏幕的有些部分需要更新，我们将此称之为重绘。
 
 Repaints and reflows can be expensive, they can hurt the user experience, and make the UI appear sluggish
+重绘和回流的代价时很大的，它们可能会影响用户体验，让UI界面迟缓。
 
 **Repaint**
+重绘
 As the name suggests repaint is nothing but the repainting element on the screen as the skin of element change which affects the visibility of an element but do not affects layout.
+顾名思义，重绘只是屏幕上的重绘元素，因为元素的外观会发生变化，这会影响元素的可见性，但不会影响布局。
+
+
 Example.
 1. Changing visibility of an element.
+1.改变元素的可见性
 2. Changing outline of the element.
+2.改变元素的外形轮廓
 3. Changing background.
+3.改变元素背景
 Would trigger a repaint.
+会触发重绘
 
 According to Opera, the repaint is an expensive operation as it forces the browser to verify/check visibility of all other dom nodes.
+Opera也说过，重绘是一项昂贵的操作，因为它强制浏览器去验证、检查所有其他dom节点的可见性。
 
 **Reflow
 **Reflow means re-calculating the positions and geometries of elements in the document, for the purpose of re-rendering part or all of the document. Because reflow is a user-blocking operation in the browser, it is useful for developers to understand how to improve reflow time and also to understand the effects of various document properties (DOM depth, CSS rule efficiency, different types of style changes) on reflow time. Sometimes reflowing a single element in the document may require reflowing its parent elements and also any elements which follow it.
+回流是指重新计算文档中元素的位置和几何形状，以重新呈现部分或全部文档。由于回流是浏览器中的用户阻塞操作，因此对于开发人员来说，了解如何提高回流时间以及了解各种文档属性（DOM深度、CSS规则效率、不同类型的样式更改）对回流时间的影响就显得非常有必要了。有时，在文档中回流单个元素可能需要回流其父元素以及其后的任何元素。
+
 
 ## Virtual DOM VS Real DOM
 
 Every time the DOM changes browser need to recalculate the CSS, do layout and repaint web page. This is what takes time in real dom.
+
+
+每次DOM更改浏览器需要重新计算CSS时，都要进行布局并重新绘制网页。
 
 To minimize this time Ember use key/value observation technique and Angular uses dirty checking. Using this technique they can only update changed dom node or the node which are marked as dirty in case of Angular.
 
