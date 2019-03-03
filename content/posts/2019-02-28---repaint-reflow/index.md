@@ -145,6 +145,7 @@ Figuring out what and how exactly to display on the screen involves a recursive 
 回流和重绘
 
 There’s always at least one initial page layout together with a paint (unless, of course you prefer your pages blank :)). After that, changing the input information which was used to construct the render tree may result in one or both of these:
+在页面渲染的时候至少有一个初始页面布局和绘制，之后当更改构造渲染树的输入信息时可能至少会导致以下一种情况：
 
  1. parts of the render tree (or the whole tree) will need to be revalidated and the node dimensions recalculated. This is called a **reflow**, or layout, or layouting. Note that there’s at least one reflow — the initial layout of the page
 
