@@ -1,6 +1,6 @@
 ---
 title: "V8：抖动优化（Jank Busters）—— 第一部分"
-date: "2019-01-30"
+date: "2019-03-04"
 template: "post"
 draft: false
 slug: "/posts/jank-busters-part-one/"
@@ -12,7 +12,9 @@ tags:
 description: "了解一个事物的历史，有助于让我们了解事物的本质。"
 ---
 
-*作者： Michael Lippautz, Hannes Payer*  *译者：隔壁老王*
+*作者： Michael Lippautz, Hannes Payer* 
+
+*译者：隔壁老王*
 
 Jank, or in other words visible stutters, can be noticed when Chrome fails to render a frame within 16.66ms (disrupting 60 frames per second motion). As of today most of the V8 garbage collection work is performed on the main rendering thread, c.f. Figure 1, often resulting in jank when too many objects need to be maintained. Eliminating jank has always been a high priority for the V8 team [ 1, 2, 3]. In this blog post we will discuss a few optimizations that were implemented between M41 and M46 which significantly reduce garbage collectione lists and instead detect detached buffers by inserting checks before every load and%ing="0" cellspacing="0">  Figure 1: Garbage collection performed on the main thread. 
 
@@ -46,7 +48,9 @@ The impact of the discussed optimizations is clearly visible in WebGL-based game
 
 在基于 WebGL 的游戏中，以上所讨论的优化的效果是清晰可见的，比如 Turbolenz 的在线演示。下面的👇视频对比了在 Chrome 41 和 Chrome 46 中的效果。
 
-<iframe frameborder="0" src="http://v.qq.com/txp/iframe/player.html?vid=f0844w6xtya" allowFullScreen="true"></iframe>
+<div style="text-align: center">
+  <iframe width="100%" height="360px" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=f0844w6xtya&tiny=0&auto=0" allowfullscreen=""></iframe>
+</div>
 
 We are currently in the process of making more garbage collection components incremental, concurrent, and parallel, to shrink garbage collection pause times on the main thread even further. Stay tuned as we have some interesting patches in the pipeline.
 
