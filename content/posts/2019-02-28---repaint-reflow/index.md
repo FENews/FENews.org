@@ -20,7 +20,7 @@ A picture is worth a thousand words. So, let’s have a high-level view of how a
 ![](https://cdn-images-1.medium.com/max/2000/1*lAUWhHx6CdF_OkMC3YkAHw.png)
 
 **hmm… what’s “browser engine” and “rendering engine”?**
-**嗯... 什么是browser engin 和 rendering engine**
+**嗯... 什么是browser engine 和 rendering engine**
 
 The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user’s device.
 Besides “browser engine”, two other terms are in common use regarding related concepts: “layout engine” and “rendering engine”. In theory, layout and rendering (or “painting”) could be handled by separate engines. In practice, however, they are tightly coupled and rarely considered separately.
@@ -185,21 +185,34 @@ Opera也说过，重绘是一项昂贵的操作，因为它强制浏览器去验
 Every time the DOM changes browser need to recalculate the CSS, do layout and repaint web page. This is what takes time in real dom.
 
 
-每次DOM更改浏览器需要重新计算CSS时，都要进行布局并重新绘制网页。
+每次DOM更改浏览器需要重新计算CSS时，都要进行布局并重新绘制网页。这是真实dom所花费的时间。
 
 To minimize this time Ember use key/value observation technique and Angular uses dirty checking. Using this technique they can only update changed dom node or the node which are marked as dirty in case of Angular.
 
+为了最小化这个时间，Ember使用键值队观察技术，Angular使用脏检查。使用这个技术能仅仅在dom节点改变时做出更新。或者在Angular中把这个节点标记为脏的，再去更新。
+
 If this was not the case then you are not able to see new email as soon as it comes while writing a new email in Gmail.
+
+如果情况不是这样的话，当你在Gmail中写了一个新的邮件，不能立即看到。
 
 But, browser are becoming smart enough nowadays they are trying to shorten the time it takes to repaint the screen. The biggest thing that can be done is to minimize and batch the DOM changes that make repaints.
 
+但是，浏览器正在变的越来越聪明，它们尝试缩短重绘时间。当重绘时，最重要的事情是最小化和批处理dom的更改。
+
 The strategy of reducing and baching DOM changes taken to another level of abstraction is the idea behind React’s Virtual DOM.
 
+React的虚拟DOM背后的理念是将dom的更改减少，并缓存到另一个抽象层次的策略。
+
 ## What makes React’s virtual DOM so fast?
+##是什么让React的虚拟dom如此块？
 
 React doesn’t really do anything new. It’s just a strategic move. What it does is It stores a replica of real DOM in memory. When you modify the DOM, it first applies these changes to the in-memory DOM. Then, using it’s diffing algorithm, figures out what has really changed.
 
+React并没有真正做一些新的事情。这只是一个战略举措。它的作用是将真实dom的副本存储到内存中。当你修改dom时，首先将这些更改应用到内存中dom。然后使用diff，找出真正改变。
+
 Finally, it batches the changes and call applies them on real-dom in one go. Thus, minimizing the re-flow and re-paint.
+
+最后，它批量更改并应用这些到真实dom中。因此，最大化减少回流和重绘。
 
 Interested in reading more on that? Well, that’s a topic for another post?
 
