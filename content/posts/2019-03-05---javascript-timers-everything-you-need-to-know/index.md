@@ -1,12 +1,12 @@
 ---
-title: "关于javascript timer你需要了解的知识"
+title: "关于Javascript timer你需要了解的知识"
 date: "2019-03-25"
 template: "post"
 draft: false
 slug: "/posts/javascript-timer"
 category: "V8"
 tags:
-    - "javascript"
+    - "Javascript"
     - "node"
     - "timer"
     - "翻译"
@@ -21,7 +21,7 @@ description: "关于Javascript计时器你需要知道的全部知识"
 
 **\* **在开始之前，先在你脑海中回答这个问题** \***
 
-推特上大约一半的回答都是错误的。答案并不是 V8（或者虚拟机）！！虽然“javascript 计时器” 很出名,但是 `setTimeout` 和 `setInterval` 函数并不是 ECMAScript 规范或者任何 JavaScript 引擎实现。定时器函数功能由浏览器实现，它们的实现在不同浏览器之间会有所不同，定时器也由 Node.Js 运行时本身实现。
+推特上大约一半的回答都是错误的。答案并不是 V8（或者虚拟机）！！虽然“javascript 计时器” 很出名，但是 `setTimeout` 和 `setInterval` 函数并不是 ECMAScript 规范或者任何 JavaScript 引擎实现。定时器函数功能由浏览器实现，它们的实现在不同浏览器之间会有所不同，定时器也由 Node.Js 运行时本身实现。
 
 在浏览器中，主计时器函数是 `Window` 接口的一部分，它具有一些其他函数和对象。 该接口使其所有元素在主 JavaScript 全局可用。 这就是您可以直接在浏览器控制台中执行 `setTimeout` 的原因。
 
@@ -118,7 +118,7 @@ setTimeout(theOneFunc, 8 * 1000, 8);
 
 如果我要求您每隔 4 秒打印一条消息怎么办？
 
-虽然您可以将`setTimeout`放在循环中，但定时器 API 也提供了`setInterval`函数，这将完成永远执行某些操作的要求。
+虽然您可以将 `setTimeout` 放在循环中，但定时器 API 也提供了 `setInterval` 函数，这将完成永远执行某些操作的要求。
 
 这是`setInterval`的一个例子：
 
@@ -131,7 +131,7 @@ setInterval(() => console.log("Hello every 3 seconds"), 3000);
 
 因为调用计时器函数是一个调度操作，所以在执行之前也可以取消该调度操作。
 
-对`setTimeout`的调用返回一个计时器“ID”，您可以使用带有`clearTimeout`调用的计时器 ID 来取消该计时器。 这是一个例子：
+对 `setTimeout` 的调用返回一个计时器“ID”，您可以使用带有 `clearTimeout` 调用的计时器 ID 来取消该计时器。 这是一个例子：
 
 ```JS
 // example4.js
@@ -142,26 +142,26 @@ const timerId = setTimeout(
 clearTimeout(timerId);
 ```
 
-这个简单的计时器应该在 0 毫秒后立即启动，但它并没有按照我们预期的那样，因为我们已经捕获`timerId`值并在使用`clearTimeout`调用后立即取消它。
+这个简单的计时器应该在 0 毫秒后立即启动，但它并没有按照我们预期的那样，因为我们已经捕获 `timerId` 值并在使用 `clearTimeout` 调用后立即取消它。
 
-当我们通过`node`命令去执行`example4.js`,Node 将不会打印任何信息并且退出进程。
+当我们通过 `node` 命令去执行 `example4.js`,Node 将不会打印任何信息并且退出进程。
 
-顺便说一句，在 Node.js 中，还有另一种方法可以使用`0` ms 进行`setTimeout`。 Node.js 计时器 API 有另一个名为 setImmediate 的函数，它与一个`0`ms 的`setTimeout`基本相同，但我们不必在那里指定延迟：
+顺便说一句，在 Node.js 中，还有另一种方法可以使用`0` ms 进行 `setTimeout`。 Node.js 计时器 API 有另一个名为 setImmediate 的函数，它与一个 `0`ms 的 `setTimeout` 基本相同，但我们不必在那里指定延迟：
 
 ```js
 setImmediate(() => console.log("I am equivalent to setTimeout with 0 ms"));
 ```
 
-_`setImmediate`函数不是在所有的浏览器都是可用的
+`setImmediate` 函数不是在所有的浏览器都是可用的
 [here](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate),不要在客户端的代码中使用这个_。
 
-就像`clearTimeout`一样，还有一个`clearInterval`函数，它对`setInerval`调用执行相同的操作，并且还有一个`clearImmediate`也调用同样的操作。
+就像 `clearTimeout` 一样，还有一个 `clearInterval` 函数，它对 `setInerval` 调用执行相同的操作，并且还有一个 `clearImmediate` 也调用同样的操作。
 
 #### 定时器延迟不是固定的
 
-在前面的例子中，您是否注意到在`0` ms 之后执行`setTimeout`的操作并不意味着立即执行它（在`setTimeout`内部），而是在脚本中的所有其他操作之后立即执行它（包括`clearTimeout`调用）？
+在前面的例子中，您是否注意到在 `0` ms 之后执行 `setTimeout `的操作并不意味着立即执行它（在 `setTimeout` 内部），而是在脚本中的所有其他操作之后立即执行它（包括 `clearTimeout` 调用）？
 
-让我用一个例子清楚地说明这一点。 这是一个简单的`setTimeout`调用，应该在半秒后触发，但它不会：
+让我用一个例子清楚地说明这一点。 这是一个简单的 `setTimeout` 调用，应该在半秒后触发，但它不会：
 
 ```js
 // example5.js
@@ -171,7 +171,7 @@ for (let i = 0; i < 1e10; i++) {
 }
 ```
 
-在此示例中定义计时器之后，我们使用 big `for`循环同步阻止运行。 `1e10`是`1`和`10`个零，所以循环是一个 10 亿个循环（基本上模拟繁忙的 CPU）。 当此循环正在滴答时，节点无法执行任何操作。
+在此示例中定义计时器之后，我们使用 big `for`循环同步阻止运行。 `1e10 `是10的十次方，所以循环是一个 10 亿个循环（基本上模拟繁忙的 CPU）。 当此循环正在滴答时，节点无法执行任何操作。
 
 这当然在实际是很糟糕的，但它会帮助你理解 setTimeout 延迟不是一个保证的东西，而是一个最小的事情。 500 ms 表示最小延迟为 500 ms。 实际上，脚本将花费更长的时间来打印其问候语。 它必须等待阻塞循环才能完成
 
@@ -179,7 +179,7 @@ for (let i = 0; i < 1e10; i++) {
 
 编写脚本每秒打印消息“**Hello World**”，但只打印 5 次。 5 次后，脚本应打印消息“_完成_”并让 Node 进程退出。
 
-**约束**：您不能对此挑战使用`setTimeout`调用。
+**约束**：您不能对此挑战使用 `setTimeout` 调用。
 **提示**：你需要一个计数器。
 
 ##### 解答
@@ -198,9 +198,9 @@ const intervalId = setInterval(() => {
 }, 1000);
 ```
 
-我初始化`counter`为`0`，然后启动一个 setInterval 调用并捕获了它的 id。
+我初始化 `counter` 为 `0` ，然后启动一个 setInterval 调用并捕获了它的 id。
 
-延迟函数将会打印消息并每次递增计数器。 在延迟函数内，if 语句将检查我们现在是否处于`5`次。 如果是这样，它将打印“Done”并使用捕获的`intervalId`常量清除间隔。 间隔延迟为`1000`毫秒
+延迟函数将会打印消息并每次递增计数器。 在延迟函数内，if 语句将检查我们现在是否处于 `5` 次。 如果是这样，它将打印“Done”并使用捕获的 `intervalId` 常量清除间隔。 间隔延迟为 `1000` 毫秒
 
 #### 究竟谁“调用”延迟函数？
 
@@ -212,9 +212,9 @@ function whoCalledMe() {
 }
 ```
 
-函数内部`this`关键字的值表示函数的调用者。如果在 Node REPL 中定义上面的函数，则调用者将是`global`对象。 如果在浏览器控制台中定义函数，则调用者将是`window`对象。
+函数内部`this`关键字的值表示函数的调用者。如果在 Node REPL 中定义上面的函数，则调用者将是 `global` 对象。 如果在浏览器控制台中定义函数，则调用者将是 `window` 对象。
 
-让我们定义一个函数作为一个对象的属性，为了更清晰的理解`this`
+让我们定义一个函数作为一个对象的属性，为了更清晰的理解 `this`
 
 ```js
 const obj = {
@@ -230,7 +230,7 @@ const obj = {
 
 ![chrome-devtools](images/4.jpeg)
 
-现在问题是，如果我们将`obj.whoCallMe`的引用传递给`setTimetout`调用，调用者会是什么？
+现在问题是，如果我们将 `obj.whoCallMe` 的引用传递给 `setTimetout` 调用，调用者会是什么？
 
 ```js
 // What will this print??
@@ -239,11 +239,11 @@ setTimeout(obj.whoCalledMe, 0);
 
 #### 谁才是真正的调用者？
 
-答案是：根据执行计时器功能的位置而有所不同。 在这个例子中，你无法直接判断谁是调用者。因为定时器实现是将你的函数唤醒。 如果您在 Node REPL 中测试它，您将获得一个`Timetout`对象作为调用者：
+答案是：根据执行计时器功能的位置而有所不同。 在这个例子中，你无法直接判断谁是调用者。因为定时器实现是将你的函数唤醒。 如果您在 Node REPL 中测试它，您将获得一个 `Timetout` 对象作为调用者：
 
 ![chrome-devtools](images/3.jpeg)
 
-请注意，这只在您在常规函数中使用 JavaScript 的`this`关键字时才有意义。 如果您使用箭头功能，则根本不需要担心调用者。
+请注意，这只在您在常规函数中使用 JavaScript 的 `this` 关键字时才有意义。 如果您使用箭头功能，则根本不需要担心调用者。
 
 #### 定时器挑战＃3
 
@@ -262,9 +262,9 @@ Hello World. 3
 
 ##### 解答
 
-因为延迟量是此挑战中的变量，所以我们不能在这里使用`setInterval`，但我们可以在递归调用中使用`setTimeout`手动创建间隔执行。 使用`setTimeout`的第一个执行函数将创建另一个计时器，依此类推。
+因为延迟量是此挑战中的变量，所以我们不能在这里使用 `setInterval`，但我们可以在递归调用中使用 `setTimeout` 手动创建间隔执行。 使用 `setTimeout` 的第一个执行函数将创建另一个计时器，依此类推。
 
-另外，因为我们不能使用 let / var，所以我们不能有一个计数器来增加每个递归调用的延迟，但我们可以使用递归函数参数在递归调用期间递增。
+另外，因为我们不能使用 let / var ，所以我们不能有一个计数器来增加每个递归调用的延迟，但我们可以使用递归函数参数在递归调用期间递增。
 
 这是解决这一挑战的一种可能方法：
 
