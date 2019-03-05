@@ -1,16 +1,16 @@
 ---
-title: "关于Javascript timer你需要了解的知识"
+title: "关于JavaScript timer你需要了解的知识"
 date: "2019-03-25"
 template: "post"
 draft: false
 slug: "/posts/javascript-timer"
 category: "V8"
 tags:
-    - "Javascript"
+    - "JavaScript"
     - "node"
     - "timer"
     - "翻译"
-description: "关于Javascript计时器你需要知道的全部知识"
+description: "关于JavaScript计时器你需要知道的全部知识"
 ---
 
 ![chrome-devtools](images/5.jpeg)
