@@ -301,11 +301,11 @@ Hello World. 200  // At 900ms
 Hello World. 200  // At 1100ms
 ```
 
-**约束**：您只能使用 setInterval 调用（而不是 setTimeout），并且只能使用`ONE if`语句。
+**约束**：您只能使用 `setInterval` 调用（而不是 `setTimeout`），并且只能使用 `一个if` 语句。
 
 ##### 解答
 
-因为我们只能使用 setInterval 调用，所以我们还需要递归，以增加下一个 setInterval 调用的延迟。 另外，我们需要一个 if 语句来控制只有在 5 次调用该递归函数之后才能执行此操作。
+因为我们只能使用 `setInterval` 调用，所以我们还需要递归，以增加下一个 `setInterval` 调用的延迟。 另外，我们需要一个 if 语句来控制只有在 5 次调用该递归函数之后才能执行此操作。
 
 这是一个可能的解决方案：
 
