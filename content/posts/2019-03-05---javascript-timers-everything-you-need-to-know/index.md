@@ -21,7 +21,7 @@ description: "关于Javascript计时器你需要知道的全部知识"
 
 **\* **在开始之前，先在你脑海中回答这个问题** \***
 
-推特上大约一半的回答都是错误的。答案并不是 V8（或者虚拟机）！！虽然“javascript 计时器” 很出名，但是 `setTimeout` 和 `setInterval` 函数并不是 ECMAScript 规范或者任何 JavaScript 引擎实现。定时器函数功能由浏览器实现，它们的实现在不同浏览器之间会有所不同，定时器也由 Node.Js 运行时本身实现。
+推特上大约一半的回答都是错误的。答案并不是 V8（或者虚拟机）！！虽然“JavaScript计时器” 很出名，但是 `setTimeout` 和 `setInterval` 函数并不是 ECMAScript 规范或者任何 JavaScript 引擎实现。定时器函数功能由浏览器实现，它们的实现在不同浏览器之间会有所不同，定时器也由 Node.Js 运行时本身实现。
 
 在浏览器中，主计时器函数是 `Window` 接口的一部分，它具有一些其他函数和对象。 该接口使其所有元素在主 JavaScript 全局可用。 这就是您可以直接在浏览器控制台中执行 `setTimeout` 的原因。
 
