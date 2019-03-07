@@ -1,6 +1,6 @@
 ---
-title: "如何在受控表单上使用 React Hooks : 
-date: "2019-03-03"
+title: "如何在受控表单组件上使用 React Hooks" 
+date: "2019-03-08"
 template: "post"
 draft: false
 slug: "/posts/how-to-get-started-with-react-hooks-controlled-forms/"
@@ -14,11 +14,11 @@ description: ""
 
 ![](images/react-hooks-1.png)
 
-React Hooks是一个闪亮的新[提案](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=54s)，将优化90%的react代码。 根据 [Dan Abramov](https://overreacted.io/) 的说法，[Hooks](https://reactjs.org/docs/hooks-intro.html) 是React的未来。
+React Hooks 是一个闪亮的新[提案](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=54s)，将优化 90% 的 React 代码。 根据 [Dan Abramov](https://overreacted.io/) 的说法，[Hooks](https://reactjs.org/docs/hooks-intro.html) 是 React 的未来。
 
-这听起来不错，但什么是Hooks，它们将如何帮助我编写更好的代码？ 很高兴你这么问。
+这听起来不错，但什么是 Hooks，它们将如何帮助我编写更好的代码？ 很高兴你这么问。
 
-Hooks允许你访问函数组件中的状态和生命周期方法。 如果前面这句话对你来说很陌生，那么你应该[在这里](https://medium.freecodecamp.org/the-react-handbook-b71c27b0a795#b70b)更新关于react的记忆。
+Hooks 允许你访问函数组件中的状态和生命周期方法。 如果前面这句话对你来说很陌生，那么你应该[在这里](https://medium.freecodecamp.org/the-react-handbook-b71c27b0a795#b70b)更新关于 React 的记忆。
 
 React 团队说，它将帮助你编写没有有状态组件包袱的干净的代码。 在使用 Hooks 实现了一个准系统表单之后，我同意了他们的观点。
 
@@ -26,30 +26,22 @@ React 团队说，它将帮助你编写没有有状态组件包袱的干净的�
 
 ### 设置
 
-访问 [codesandbox.io](https://codesandbox.io/)，创建一个帐户，登录，并创建一个新的沙箱，当创建沙箱时选择 React。
+访问 [codesandbox.io](https://codesandbox.io/)，创建一个帐户，登录，并创建一个新的 sandbox ，当创建 sandbox 时选择 React。
 
 ![从模板列表中选择 React](images/react-hooks-2.png)
 
-现在沙箱打开了，我们必须确保使用支持 Hooks 的 React 版本。 这是因为Hooks目前只能在 Alpha 版本中可用。
+现在 sandbox 打开了，我们必须确保使用支持 Hooks 的 React 版本。因为Hooks现在在 React v16.8的公开稳定版本。
 
-### 更新: Hooks现在在 React v16.8的公开稳定版本。
+查看 sandbox 左侧的文件编辑器，然后:
 
-查看沙箱左侧的文件编辑器，然后:
+- 点击依赖项 ‘Dependencies’
+- 查看 ‘react’ 和‘react-dom’ 的版本是否低于 16.8，低于则点击更新到最新版本
 
-- 点击依赖项‘Dependencies’
-- 删除‘react’和‘react-dom’
-- 现在点击添加依赖项‘Add Dependency’ 
-- 在输入框中键入'react'，然后点击右侧的下拉菜单中的第一个结果
-- 选择版本 16.8.0-alpha.1
-- 现在点击描述来安装它
-
-![请务必选择最新的 alpha 版本](images/react-hooks-3.png)
-
-为‘react-dom’重复相同的步骤 ，我们应该可以开始了。
+![请务必选择高于 16.8 版本](images/react-hooks-3.png)
 
 ### 代码
 
-现在我们已经完成了设置，是时候编写一些代码了。 跳到你创建的沙箱，创建一个名为 Form.jsx 的新文件，并粘贴下面的代码:
+现在我们已经完成了设置，是时候编写一些代码了。 跳到你创建的 sandbox ，创建一个名为 Form.jsx 的新文件，并粘贴下面的代码:
 ```js
 import React, { Component } from "react";
 class Form extends Component {
@@ -135,7 +127,7 @@ ReactDOM.render(<App />, rootElement);
 注意设置状态所需的样板文件的数量，以及在每次输入更改时更新状态的方法。
 
 
-让我们使用 React Hooks (终于到了!)编写相同的表单 ，但是首先，删除Form.jsx 中所有代码，让我们重新开始。
+让我们使用 React Hooks (终于到了!)编写相同的表单 ，但是首先，删除 Form.jsx 中所有代码，让我们重新开始。
 
 
 首先在文件顶部添加以下行:
@@ -145,7 +137,7 @@ import React, { useState } from 'react';
 
 所以这里引入了一个陌生的方法，叫做 `useState`。 它是什么，我们如何使用它？
 
-嗯，`useState` 是 React Hook允许我们访问和操作组件中的状态。 这意味着我们不必像以前那样 `extend Component` 。
+嗯，`useState` 是 React Hook 允许我们访问和操作组件中的状态。 这意味着我们不必像以前那样 `extend Component` 。
 
 这是来到 React API 的几个新的 Hooks 之一，它可以帮助我们编写更清晰的代码。 现在让我们使用它。
 ```js
@@ -199,11 +191,11 @@ export default Form;
 
 我们已经创建了函数组件，但是还有一些不熟悉的代码需要解释，特别是组件顶部的四个声明。
 
-虽然这一部分代码起初看起来很奇怪，但是它很容易理解。 我们不再声明一个名为 `state` 的对象来保存组件的状态。 相反，我们现在将 `state`划分为多个声明。
+虽然这一部分代码起初看起来很奇怪，但是它很容易理解。 我们不再声明一个名为 `state` 的对象来保存组件的状态。 相反，我们现在将 `state` 划分为多个声明。
 
 如果我们想以熟悉的`extends React.Component`的方式来声明一个名为 `firstName` 的状态变量，我们通常会在构造函数中声明它，然后通过写入`this.state.firstName` 来访问它。
 
-但是使用 `useState`，我们可以初始化两个名为 `firstName` 和 `setFirstName` 的变量，让它们的值通过 `useState()`返回。
+但是使用 `useState`，我们可以初始化两个名为 `firstName` 和 `setFirstName` 的变量，让它们的值通过 `useState()` 返回。
 
 为什么我们还要声明 `setFirstName` 呢？
 
@@ -223,7 +215,7 @@ const [firstName, setFirstName] = useState("")
 
 我们在以前的类组件中有一个名为 `handleInputChange` 的方法，现在有一个匿名函数为我们更新状态。
 
-通过尝试在表单中输入文本来检查一切是否正常工作。 如果一切正常，恭喜你，你刚刚使用了一个React Hook。 如果没有，那么再看一遍本教程，确保你没有跳过任何说明。
+通过尝试在表单中输入文本来检查一切是否正常工作。 如果一切正常，恭喜你，你刚刚使用了一个 React Hook。 如果没有，那么再看一遍本教程，确保你没有跳过任何说明。
 
 添加你认为合适好看的样式。
 
@@ -241,7 +233,7 @@ const [firstName, setFirstName] = useState("")
 
 如果你喜欢 `React Hooks`，你可以通过浏览官方文档并尝试使用它们重新实现一些项目来了解更多。
 
-也就是说，我想听听你的想法。 你认为`Hooks`是`React`的未来，还是你觉得他们只是不必要的噱头？ 请在下面留下评论。
+也就是说，我想听听你的想法。 你认为 `Hooks` 是 `React` 的未来，还是你觉得他们只是不必要的噱头？ 请在下面留下评论。
 
 本文首发于 [The Andela Way](https://medium.com/the-andela-way/how-to-get-started-with-react-hooks-controlled-forms-9b47e9fb8c8d)。
 
