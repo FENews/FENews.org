@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import media from '../assets/wechat-qr-code.jpg'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -50,8 +51,16 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio />
-
+        <Bio>如果您对我们感兴趣，请关注我们的公众号：</Bio>
+        <img
+          style={{
+            height: 256,
+            width: 'auto',
+            marginLeft: '0'
+          }}
+          src={media}
+          alt="FENews"
+          />
         <ul
           style={{
             display: `flex`,

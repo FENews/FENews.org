@@ -16,7 +16,7 @@ description: "过去这些年 V8 的垃圾回收器发生了很多的变化，�
 
 *注： 相比起阅读这一篇文章你更加喜欢观看本次演讲的话，那么请直接观看下面的视频；如果你更喜欢阅读，请直接跳过视频。*
 
-<iframe frameborder=0 src="http://v.qq.com/iframe/player.html?vid=x0831lbmez2&tiny=0&auto=0" allowfullscreen=""></iframe>
+<iframe frameborder=0 src="https://v.qq.com/iframe/player.html?vid=x0831lbmez2&tiny=0&auto=0" allowfullscreen=""></iframe>
 
 *译者注：本文内容根据原作者的演讲有部分增加和调整*
 

@@ -10,7 +10,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import { rhythm } from "../utils/typography"
 
-function Bio() {
+function Bio({children}) {
   return (
     <StaticQuery
       query={bioQuery}
@@ -25,6 +25,7 @@ function Bio() {
           >
             <p>
               {description}
+              {children}
             </p>
           </div>
         )
