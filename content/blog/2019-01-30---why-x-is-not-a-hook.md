@@ -5,6 +5,8 @@ template: "post"
 draft: false
 slug: "/posts/why-x-is-not-a-hook/"
 category: "React"
+authors: ["gaearon"]
+translators: ["xueqingxiao"]
 tags:
   - "React"
   - "React Hooks"

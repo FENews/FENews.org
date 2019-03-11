@@ -9,6 +9,7 @@ import { rhythm, scale } from "../utils/typography"
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    debugger;
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
     return (
@@ -28,10 +29,10 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
           &nbsp;&nbsp;
-          {post.frontmatter.authors && post.frontmatter.authors.length> 0 ? '作者：' : null}
+          {post.frontmatter.authors && post.frontmatter.authors.length > 0 ? '作者：' : null}
           {post.frontmatter.authors && post.frontmatter.authors.map(author =>(
             <span key={author.id} >
-              <a target="_blank" href={author.social}>{author.name}</a>
+              <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
               &nbsp;
             </span>
           ))}
@@ -39,7 +40,7 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.translators && post.frontmatter.translators.length > 0 ? '译者：' : null}
           {post.frontmatter.translators && post.frontmatter.translators.map(translator => (
             <span key={translator.id}>
-              <a target="_blank" key={translator.id} href={translator.social}>{translator.name}</a>
+              <a target="_blank" rel="noopener noreferrer" key={translator.id} href={translator.social}>{translator.name}</a>
               &nbsp;
             </span>
           ))}
@@ -99,6 +100,12 @@ export const pageQuery = graphql`
         date(formatString: "YYYY年MM月DD日")
         description
         translators {
+          id
+          name
+          avatar
+          social
+        }
+        authors {
           id
           name
           avatar

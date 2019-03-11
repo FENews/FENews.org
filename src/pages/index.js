@@ -38,7 +38,7 @@ class BlogIndex extends React.Component {
                 {node.frontmatter.authors && node.frontmatter.authors.length> 0 ? '作者：' : null}
                 {node.frontmatter.authors && node.frontmatter.authors.map(author =>(
                   <span key={author.id} >
-                    <a target="_blank" href={author.social}>{author.name}</a>
+                    <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
                     &nbsp;
                   </span>
                 ))}
@@ -46,7 +46,7 @@ class BlogIndex extends React.Component {
                 {node.frontmatter.translators && node.frontmatter.translators.length > 0 ? '译者：' : null}
                 {node.frontmatter.translators && node.frontmatter.translators.map(translator => (
                   <span key={translator.id}>
-                    <a target="_blank" key={translator.id} href={translator.social}>{translator.name}</a>
+                    <a target="_blank" rel="noopener noreferrer" key={translator.id} href={translator.social}>{translator.name}</a>
                     &nbsp;
                   </span>
                 ))}
@@ -85,6 +85,12 @@ export const pageQuery = graphql`
             title
             description
             translators {
+              id
+              name
+              avatar
+              social
+            }
+            authors {
               id
               name
               avatar

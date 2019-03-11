@@ -5,6 +5,7 @@ template: "post"
 draft: false
 slug: "/posts/the-orinoco-garbage-collector/"
 category: "V8"
+authors: [hooraybuffer]
 translators: [xueqingxiao]
 tags:
   - "V8"
