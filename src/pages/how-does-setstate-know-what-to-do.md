@@ -3,7 +3,6 @@ title: "setState如何知道该做什么？"
 date: "2019-02-26"
 template: "post"
 draft: false
-slug: "/posts/how-does-setstate-know-what-to-do/"
 category: "React"
 tags:
   - "React"

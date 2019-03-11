@@ -3,7 +3,6 @@ title: "「译」为什么 'XX' 不是一个 Hooks API?"
 date: "2019-01-30"
 template: "post"
 draft: false
-slug: "/posts/why-x-is-not-a-hook/"
 category: "React"
 authors: ["gaearon"]
 translators: ["xueqingxiao"]

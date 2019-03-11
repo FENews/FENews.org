@@ -3,7 +3,6 @@ title: "「译」为 JavaScript 开发者准备的 Flutter 指南"
 date: "2019-02-22"
 template: "post"
 draft: false
-slug: "/posts/Flutter-for-JavaScript-Developers/"
 category: "Flutter"
 tags:
   - "Flutter"

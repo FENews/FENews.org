@@ -3,7 +3,6 @@ title: "「译」Orinoco: V8的垃圾回收器"
 date: "2019-01-24T14:03:48.637Z"
 template: "post"
 draft: false
-slug: "/posts/the-orinoco-garbage-collector/"
 category: "V8"
 authors: [hooraybuffer]
 translators: [xueqingxiao]

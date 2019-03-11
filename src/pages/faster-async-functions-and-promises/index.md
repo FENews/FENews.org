@@ -3,7 +3,6 @@ title: "异步（async）函数和 promise 性能优化"
 date: "2019-02-27"
 template: "post"
 draft: false
-slug: "/posts/faster-async"
 category: "V8"
 tags:
   - "V8"

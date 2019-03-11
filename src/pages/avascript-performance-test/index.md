@@ -3,7 +3,6 @@ title: "「译」JavaScript 性能测试- 比较 for/ forEach/ map/ reduce/ filt
 date: "2019-01-31T14:03:48.637Z"
 template: "post"
 draft: false
-slug: "/posts/javascript-performance-test/"
 category: "JavaScript"
 tags:
   - "js"

@@ -3,7 +3,6 @@ title: "「译」GraphQL 简介：它是如何工作以及如何使用它"
 date: "2019-03-04"
 template: "post"
 draft: false
-slug: "/posts/An-introduction-to-GraphQL-how-it-works-and-how-to-use-it/"
 category: "GraphQL"
 tags:
   - "GraphQL"
