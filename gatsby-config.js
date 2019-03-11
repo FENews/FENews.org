@@ -1,178 +1,94 @@
-'use strict';
-
-const siteConfig = require('./config.js');
-const postCssPlugins = require('./postcss-config.js');
-
 module.exports = {
   siteMetadata: {
-    url: siteConfig.url,
-    title: siteConfig.title,
-    subtitle: siteConfig.subtitle,
-    copyright: siteConfig.copyright,
-    disqusShortname: siteConfig.disqusShortname,
-    menu: siteConfig.menu,
-    author: siteConfig.author
+    title: `FENews`,
+    description: `FENews 是由一群热爱技术的前端小伙伴自发组成的团队。团队会定期创作和翻译前端相关的技术文章，同时我们也欢迎外部投稿或加入我们的核心编辑团队。`,
+    siteUrl: `FENews.org`,
+    media: `content/assets/wechat-qr-code.png`,
   },
   plugins: [
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content`,
-        name: 'pages'
-      }
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/static/media`,
-        name: 'media'
-      }
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
+      },
     },
     {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'assets',
-        path: `${__dirname}/static`
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-feed',
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                site_url: url
-                title
-                description: subtitle
-              }
-            }
-          }
-        `,
-        feeds: [{
-          serialize: ({ query: { site, allMarkdownRemark } }) => (
-            allMarkdownRemark.edges.map((edge) => Object.assign({}, edge.node.frontmatter, {
-              description: edge.node.frontmatter.description,
-              date: edge.node.frontmatter.date,
-              url: site.siteMetadata.site_url + edge.node.fields.slug,
-              guid: site.siteMetadata.site_url + edge.node.fields.slug,
-              custom_elements: [{ 'content:encoded': edge.node.html }]
-            }))
-          ),
-          query: `
-              {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-                ) {
-                  edges {
-                    node {
-                      html
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        title
-                        date
-                        template
-                        draft
-                        description
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-          output: '/rss.xml'
-        }]
-      }
-    },
-    {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images',
-            options: { maxWidth: 960 }
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
           },
           {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: { wrapperStyle: 'margin-bottom: 1.0725rem' }
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants'
-        ]
-      }
-    },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    'gatsby-plugin-netlify',
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: siteConfig.googleAnalyticsId }
-    },
-    {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        query: `
           {
-            site {
-              siteMetadata {
-                url
-              }
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              showLineNumbers: false,
+              noInlineHighlight: false,
             }
-            allSitePage(
-              filter: {
-                path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
-              }
-            ) {
-              edges {
-                node {
-                  path
-                }
-              }
-            }
-          }
-        `,
-        output: '/sitemap.xml',
-        serialize: ({ site, allSitePage }) => allSitePage.edges.map((edge) => ({
-          url: site.siteMetadata.url + edge.node.path,
-          changefreq: 'daily',
-          priority: 0.7
-        }))
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: siteConfig.title,
-        short_name: siteConfig.title,
-        start_url: '/',
-        background_color: '#FFF',
-        theme_color: '#F7A046',
-        display: 'standalone',
-        icon: 'static/photo.jpg'
+          },
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
       },
     },
-    'gatsby-plugin-offline',
-    'gatsby-plugin-catch-links',
-    'gatsby-plugin-react-helmet',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
-      resolve: 'gatsby-plugin-sass',
+      resolve: `gatsby-plugin-google-analytics`,
       options: {
-        postCssPlugins: [...postCssPlugins],
-        cssLoaderOptions: {
-          camelCase: false,
-        }
-      }
-    }
-  ]
-};
+        //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `FENews.org`,
+        short_name: `FENews`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `content/assets/FENews-icon.png`,
+      },
+    },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+      },
+    },
+  ],
+  mapping: {
+    "MarkdownRemark.frontmatter.authors": `AuthorsYaml`,
+    "MarkdownRemark.frontmatter.translators": `TranslatorsYaml`,
+  }
+}

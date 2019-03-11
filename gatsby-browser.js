@@ -1,5 +1,4 @@
-'use strict';
-
-require('./src/assets/scss/init.scss');
-
-exports.onClientEntry = () => {};
+// custom typefaces
+import "typeface-montserrat"
+import "typeface-merriweather"
+import "prismjs/themes/prism-tomorrow.css"
