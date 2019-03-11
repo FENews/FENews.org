@@ -1,6 +1,6 @@
 ---
 title: "「译」JavaScript 性能测试- 比较 for/ forEach/ map/ reduce/ filter/ find"
-date: "2019-01-31T14:03:48.637Z"
+date: "2019-02-01"
 template: "post"
 draft: false
 category: "JavaScript"
