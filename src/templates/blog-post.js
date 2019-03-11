@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Frontmatter from "../components/frontmatter";
 import { rhythm, scale } from "../utils/typography"
 import media from '../assets/wechat-qr-code.jpg'
 
@@ -28,22 +29,7 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {post.frontmatter.date}
-          &nbsp;&nbsp;
-          {post.frontmatter.authors && post.frontmatter.authors.length > 0 ? '作者：' : null}
-          {post.frontmatter.authors && post.frontmatter.authors.map(author =>(
-            <span key={author.id} >
-              <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
-              &nbsp;
-            </span>
-          ))}
-          &nbsp;&nbsp;
-          {post.frontmatter.translators && post.frontmatter.translators.length > 0 ? '译者：' : null}
-          {post.frontmatter.translators && post.frontmatter.translators.map(translator => (
-            <span key={translator.id}>
-              <a target="_blank" rel="noopener noreferrer" key={translator.id} href={translator.social}>{translator.name}</a>
-              &nbsp;
-            </span>
-          ))}
+          <Frontmatter frontmatter={post.frontmatter} />
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr

@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Frontmatter from "../components/frontmatter";
 import { rhythm } from "../utils/typography"
 
 class BlogIndex extends React.Component {
@@ -33,23 +34,7 @@ class BlogIndex extends React.Component {
                 </Link>
               </h3>
               <small>
-                {node.frontmatter.date}
-                &nbsp;&nbsp;
-                {node.frontmatter.authors && node.frontmatter.authors.length> 0 ? '作者：' : null}
-                {node.frontmatter.authors && node.frontmatter.authors.map(author =>(
-                  <span key={author.id} >
-                    <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
-                    &nbsp;
-                  </span>
-                ))}
-                &nbsp;&nbsp;
-                {node.frontmatter.translators && node.frontmatter.translators.length > 0 ? '译者：' : null}
-                {node.frontmatter.translators && node.frontmatter.translators.map(translator => (
-                  <span key={translator.id}>
-                    <a target="_blank" rel="noopener noreferrer" key={translator.id} href={translator.social}>{translator.name}</a>
-                    &nbsp;
-                  </span>
-                ))}
+                <Frontmatter frontmatter={node.frontmatter}/>
               </small>
               <p
                 dangerouslySetInnerHTML={{
