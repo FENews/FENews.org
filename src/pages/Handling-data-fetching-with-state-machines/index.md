@@ -3,7 +3,6 @@ title: "「译」使用状态机管理获取的数据"
 date: "2019-02-20"
 template: "post"
 draft: false
-slug: "/posts/Handling-data-fetching-with-state-machines/"
 category: "React"
 tags:
   - "React"

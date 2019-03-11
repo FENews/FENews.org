@@ -3,7 +3,6 @@ title: "「译」V8 release v7.3"
 date: "2019-02-16"
 template: "post"
 draft: false
-slug: "/posts/V8-release-v7.3/"
 category: "V8"
 tags:
   - "V8"

@@ -3,7 +3,6 @@ title: "如何在受控表单组件上使用 React Hooks"
 date: "2019-03-08"
 template: "post"
 draft: false
-slug: "/posts/how-to-get-started-with-react-hooks-controlled-forms/"
 category: "React"
 tags:
   - "React"

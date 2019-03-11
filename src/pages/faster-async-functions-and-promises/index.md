@@ -3,7 +3,6 @@ title: "异步（async）函数和 promise 性能优化"
 date: "2019-02-27"
 template: "post"
 draft: false
-slug: "/posts/faster-async"
 category: "V8"
 tags:
   - "V8"
@@ -18,7 +17,7 @@ JavaScript 的异步处理一直被认为不够快。更糟糕的是，调试实
 *⚠️ 相对于阅读文章，如果你更喜欢看演讲视频的话，可以直接观看下面的视频。否则，请跳过视频并继续阅读。*
 
 <div style="text-align: center">
-  <iframe width="100%" height="360px" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=n0843i7j2rq&tiny=0&auto=0" allowfullscreen="true"></iframe>
+  <iframe width="100%" height="360px" frameborder=0 src="https://v.qq.com/iframe/player.html?vid=n0843i7j2rq&tiny=0&auto=0" allowfullscreen="true"></iframe>
 </div>
 
 ## 异步编程的新方法

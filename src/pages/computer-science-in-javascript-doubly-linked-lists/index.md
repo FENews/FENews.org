@@ -3,7 +3,6 @@ title: "JavaScript 中的计算机科学：双向链表"
 date: "2019-02-27"
 template: "post"
 draft: false
-slug: "/posts/computer-science-in-javascript-doubly-linked-lists/"
 category: "JavaScript"
 tags:
   - "计算机科学"

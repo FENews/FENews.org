@@ -3,7 +3,6 @@ title: "Chrome 中 JavaScript 加载优先级"
 date: "2019-02-23"
 template: "post"
 draft: false
-slug: "/posts/chrome-js-loading-priorities"
 category: "JavaScript"
 tags:
   - "Chrome"

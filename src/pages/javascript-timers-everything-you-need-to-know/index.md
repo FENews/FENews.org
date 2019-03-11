@@ -3,7 +3,6 @@ title: "关于JavaScript timer你需要了解的知识"
 date: "2019-03-25"
 template: "post"
 draft: false
-slug: "/posts/javascript-timer"
 category: "V8"
 tags:
     - "JavaScript"

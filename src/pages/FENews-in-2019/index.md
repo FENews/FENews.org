@@ -3,7 +3,6 @@ title: 关于 FENews 在 2019 的规划
 date: "2019-02-04"
 template: "post"
 draft: false
-slug: "/posts/fenews-in-2019"
 category: "其他"
 tags:
   - "React"
