@@ -3,6 +3,7 @@ module.exports = {
     title: `FENews`,
     description: `FENews 是由一群热爱技术的前端小伙伴自发组成的团队。团队会定期创作和翻译前端相关的技术文章，同时我们也欢迎外部投稿或加入我们的核心编辑团队。`,
     siteUrl: `FENews.org`,
+    media: `content/assets/wechat-qr-code.png`,
   },
   plugins: [
     {
@@ -61,13 +62,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `FENews.org`,
+        short_name: `FENews`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/FENews-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
