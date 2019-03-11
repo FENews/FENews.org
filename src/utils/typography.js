@@ -26,7 +26,7 @@ stAnnesTheme.overrideThemeStyles = ({ rhythm }, options) => ({
   'p': {
     marginBottom: 0,
     lineHeight: 1.8,
-    wordBreak: 'break-all',
+    wordBreak: 'word-all',
   },
   'img': {
     display: 'block',
@@ -40,7 +40,7 @@ stAnnesTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     width: '100%',
   },
   'a': {
-    color: 'inherit',
+    color: 'rgb(21, 153, 87)',
     textDecoration: 'underscore',
   },
   '.language-text': {
