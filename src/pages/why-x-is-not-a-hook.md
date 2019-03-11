@@ -1,6 +1,6 @@
 ---
 title: "「译」为什么 'XX' 不是一个 Hooks API?"
-date: "2019-01-30"
+date: "2019-01-31"
 template: "post"
 draft: false
 category: "React"

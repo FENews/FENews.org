@@ -88,6 +88,6 @@ module.exports = {
   ],
   mapping: {
     "MarkdownRemark.frontmatter.authors": `AuthorsYaml`,
-    "MarkdownRemark.frontmatter.translators": `TranslatorsYaml`,
+    "MarkdownRemark.frontmatter.translators": `AuthorsYaml`,
   }
 }

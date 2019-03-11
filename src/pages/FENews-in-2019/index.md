@@ -1,9 +1,10 @@
 ---
 title: 关于 FENews 在 2019 的规划
-date: "2019-02-04"
+date: "2019-02-05"
 template: "post"
 draft: false
 category: "其他"
+authors: ["leyayun", "lzbSun", "itxuye", "fengshenhai-0727", "hearingguo",]
 tags:
   - "React"
   - "Typescript"

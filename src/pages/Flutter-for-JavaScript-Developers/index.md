@@ -4,6 +4,7 @@ date: "2019-02-22"
 template: "post"
 draft: false
 category: "Flutter"
+translators: ["itxuye"]
 tags:
   - "Flutter"
   - "Dart"

@@ -1,9 +1,10 @@
 ---
 title: "「译」V8 release v7.3"
-date: "2019-02-16"
+date: "2019-02-18"
 template: "post"
 draft: false
 category: "V8"
+translators: ["lw604217818"]
 tags:
   - "V8"
   - "翻译"
