@@ -51,9 +51,8 @@
   "scripts": {
     "now-build": "yarn build",
     "build": "gatsby build",
-    "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
+    "start": "gatsby develop",
     "serve": "gatsby serve"
   }
 }
