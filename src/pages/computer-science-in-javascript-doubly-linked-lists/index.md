@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 中的计算机科学：双向链表"
-date: "2019-02-27"
+date: "2019-02-28"
 template: "post"
 draft: false
 category: "JavaScript"

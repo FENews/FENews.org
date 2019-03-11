@@ -1,6 +1,6 @@
 ---
 title: "异步（async）函数和 promise 性能优化"
-date: "2019-02-27"
+date: "2019-03-04"
 template: "post"
 draft: false
 category: "V8"

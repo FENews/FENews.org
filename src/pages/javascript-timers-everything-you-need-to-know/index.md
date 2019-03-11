@@ -1,6 +1,6 @@
 ---
 title: "关于JavaScript timer你需要了解的知识"
-date: "2019-03-25"
+date: "2019-03-06"
 template: "post"
 draft: false
 category: "V8"
