@@ -4,6 +4,7 @@ date: "2019-02-14"
 template: "post"
 draft: false
 category: "GraphQL"
+translators: ["zhangxinmei"]
 tags:
   - "GraphQL"
   - "翻译"

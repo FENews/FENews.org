@@ -4,6 +4,7 @@ date: "2019-02-20"
 template: "post"
 draft: false
 category: "React"
+translators: ["lzbSun"]
 tags:
   - "React"
   - "React State"

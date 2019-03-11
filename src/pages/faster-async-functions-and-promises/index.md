@@ -4,6 +4,7 @@ date: "2019-03-04"
 template: "post"
 draft: false
 category: "V8"
+translators: ["leyayun"]
 tags:
   - "V8"
   - "async"

@@ -4,6 +4,7 @@ date: "2019-02-28"
 template: "post"
 draft: false
 category: "JavaScript"
+translators: ["hearingguo"]
 tags:
   - "计算机科学"
   - "数据结构"

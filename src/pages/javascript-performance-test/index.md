@@ -4,6 +4,7 @@ date: "2019-02-01"
 template: "post"
 draft: false
 category: "JavaScript"
+translators: ["zxy7"]
 tags:
   - "js"
   - "翻译"

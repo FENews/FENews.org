@@ -4,6 +4,7 @@ date: "2019-02-23"
 template: "post"
 draft: false
 category: "JavaScript"
+translators: ["leyayun"]
 tags:
   - "Chrome"
   - "JavaScript"

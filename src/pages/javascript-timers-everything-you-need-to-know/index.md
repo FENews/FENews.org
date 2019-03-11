@@ -4,6 +4,7 @@ date: "2019-03-06"
 template: "post"
 draft: false
 category: "V8"
+translators: ["jinrichardJIN"]
 tags:
     - "JavaScript"
     - "node"
