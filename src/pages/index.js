@@ -38,6 +38,11 @@ class BlogIndex extends React.Component {
                 {node.frontmatter.authors && node.frontmatter.authors.length> 0 ? '作者：' : null}
                 {node.frontmatter.authors && node.frontmatter.authors.map(author =>(
                   <span key={author.id} >
+                    {
+                      !author.social
+                      ? <span>{author.name}</span>
+                      : <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
+                    }
                     <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
                     &nbsp;
                   </span>

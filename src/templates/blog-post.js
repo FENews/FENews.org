@@ -30,11 +30,16 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date}
           &nbsp;&nbsp;
           {post.frontmatter.authors && post.frontmatter.authors.length > 0 ? '作者：' : null}
-          {post.frontmatter.authors && post.frontmatter.authors.map(author =>(
+          {post.frontmatter.authors && post.frontmatter.authors.map(author => (
             <span key={author.id} >
+              {
+                !author.social
+                  ? <span>{author.name}</span>
+                  : <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
+              }
               <a target="_blank" rel="noopener noreferrer" href={author.social}>{author.name}</a>
               &nbsp;
-            </span>
+                  </span>
           ))}
           &nbsp;&nbsp;
           {post.frontmatter.translators && post.frontmatter.translators.length > 0 ? '译者：' : null}
