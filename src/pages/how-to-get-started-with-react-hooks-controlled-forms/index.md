@@ -4,6 +4,7 @@ date: "2019-03-08"
 template: "post"
 draft: false
 category: "React"
+translators: ["zxy7"]
 tags:
   - "React"
   - "React Hooks"

@@ -4,6 +4,7 @@ date: "2019-02-05"
 template: "post"
 draft: false
 category: "其他"
+authors: ["leyayun", "lzbSun", "itxuye", "fengshenhai-0727", "hearingguo",]
 tags:
   - "React"
   - "Typescript"
