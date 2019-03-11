@@ -1,7 +1,7 @@
 {
   "name": "fe-news",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "FENews",
   "version": "0.1.0",
   "bugs": {
     "url": "https://github.com/FENews/FENews.org/issues"
