@@ -2,8 +2,8 @@
 title: "V8：抖动优化（Jank Busters）—— 第一部分"
 date: "2019-03-04"
 template: "post"
-authors: [jochen-eisinger, michael-lippautz, hannes-payer]
-translators: [xueqingxiao]
+authors: ["jocheneisinger", "michaellippautz", "hannespayer"]
+translators: ["xueqingxiao"]
 category: "V8"
 tags:
   - "V8"
