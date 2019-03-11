@@ -1,6 +1,6 @@
 ---
-title: "「译」GraphQL 简介：它是如何工作以及如何使用它"
-date: "2019-03-04"
+title: "GraphQL 简介：原理及其使用"
+date: "2019-03-11"
 template: "post"
 draft: false
 category: "GraphQL"
@@ -128,7 +128,7 @@ graphiql 是一个 Web UI，您可以使用它来测试 GraphQL 资源路径。�
 
 ### schema
 
-GraphQL 只有一个外部资源路径 /graphql，这个资源路径可以有多个其他资源路径执行各种操作，这些资源路径将在 schema 中被指定。
+GraphQL 有一个外部资源路径 /graphql，这个资源路径可以有多个其他资源路径执行各种操作，这些资源路径可以在 schema 中被指定。
 
 schema 将执行以下操作：
 
@@ -144,7 +144,7 @@ schema 在代码中定义如下：
 const schema = new GraphQLSchema({ query: queryType });
 ```
 
-schema 可以包含**查询**和**变更**类型，但是这篇文章将仅关注查询类型。
+schema 可以包含 **Query** 和 **Mutation** 类型，但是这篇文章将仅关注 Query 类型。
 
 ### 查询（query）
 
@@ -578,3 +578,5 @@ LinkedIn：[https://www.linkedin.com/in/aditya1811/](https://www.linkedin.com/in
 twitter：[https://twitter.com/adityasridhar18](https://twitter.com/adityasridhar18)
 
 个人网站：[https://adityasridhar.com/](https://adityasridhar.com/)
+
+原文地址：[https://medium.freecodecamp.org/an-introduction-to-graphql-how-it-works-and-how-to-use-it-91162ecd72d0](https://medium.freecodecamp.org/an-introduction-to-graphql-how-it-works-and-how-to-use-it-91162ecd72d0)
