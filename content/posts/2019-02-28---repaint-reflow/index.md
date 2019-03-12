@@ -1,45 +1,28 @@
-
-## Understanding Repaint and Reflow in JavaScript
 ## 了解JavaScript中的重绘和回流
 
-Recently, while researching what makes React’s virtual DOM so fast, I realized how little are we aware about javascript performance. So I’m writing this article to help raise the awareness about Repaint and Reflow and JavaScript performance in general.”
+最近,在研究React的Virtual DOM能大幅提高页面渲染效率的原因时，发现自己对JavaScript的性能了解甚少。为了提高对重绘、回流以及JavaScript性能的认识，因此写下这篇文章。
 
-最近研究React虚拟Dom为什么这么快的原因时，发现自己对js性能了解甚少。因此决定写这篇文章来帮助大家提高对重绘和回流以及js性能的认识。
+![](./images/01.png)
 
+## 在深入研究之前，需要知道浏览器的工作原理
 
+一张图胜过千言万语。因此，让我们细看一下浏览器是如何工作的！
 
-![](https://cdn-images-1.medium.com/max/2000/1*gI2j-AlZJohyQqK8skdjjw.png)
+![](./images/02.png)
 
-## Before we dig deeper, do we know how a browser works?
+**嗯...那么什么是浏览器引擎(Browser engine)和渲染引擎(Rendering engine)呢？**
 
-## 深入挖掘之前，先回顾下浏览器的工作原理
+浏览器引擎的主要工作是处理HTML文档和其他资源，把它们转换成一个可视化交互式的web页面呈现在用户的设备上。
+除了浏览器引擎之外，和它相关的另外两个常用的概念术语是：布局引擎(Layout engine)和渲染引擎。理论上，浏览器的布局和渲染(绘制)工作，可以由单独的引擎处理。然而，在实践中，它们是紧密耦合的，很少单独考虑。
 
-A picture is worth a thousand words. So, let’s have a high-level view of how a browser works!
-一张图胜过千言万语。那么让我们高度理解浏览器的原理。
-
-![](https://cdn-images-1.medium.com/max/2000/1*lAUWhHx6CdF_OkMC3YkAHw.png)
-
-**hmm… what’s “browser engine” and “rendering engine”?**
-**嗯... 什么是browser engine 和 rendering engine**
-
-The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user’s device.
-Besides “browser engine”, two other terms are in common use regarding related concepts: “layout engine” and “rendering engine”. In theory, layout and rendering (or “painting”) could be handled by separate engines. In practice, however, they are tightly coupled and rarely considered separately.
-
-浏览器引擎主要工作是将html文档和其他web页面资源转换为用户设备上可视化交换表示。
-除了浏览器引擎之外，另外两个相关概念的术语是：布局引擎和渲染引擎。理论上，布局和渲染或者绘制可以分开由单独的引擎处理。然而，在实践中，它们是紧密耦合的，很少单独考虑。
-
-## let’s understand how browsers draw a user interface on the screen.
 ## 让我们了解浏览器如何在屏幕上绘制用户界面
 
-When you hit enter on some link or URL browser make an HTTP request to that page and the corresponding serv provides (often) HTML document in response. (a **hell** of a **lot** of [things](https://cheapsslsecurity.com/blog/what-is-ssl-tls-handshake-understand-the-process-in-just-3-minutes/) happen in between)
-当你在浏览器中输入url，点击回车时，向该url发出http请求，并且它的服务器响应
-HTML文档（在这个过程中有很多事情发生，可以[查看](https://cheapsslsecurity.com/blog/what-is-ssl-tls-handshake-understand-the-process-in-just-3-minutes/)）
+当你在浏览器上敲回车去请求一些链接时，向该页面发出HTTP请求，然后服务器通常提供HTML文档作为响应。（在这个过程中发生了很多[事情](https://cheapsslsecurity.com/blog/what-is-ssl-tls-handshake-understand-the-process-in-just-3-minutes/)）
 
 
-![Step by step processing](https://cdn-images-1.medium.com/max/2000/1*_alTfrxmTCP1mInn4QEOnA.jpeg)
+![Step by step processing](./images/03.jpeg)
 
-* The browser parses out the HTML source code and constructs a **DOM tree **a data representation where every HTML tag has a corresponding node in the tree and the text chunks between tags get a text node representation too. The root node in the DOM tree is the documentElement (the <html> tag)
-浏览器在解析解析HTML源代码后会构造出一个DOM树，每个HTML标签在这个树中都有一个对应的节点，标签之间的文本块也会有一个文本节点表示。而这个DOM树的根结点是documentElement（the<html>tag）b
+* 浏览器在解析出HTML源代码后，会构造出一颗DOM树形式的数据，每个HTML标签在这个树中都有一个对应的节点，标签之间的文本块会用一个文本节点表示。而这个DOM树的根结点是documentElement`(<html>标签)`。
 
 * The browser parses the CSS code, makes sense of it. The styling information *cascades*: the basic rules are in the User Agent stylesheets (the browser defaults), then there could be user stylesheets, author (as in author of the page) stylesheets - external, imported, inline, and finally styles that are coded into the style attributes of the HTML tags
 浏览器解析CSS代码的时候首先会去理解它，解析层叠样式表的基本规则是在用户代理样式表中（就是浏览器默认值中）的，然后再解析作者写的页面样式、外部导入样式、內联样式，最后是HTML标签中的样式属性中的样式。
@@ -118,6 +101,7 @@ The *render tree* would be the visual part of the DOM tree. It is missing some s
 
 
 该渲染树是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它有文本的附加节点（又名框架，也称为框）
+
     root (RenderView)
         body
             p
