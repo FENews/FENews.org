@@ -12,7 +12,7 @@ stAnnesTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     marginBottom: rhythm(1 / 2)
   },
   blockquote: {
-    marginRight: 0,
+    marginRight: rhythm(0.6),
     paddingLeft: rhythm(0.2),
     fontSize: rhythm(0.6),
     borderLeft: 0,
@@ -24,7 +24,7 @@ stAnnesTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     textAlign: "left"
   },
   p: {
-    marginBottom: 0,
+    marginBottom: rhythm(0.8),
     lineHeight: 1.8,
     wordBreak: "word-all"
   },
