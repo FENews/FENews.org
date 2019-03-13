@@ -8,6 +8,7 @@ translators: ["leyayun"]
 tags:
   - "V8"
   - "翻译"
+  - "JIT"
 description: "V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript "
 ---
 V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript 。
