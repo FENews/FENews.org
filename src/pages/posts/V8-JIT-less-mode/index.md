@@ -8,9 +8,9 @@ translators: ["leyayun"]
 tags:
   - "V8"
   - "翻译"
-description: ""
+description: "V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript "
 ---
-V8 v7.4 在运行时不分配可执行内存的情况下，支持下执行 JavaScript 。
+V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript 。
 
 在 V8 默认的配置中，它严重依赖在运行时分配和改变可执行内存的的能力。例如：[TurboFan 优化编译器](https://v8.dev/blog/turbofan-jit) 及时为热 JavaScript 函数生成原生代码，还有大多数的 JS 正则表达式通过 [irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html) 编译成原生代码。在运行时创建可执行内存是使 V8 快速运行的一部分因素。
 
