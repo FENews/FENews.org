@@ -86,7 +86,7 @@
     		
             ...
 
-渲染树将是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它为文本行提供额外的节点（框或盒子）。
+渲染树将是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它为文本行提供额外的节点（称为框或盒子）。
 
     root (RenderView)
         body
@@ -101,18 +101,11 @@
     	    
     	...
 
-The root node of the render tree is the frame (the box) that contains all other elements. You can think of it as being the inner part of the browser window, as this is the restricted area where the page could spread. Technically WebKit calls the root node RenderView and it corresponds to the CSS [initial containing block](http://www.w3.org/TR/CSS21/visudet.html#containing-block-details), which is basically the viewport rectangle from the top of the page (0, 0) to (window.innerWidth, window.innerHeight)
-渲染树的根节点是包含所有其他元素的框架（框）。也可以将其视为浏览器窗口的内部部分，这也是页面可以展开的限制区域。从技术上讲，webkit调用根节点renderview时，它对应于CSS初始包含块，也就是从页面顶部（0，0）到（window.innerwidth，window.innerheight）的视区矩形。
+渲染树的根节点是包含所有其他元素的框（盒子）。你可以将其视为浏览器窗口的内部部分，这也是页面可以展开的限制区域。从技术上讲，`WebKit`调用根节点`RenderView`时，它对应于CSS初始[包含块](http://www.w3.org/TR/CSS21/visudet.html#containing-block-details)（initial containing block）。初始包含块是从页面顶部（0，0）到底部（window.innerWidth，window.innerHeight）的视口矩形。
 
-Figuring out what and how exactly to display on the screen involves a recursive walk down (a flow) through the render tree.
-要想知道在屏幕上准确显示什么以及如何显示，需要通过渲染树进行递归向下遍历（一个流）。
+浏览器要想弄清楚在屏幕上准确显示什么以及如何显示，需要向下递归遍历渲染树。
 
-
-
-
-
-## Repaint and Reflow
-回流和重绘
+## 回流和重绘
 
 There’s always at least one initial page layout together with a paint (unless, of course you prefer your pages blank :)). After that, changing the input information which was used to construct the render tree may result in one or both of these:
 在页面渲染的时候至少有一个初始页面布局和绘制，之后当更改构造渲染树的输入信息时可能至少会导致以下一种情况：
