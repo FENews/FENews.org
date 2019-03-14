@@ -4,7 +4,6 @@ date: "2019-03-14"
 template: "post"
 draft: false
 category: "typescript"
-translators: ["lw604217818"]
 tags:
   - "typescript"
   - "原创"
