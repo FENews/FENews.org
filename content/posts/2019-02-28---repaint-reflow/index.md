@@ -28,6 +28,8 @@
 
 * Then comes the interesting part — constructing a **render tree**. The render tree is sort of like the DOM tree, but doesn’t match it exactly. The render tree knows about styles, so if you’re hiding a div with display: none, it won't be represented in the render tree. Same for the other invisible elements, like head and everything in it. On the other hand, there might be DOM elements that are represented with more than one node in the render tree - like text nodes for example where every line in a <p> needs a render node. A node in the render tree is called a *frame*, or a *box* (as in a CSS box, according to [the box model](http://www.w3.org/TR/CSS2/box.html#box-dimensions)). Each of these nodes has the CSS box properties - width, height, border, margin, etc
 接下来是有趣的部分--构建渲染树。有点像DOM树，但又不完全一样。渲染树知道样式，所以如果您写了一个带有display:none的div，它将不会在渲染树中显示出来。其他隐藏的元素也一样，比如头部文件以及它里面的一切。另一方面，可能有一些DOM元素（类似于文本节点）在树中需要用多个节点表示，例如<p>中的每一行都需要一个节点来呈现。渲染树中的每个节点都可以称为框或者是盒子（比如CSS中的盒子模型）。每个节点都有CSS盒子属性-宽度、高度、边框、边距等。
+ 
+* 接下来有趣的部分是构建一颗渲染树(render tree)。渲染树有点像DOM树,但不完全一样。渲染树能够识别出样式，因此用`display:none`隐藏的div，它不会在渲染树中表示。其他的不可见元素也是如此，例如`<head>`里的所有元素。另一方面，可能有一些DOM元素在渲染树中需要用多个节点表示，例如文本节点`<p>`中的每一行都需要一个渲染节点。
 
 * Once the render tree is constructed, the browser can **paint** (draw) the render tree nodes on the screen
 构建渲染树之后，浏览器可以在屏幕上绘制渲染树节点。
