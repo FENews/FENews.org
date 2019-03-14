@@ -33,9 +33,8 @@
 下面是浏览器在屏幕上绘制用户界面的快照：
 
 <div style="text-align: center">
-  <iframe width="100%" height="360px" frameborder=0 src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb" allowfullscreen=""></iframe>
+  <iframe width="100%" height="360px" frameborder=0 src="http://v.qq.com/iframe/player.html?vid=t08496z1rku&tiny=0&auto=0" allowfullscreen=""></iframe>
 </div>
- <iframe src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb5" frameborder=0></iframe>
 
 它发生在几秒内，我们甚至没有注意到这一切的发生。
 **仔细看看**浏览器是如何绘制布局，它尝试检测出根元素、兄弟元素、以及子元素作为节点来重新安排它们的布局。
@@ -107,7 +106,7 @@
 
 ## 回流和重绘
 
-在渲染时至少有一个初始页面的布局和绘制（除非你比较喜欢空白页:)）。之后，当改变构建渲染树的输入信息时，可能会导致以下一两种情况：
+在渲染时至少有一个初始页面的布局和绘制（ 除非你比较喜欢空白页:））。之后，当改变构建渲染树的输入信息时，可能会导致以下一两种情况：
 
  1. 部分渲染树（或整个树）需要重新核验计算节点的大小和位置。我们把这称为**回流**（布局）。这里需要注意下，页面至少有一个回流那就是页面的初始布局。
  2. 屏幕页面的部分更新，由于节点的几何属性或者样式发生了变化，比如更改背景色，我们将此称之为**重绘**。
@@ -118,62 +117,34 @@
 
 顾名思义，重绘只是在屏幕上重绘元素，元素的外观会发生变化，会影响到元素的可见性，但不会影响布局。
 
-例如：
+有些操作会触发页面重绘例如：
 
   1. 改变元素的可见性（visibility）
-  2. 改变元素的外形轮廓
+  2. 改变元素的外形轮廓 (outline)
   3. 改变元素背景（background）
-等这些操作会触发页面重绘。
 
-According to Opera, the repaint is an expensive operation as it forces the browser to verify/check visibility of all other dom nodes.
-Opera也说过，重绘是一项昂贵的操作，因为它强制浏览器去验证、检查所有其他dom节点的可见性。
+Opera浏览器认为，重绘是一个昂贵的操作，因为它强制浏览器去验证、检查所有其他dom节点的可见性。
 
-**Reflow
-**Reflow means re-calculating the positions and geometries of elements in the document, for the purpose of re-rendering part or all of the document. Because reflow is a user-blocking operation in the browser, it is useful for developers to understand how to improve reflow time and also to understand the effects of various document properties (DOM depth, CSS rule efficiency, different types of style changes) on reflow time. Sometimes reflowing a single element in the document may require reflowing its parent elements and also any elements which follow it.
-回流是指重新计算文档中元素的位置和几何形状，以重新呈现部分或全部文档。由于回流是浏览器中的用户阻塞操作，因此对于开发人员来说，了解如何提高回流时间以及了解各种文档属性（DOM深度、CSS规则效率、不同类型的样式更改）对回流时间的影响就显得非常有必要了。有时，在文档中回流单个元素可能需要回流其父元素以及其后的任何元素。
+
+**回流**
+
+回流意味着需要重新计算文档的元素位置和几何图形，以便重新渲染部分或全部文档。由于回流是浏览器中的用户阻塞操作，因此对于开发人员来说，了解如何缩短回流时间，以及了解各种文档属性（DOM深度、CSS规则效率、不同类型的样式更改）对回流时间的影响就显得非常有必要了。有时，文档中单个元素的回流，可能会引起它父元素和之后任何的元素回流。
 
 
 ## Virtual DOM VS Real DOM
 
-Every time the DOM changes browser need to recalculate the CSS, do layout and repaint web page. This is what takes time in real dom.
+每次DOM更改，浏览器重新计算CSS时，都要进行布局并重绘网页。这就是real dom所花费的时间的地方。
 
+为了最小化这个时间，`Ember`使用键值队观察技术，而Angular使用脏检查。`Ember`的处理和Angular把节点标记为`dirty`都是为了只更新改变的dom节点。
 
-每次DOM更改浏览器需要重新计算CSS时，都要进行布局并重新绘制网页。这是真实dom所花费的时间。
+如果不是这样，那么在用Gmail编写新邮件时，你将无法在新邮件出现时立即看到它。
 
-To minimize this time Ember use key/value observation technique and Angular uses dirty checking. Using this technique they can only update changed dom node or the node which are marked as dirty in case of Angular.
+同时，浏览器正在变的越来越聪明，它们尝试缩短屏幕的绘制时间。当绘制时，最大的事情是最小化和批处理dom的更改。
 
-为了最小化这个时间，Ember使用键值队观察技术，Angular使用脏检查。使用这个技术能仅仅在dom节点改变时做出更新。或者在Angular中把这个节点标记为脏的，再去更新。
+React的`Virtual DOM`背后思想，是把减少和处理DOM变化的策略，转到另一个抽象层次上。
 
-If this was not the case then you are not able to see new email as soon as it comes while writing a new email in Gmail.
+##是什么让React的虚拟DOM如此的块？
 
-如果情况不是这样的话，当你在Gmail中写了一个新的邮件，不能立即看到。
-
-But, browser are becoming smart enough nowadays they are trying to shorten the time it takes to repaint the screen. The biggest thing that can be done is to minimize and batch the DOM changes that make repaints.
-
-但是，浏览器正在变的越来越聪明，它们尝试缩短重绘时间。当重绘时，最重要的事情是最小化和批处理dom的更改。
-
-The strategy of reducing and baching DOM changes taken to another level of abstraction is the idea behind React’s Virtual DOM.
-
-React的虚拟DOM背后的理念是将dom的更改减少，并缓存到另一个抽象层次的策略。
-
-## What makes React’s virtual DOM so fast?
-##是什么让React的虚拟dom如此块？
-
-React doesn’t really do anything new. It’s just a strategic move. What it does is It stores a replica of real DOM in memory. When you modify the DOM, it first applies these changes to the in-memory DOM. Then, using it’s diffing algorithm, figures out what has really changed.
-
-React并没有真正做一些新的事情。这只是一个战略举措。它的作用是将真实dom的副本存储到内存中。当你修改dom时，首先将这些更改应用到内存中dom。然后使用diff，找出真正改变。
-
-Finally, it batches the changes and call applies them on real-dom in one go. Thus, minimizing the re-flow and re-paint.
+React并没有真正做一些新的事情。这只是一个战略举措。它的作用是将真实dom的副本存储到内存中。当你修改dom时，首先将这些更改应用到内存中dom。然后使用`diff`算法，找出真正的改变。
 
 最后，它批量更改并应用这些到真实dom中。因此，最大化减少回流和重绘。
-
-Interested in reading more on that? Well, that’s a topic for another post?
-
-*If you like it, please leave a comment below — it encourages me to write more.
-If you didn’t like it, still drop a comment — explaining how can we improve.*
-
-![](https://cdn-images-1.medium.com/max/4000/1*f2IVAl0TbsfES9cFGYr40g.png)
-
-📝 Read this story later in [Journal](https://usejournal.com/?utm_source=medium.com&utm_medium=noteworthy_blog&utm_campaign=guest_post_read_later_text).
-
-🗞 Wake up every Sunday morning to the week’s most noteworthy Tech stories, opinions, and news waiting in your inbox: [Get the noteworthy newsletter >](https://usejournal.com/newsletter/?utm_source=medium.com&utm_medium=noteworthy_blog&utm_campaign=guest_post_text)
