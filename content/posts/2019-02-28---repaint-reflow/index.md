@@ -38,9 +38,8 @@
  <iframe src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb5" frameborder=0></iframe>
 
 它发生在几秒内，我们甚至没有注意到这一切的发生。
-浏览器是如何绘制布局，它尝试检测出根元素、兄弟元素、以及子元素作为节点来重新安排它们的布局。
+**仔细看看**浏览器是如何绘制布局，它尝试检测出根元素、兄弟元素、以及子元素作为节点来重新安排它们的布局。
 
-Let’s take one example
 举个例子
 
     <html>
@@ -65,7 +64,7 @@ Let’s take one example
     </html>
 
 *The DOM tree* that represents this HTML document basically has one node for each tag and one text node for each piece of text between nodes (for simplicity let’s ignore the fact that whitespace is text nodes too) :
-在DOM树中HTML文档的每个标签都有一个对应的节点，节点之间的每段文本都有一个文本节点（简单来说，我们忽略的空白也是文本节点）
+在*DOM树*中HTML文档的每个标签都有一个对应的节点，节点之间的每段文本都有一个文本节点（简单来说，我们忽略的空白也是文本节点）
 
     documentElement (html)
         head
