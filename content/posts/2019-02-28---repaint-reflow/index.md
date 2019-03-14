@@ -28,12 +28,9 @@
 
 * 接下来有趣的部分是构建一颗渲染树(render tree)。渲染树有点像DOM树,但不完全一样。渲染树能够识别出样式，因此用`display:none`隐藏的div，它不会在渲染树中表示。其他的不可见元素也是如此，例如`<head>`里的所有元素。另一方面，可能有一些DOM元素在渲染树中需要用多个节点表示，例如文本节点`<p>`中的每一行都需要一个渲染节点。渲染树中的每个节点可以称为框或者盒子（CSS中的[盒子模型](http://www.w3.org/TR/CSS2/box.html#box-dimensions)）,每个节点都有CSS盒子属性包括`width, height, border, margin`等。
 
-* Once the render tree is constructed, the browser can **paint** (draw) the render tree nodes on the screen
-构建渲染树之后，浏览器可以在屏幕上绘制渲染树节点。
+* 渲染树被构建之后，浏览器可以在屏幕上绘制出它的每个节点。
 
-Here is a snapshot of how browser draws user interface on screen.
-下面是浏览器如何在屏幕上绘制用户界面的快照。
-
+下面是浏览器如何在屏幕上绘制用户界面的快照：
 
  <iframe src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb5" frameborder=0></iframe>
 
