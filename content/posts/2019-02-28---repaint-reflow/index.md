@@ -112,8 +112,7 @@
  1. 部分渲染树（或整个树）需要重新核验计算节点的大小和位置。我们把这称为**回流**（布局）。这里需要注意下，页面至少有一个回流那就是页面的初始布局。
  2. 屏幕页面的部分更新，由于节点的几何属性或者样式发生了变化，比如更改背景色，我们将此称之为**重绘**。
 
-Repaints and reflows can be expensive, they can hurt the user experience, and make the UI appear sluggish
-重绘和回流的代价时很大的，它们可能会影响用户体验，让UI界面迟缓。
+重绘和回流的代价是很大的，它们可能会影响用户体验，让UI界面迟缓。
 
 **Repaint**
 重绘
