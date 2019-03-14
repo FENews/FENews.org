@@ -114,8 +114,7 @@
 
 重绘和回流的代价是很大的，它们可能会影响用户体验，让UI界面迟缓。
 
-**Repaint**
-重绘
+**重绘**
 As the name suggests repaint is nothing but the repainting element on the screen as the skin of element change which affects the visibility of an element but do not affects layout.
 顾名思义，重绘只是屏幕上的重绘元素，因为元素的外观会发生变化，这会影响元素的可见性，但不会影响布局。
 
