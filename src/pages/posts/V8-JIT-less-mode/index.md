@@ -9,19 +9,19 @@ tags:
   - "V8"
   - "翻译"
   - "JIT"
-description: "V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript "
+description: "V8 v7.4 支持执行 JavaScript，而无需在运行时分配可执行内存。"
 ---
-V8 v7.4 运行时不分配可执行内存的情况下，支持下执行 JavaScript 。
+V8 v7.4 支持执行 JavaScript，而无需在运行时分配可执行内存。
 
-在 V8 默认的配置中，它严重依赖在运行时分配和改变可执行内存的的能力。例如：[TurboFan 优化编译器](https://v8.dev/blog/turbofan-jit) 及时为热 JavaScript 函数生成原生代码，还有大多数的 JS 正则表达式通过 [irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html) 编译成原生代码。在运行时创建可执行内存是使 V8 快速运行的一部分因素。
+在 V8 默认的配置中，它严重依赖在运行时分配和改变可执行内存的能力。例如：[TurboFan 优化编译器](https://v8.dev/blog/turbofan-jit) 及时为热 JavaScript 函数生成原生代码，还有大多数的 JS 正则表达式通过 [irregexp 引擎](https://blog.chromium.org/2009/02/irregexp-google-chromes-new-regexp.html) 编译成原生代码。在运行时创建可执行内存是使 V8 快速运行的一部分因素。
 
-但是在一些情况下不分配可执行内存运行 V8 使很有必要的：
+但是在一些情况下不分配可执行内存运行 V8 是很有必要的：
 
-一些平台（例如：iOS、智能电视、游戏控制台）需要禁止非特权应用对可执行内存的写权限，在此之前使用 V8 使无法实现的，而且禁止可执行内存的写权限能够减少应用的被攻击渠道。
+一些平台（例如：iOS、智能电视、游戏控制台）需要禁止非特权应用对可执行内存的写权限，在此之前使用 V8 是无法实现的，而且禁止可执行内存的写权限能够减少应用的被攻击渠道。
 
 V8 **无 JIT** 的新模式正是为了解决这些问题。你可以启动 V8 时使用 `--jitless` 选项来开启 **无 JIT** 模式。
 
-它是如何运行的呢？本质上，V8 基于我们已经实现的技术切换到纯解释器模式（interpreter-only mode）。所有的 JS 用户代码通过 [Ignition 解释器](https://v8.dev/blog/ignition-interpreter) 运行，正则表达式模式匹配也同样被解释执行。WebAssembly 目前还不支持，但是也有可能被解释执行。V8 内建的函数仍然被编译成原生代码，只是它们不在是 JS 托管堆(managed head)上的一部分，这要归功于我们最近的努力——[把它们嵌入到 V8 的二进制文件中](https://v8.dev/blog/embedded-builtins)。
+它是如何运行的呢？本质上，V8 基于我们已经实现的技术切换到纯解释器模式（interpreter-only mode）。所有的 JS 用户代码通过 [Ignition 解释器](https://v8.dev/blog/ignition-interpreter) 运行，正则表达式模式匹配也同样被解释执行。WebAssembly 目前还不支持，但是也有可能被解释执行。V8 内建的函数仍然被编译成原生代码，只是它们不再是 JS 托管堆(managed heap)上的一部分，这要归功于我们最近的努力——[把它们嵌入到 V8 的二进制文件中](https://v8.dev/blog/embedded-builtins)。
 
 最终，这些更改允许我们创建 V8 的堆，而不需要任何内存区域的可执行权限。
 
