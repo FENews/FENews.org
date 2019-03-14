@@ -30,18 +30,20 @@
 
 * 渲染树被构建之后，浏览器可以在屏幕上绘制出它的每个节点。
 
-下面是浏览器如何在屏幕上绘制用户界面的快照：
+下面是浏览器在屏幕上绘制用户界面的快照：
 
+<div style="text-align: center">
+  <iframe width="100%" height="360px" frameborder=0 src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb" allowfullscreen=""></iframe>
+</div>
  <iframe src="https://medium.com/media/8f1e045b2bfe590b62c8238a1f76feb5" frameborder=0></iframe>
 
-It happens in the fraction of seconds that we don’t even notice that all this happened.
-它发生在几秒钟之内，我们甚至没有注意到这一切发生了。
+它发生在几秒内，我们甚至没有注意到这一切的发生。
 
 
 **Look closely.**
 How browser drawing layout and trying to detect root element, siblings and it’s child element as node comes and rearranging it’s layout accordingly.
 
-仔细看看
+`仔细看看`
 浏览器是如何绘制布局和尝试检测根元素的，并且相应的将其兄弟元素和子元素重新排列布局
 
 Let’s take one example
