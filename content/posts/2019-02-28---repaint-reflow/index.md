@@ -43,8 +43,7 @@
 **Look closely.**
 How browser drawing layout and trying to detect root element, siblings and it’s child element as node comes and rearranging it’s layout accordingly.
 
-`仔细看看`
-浏览器是如何绘制布局和尝试检测根元素的，并且相应的将其兄弟元素和子元素重新排列布局
+**仔细看看**浏览器是如何绘制布局，它尝试检测出根元素、兄弟元素、以及子元素作为节点来重新安排它们的布局。
 
 Let’s take one example
 举个例子
