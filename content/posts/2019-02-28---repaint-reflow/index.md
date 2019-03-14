@@ -119,9 +119,10 @@
 顾名思义，重绘只是在屏幕上重绘元素，元素的外观会发生变化，会影响到元素的可见性，但不会影响布局。
 
 例如：
-1.改变元素的可见性（visibility）
-2.改变元素的外形轮廓
-3.改变元素背景（background）
+
+  1. 改变元素的可见性（visibility）
+  2. 改变元素的外形轮廓
+  3. 改变元素背景（background）
 等这些操作会触发页面重绘。
 
 According to Opera, the repaint is an expensive operation as it forces the browser to verify/check visibility of all other dom nodes.
