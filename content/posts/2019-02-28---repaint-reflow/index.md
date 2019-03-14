@@ -86,10 +86,7 @@
     		
             ...
 
-The *render tree* would be the visual part of the DOM tree. It is missing some stuff — the head and the hidden div, but it has additional nodes (aka frames, aka boxes) for the lines of text.
-
-
-渲染树将是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它有文本的附加节点（又名框架，也称为框）
+渲染树将是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它为文本行提供额外的节点（框或盒子）。
 
     root (RenderView)
         body
