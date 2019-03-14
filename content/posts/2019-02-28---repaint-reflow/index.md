@@ -107,14 +107,10 @@
 
 ## 回流和重绘
 
-There’s always at least one initial page layout together with a paint (unless, of course you prefer your pages blank :)). After that, changing the input information which was used to construct the render tree may result in one or both of these:
-在页面渲染的时候至少有一个初始页面布局和绘制，之后当更改构造渲染树的输入信息时可能至少会导致以下一种情况：
+在渲染时至少有一个初始页面的布局和绘制（除非你比较喜欢空白页:)）。之后，当改变构建渲染树的输入信息时，可能会导致以下一两种情况：
 
- 1. parts of the render tree (or the whole tree) will need to be revalidated and the node dimensions recalculated. This is called a **reflow**, or layout, or layouting. Note that there’s at least one reflow — the initial layout of the page
- 部分渲染树（或整个树）需要重新验证，并重新计算节点尺寸。我们把这称为回流、布局，这里需要注意下，页面至少有一个回流--页面的初始布局。
-
- 2. parts of the screen will need to be updated, either because of changes in geometric properties of a node or because of stylistic change, such as changing the background color. This screen update is called a **repaint**, or a redraw.
- 由于部分节点的几何属性发生了变化或者时样式发生了更改，比如更改了背景色，所以屏幕的有些部分需要更新，我们将此称之为重绘。
+ 1. 部分渲染树（或整个树）需要重新核验计算节点的大小和位置。我们把这称为**回流**（布局）。这里需要注意下，页面至少有一个回流那就是页面的初始布局。
+ 2. 屏幕页面的部分更新，由于节点的几何属性或者样式发生了变化，比如更改背景色，我们将此称之为**重绘**。
 
 Repaints and reflows can be expensive, they can hurt the user experience, and make the UI appear sluggish
 重绘和回流的代价时很大的，它们可能会影响用户体验，让UI界面迟缓。
