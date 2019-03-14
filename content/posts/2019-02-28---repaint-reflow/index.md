@@ -64,7 +64,9 @@
     </html>
 
 *The DOM tree* that represents this HTML document basically has one node for each tag and one text node for each piece of text between nodes (for simplicity let’s ignore the fact that whitespace is text nodes too) :
-在*DOM树*中HTML文档的每个标签都有一个对应的节点，节点之间的每段文本都有一个文本节点（简单来说，我们忽略的空白也是文本节点）
+在DOM树中HTML文档的每个标签都有一个对应的节点，节点之间的每段文本都有一个文本节点（简单来说，我们忽略的空白也是文本节点）
+
+用DOM树表示HTML文档,文档的每个标签都有对应的节点
 
     documentElement (html)
         head
