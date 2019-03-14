@@ -62,11 +62,8 @@
      
     </body>
     </html>
-
-*The DOM tree* that represents this HTML document basically has one node for each tag and one text node for each piece of text between nodes (for simplicity let’s ignore the fact that whitespace is text nodes too) :
-在DOM树中HTML文档的每个标签都有一个对应的节点，节点之间的每段文本都有一个文本节点（简单来说，我们忽略的空白也是文本节点）
-
-用DOM树表示HTML文档,文档的每个标签都有对应的节点
+    
+用DOM树表示HTML文档,文档的每个标签都有对应的节点,节点间的每段文本对应一个文本节点。（简单的来说，我们忽略的空白也是文本节点）
 
     documentElement (html)
         head
@@ -92,7 +89,7 @@
 The *render tree* would be the visual part of the DOM tree. It is missing some stuff — the head and the hidden div, but it has additional nodes (aka frames, aka boxes) for the lines of text.
 
 
-该渲染树是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它有文本的附加节点（又名框架，也称为框）
+渲染树将是DOM树的可视部分，但是它缺少了一些东西--头部和隐藏的div，但是它有文本的附加节点（又名框架，也称为框）
 
     root (RenderView)
         body
