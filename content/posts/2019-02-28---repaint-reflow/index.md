@@ -115,19 +115,14 @@
 重绘和回流的代价是很大的，它们可能会影响用户体验，让UI界面迟缓。
 
 **重绘**
-As the name suggests repaint is nothing but the repainting element on the screen as the skin of element change which affects the visibility of an element but do not affects layout.
-顾名思义，重绘只是屏幕上的重绘元素，因为元素的外观会发生变化，这会影响元素的可见性，但不会影响布局。
 
+顾名思义，重绘只是在屏幕上重绘元素，元素的外观会发生变化，会影响到元素的可见性，但不会影响布局。
 
-Example.
-1. Changing visibility of an element.
-1.改变元素的可见性
-2. Changing outline of the element.
+例如：
+1.改变元素的可见性（visibility）
 2.改变元素的外形轮廓
-3. Changing background.
-3.改变元素背景
-Would trigger a repaint.
-会触发重绘
+3.改变元素背景（background）
+等这些操作会触发页面重绘。
 
 According to Opera, the repaint is an expensive operation as it forces the browser to verify/check visibility of all other dom nodes.
 Opera也说过，重绘是一项昂贵的操作，因为它强制浏览器去验证、检查所有其他dom节点的可见性。
