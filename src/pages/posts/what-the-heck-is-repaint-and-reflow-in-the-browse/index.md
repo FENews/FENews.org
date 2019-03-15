@@ -12,6 +12,7 @@ tags:
     - "翻译"
 description: "了解JavaScript中的重绘和回流"
 ---
+
 ## 了解JavaScript中的重绘和回流
 
 最近,在研究React的Virtual DOM能大幅提高页面渲染效率的原因时，发现自己对JavaScript的性能了解甚少。为了提高对重绘、回流以及JavaScript性能的认识，因此写下这篇文章。
