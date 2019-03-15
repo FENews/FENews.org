@@ -1,16 +1,16 @@
 ---
-title: "关于JavaScript timer你需要了解的知识"
-date: "2019-03-06"
+title: "了解JavaScript中的重绘和回流"
+date: "2019-03-16"
 template: "post"
 draft: false
-category: "V8"
-translators: ["jinrichardJIN"]
+category: "js"
+translators: ["TF"]
 tags:
     - "JavaScript"
-    - "node"
-    - "timer"
+    - "reflow"
+    - "repaint"
     - "翻译"
-description: "关于JavaScript计时器你需要知道的全部知识"
+description: "了解JavaScript中的重绘和回流"
 ---
 ## 了解JavaScript中的重绘和回流
 
