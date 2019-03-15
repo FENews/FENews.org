@@ -30,6 +30,13 @@ description: "了解JavaScript中的重绘和回流"
 浏览器引擎的主要工作是处理HTML文档和其他资源，把它们转换成一个可视化交互式的web页面呈现在用户的设备上。
 除了浏览器引擎之外，和它相关的另外两个常用的概念术语是：布局引擎(Layout engine)和渲染引擎。理论上，浏览器的布局和渲染(绘制)工作，可以由单独的引擎处理。然而，在实践中，它们是紧密耦合的，很少单独考虑。
 
+其他的介绍：
+- 用户界面（User Interface）， 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分。
+- 网络（Networking），用来完成网络调用，例如http请求，它具有平台无关的接口，可以在不同平台上工作。
+- UI后端（UI Backend），绘制基础元件，例如组合选择框及对话框等，它提供平台无关的接口，内部使用操作系统的相应实现。
+- JS解释器（JavaScript Interpreter），解析和执行JS 代码。
+- 数据存储（Data Persistence），持久层，浏览器需要在硬盘中保存类似cookie的各种数据，HTML5定义了web database技术，这是一种轻量级完整的客户端存储技术。
+
 ## 让我们了解浏览器如何在屏幕上绘制用户界面
 
 当你在浏览器上敲回车去请求一些链接时，向该页面发出HTTP请求，然后服务器通常提供HTML文档作为响应。（在这个过程中发生了很多[事情](https://cheapsslsecurity.com/blog/what-is-ssl-tls-handshake-understand-the-process-in-just-3-minutes/)）
