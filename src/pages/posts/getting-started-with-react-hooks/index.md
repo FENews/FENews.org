@@ -19,6 +19,22 @@ Here I am, writing a React hooks tutorial for you. I decided to wait until hooks
 
 Enjoy the reading!
 
+Table of Contents	
+- React Hooks Tutorial for Beginners: what you will learn
+- React Hooks Tutorial for Beginners: requirements
+- React Hooks Tutorial for Beginners: setting up the project
+- React Hooks Tutorial for Beginners: in the beginning there was setState
+- React Hooks Tutorial for Beginners: updating the state in React … without setState
+- React Hooks Tutorial for Beginners: in the beginning there was componentDidMount (and render props)
+- React Hooks Tutorial for Beginners: fetching data with useEffect
+- React Hooks Tutorial for Beginners: can I use render props with React hooks?
+- React Hooks Tutorial for Beginners: your first custom React hook
+- React Hooks Tutorial for Beginners: can I use async/await with useEffect?
+- React Hooks Tutorial for Beginners: wrapping up
+- React Hooks Tutorial for Beginners: resources for learning React hooks
+- React Hooks Tutorial for Beginners: appendix
+
+
 
 ### React Hooks Tutorial for Beginners: what you will learn
 In the following tutorial you’ll learn:
@@ -37,7 +53,9 @@ React
 ### React Hooks Tutorial for Beginners: setting up the project
 If you want to follow along with the examples make sure to configure a React development environment. Run:
 
-`npx create-react-app exploring-hooks`
+```js 
+  npx create-react-app exploring-hooks
+```
 and you’re good to go!
 
 (You should have one of the latest version of Node.js for running npx).
@@ -107,14 +125,18 @@ So what options do we have for managing the internal state in React now that set
 
 Enter the first and most important React hook: useState. useState is a function exposed by the react package. You will import that function at the top of your files as:
 
-`import React, { useState } from "react";`
+```js 
+import React, { useState } from "react";
+```
 
 By importing useState in your code you’re signaling the intent to hold some kind of state inside your React component. And more important, that React component shouldn’t be an ES6 class anymore. It can be a pure and simple JavaScript function. This is the most appealing thing of this hooks story.
 
 
 After importing useState you’ll pick an array containing two variables out of useState, and the code should go inside your React component:
 
-```const [buttonText, setButtonText] = useState("Click me, please");```
+```js 
+const [buttonText, setButtonText] = useState("Click me, please");
+```
 Confused by this syntax? It’s ES6 destructuring. The names above can be anything you want, it doesn’t matter for React. Anyway I advise using descriptive and meaningful variable names depending on the state’s purpose.
 
 The argument passed to useState is the actual starting state, the data that will be subject to changes. useState returns for you two bindings:
@@ -279,15 +301,21 @@ That’s the trick. If you call useEffect like I did you would see an infinite l
 
 I wish this info got the visibility it deserves rather than being at the end of this page: Using the Effect Hook. But even with this informations I wouldn’t suggest rewriting all your React components to use hooks for fetching. A lot could still change in the near future, as Ryan Florence suggests:
 
-Hooks are not the endgame for React data loading.
+```
+Ryan Florence
+@ryanflorence
 
-Data loading is probably the most common effect in an app.
+  Hooks are not the endgame for React data loading.
+  
+  Data loading is probably the most common effect in an app.
+  
+  Don't be in a big hurry to migrate to hooks for data unless you're okay migrating again when suspense for data is stable.
 
-Don't be in a big hurry to migrate to hooks for data unless you're okay migrating again when suspense for data is stable.
-
-Own your churn.
+  Own your churn.
 
 — Ryan Florence (@ryanflorence) February 12, 2019
+```
+
 Anyway, useEffect replaces componentDidMount, componentDidUpdate, and componentWillUnmount, which I think is a nice thing for both experts developers and newcomers to React.
 
 ### React Hooks Tutorial for Beginners: can I use render props with React hooks?
@@ -461,7 +489,7 @@ Thanks for reading! See you next time!
 🐦[在推特上关注原作者！
 ](https://twitter.com/gagliardi_vale)
 
-⭐[在GitHub上关注原作者！
-](https://github.com/leonardomso)
+<!-- ⭐[在GitHub上关注原作者！
+](https://github.com/leonardomso) -->
 
-原文地址：[https://medium.freecodecamp.org/a-beginners-guide-to-graphql-86f849ce1bec](https://medium.freecodecamp.org/a-beginners-guide-to-graphql-86f849ce1bec)
+原文地址：[https://www.valentinog.com/blog/hooks/](https://www.valentinog.com/blog/hooks/)
