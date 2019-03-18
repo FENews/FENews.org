@@ -8,7 +8,7 @@ translators: ["lizhentao"]
 tags:
   - "React"
   - "翻译"
-description: "sdf"
+description: "定制你自己的React Hook"
 ---
 ## React Hooks Tutorial for Beginners: Getting Started With React Hooks (2019)
 
