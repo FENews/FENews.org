@@ -1,6 +1,6 @@
 ---
 title: "V8：抖动优化（Jank Busters）— 第一部分"
-date: "2019-03-18"
+date: "2019-03-22"
 template: "post"
 authors: ["jocheneisinger", "michaellippautz", "hannespayer"]
 translators: ["xueqingxiao"]
@@ -23,8 +23,8 @@ description: "了解一个事物的历史，有助于让我们了解事物的本
 
 V8 中大多数的垃圾收集工作都是在主线程上执行。将垃圾收集的工作移动到并发线程上，减少了垃圾收集器的等待时间并进一步减少了抖动。这本身就是一项复杂的工作，因为 JavaScript 应用和垃圾回收器可能在同一时间观察和修改同一个对象。到目前为止，并发垃圾回收只清理老生代 JavaScript 堆中的常规对象。最近，我们还实现了 V8 堆中对 code space 和 map space 的并发清理。此外，为了减少垃圾回收在主线程上的工作，我们还实现了对未使用内存页的并发取消映射（concurrent unmapping），参见图2。
 
-![图2：对并发垃垃圾回收线程执行的一些垃圾收集操作。](./images/gc-concurrent-threads.png)
-> 图2：对并发垃垃圾回收线程执行的一些垃圾收集操作。
+![图2：对并发垃圾回收线程执行的一些垃圾收集操作。](./images/gc-concurrent-threads.png)
+> 图2：对并发垃圾回收线程执行的一些垃圾收集操作。
 
 在基于 WebGL 的游戏中，以上所讨论的优化的效果是清晰可见的，比如 Turbolenz 的在线演示。下面的👇视频对比了在 Chrome 41 和 Chrome 46 中的效果。
 
