@@ -221,7 +221,7 @@ export default class DataLoader extends Component {
         this.setState(() => {
           return { data };
         })
-      );
+      );1
   }
   render() {
     return this.props.render(this.state.data);
