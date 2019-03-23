@@ -414,12 +414,12 @@ useState可以使用React组件中的状态，而无需借助ES6 classes。
 useEffect替代了componentDidMount，componentDidUpdate和componentWillUnmount并提供了统一的API。
 其他Hooks，建议阅读官方文档了解更多信息。
 
-很容易预见React的发展方向：我们将会有三种组件形式：
+很容易预见React的发展方向：未来将会有三种组件形式：
    - 函数组件
    - 类组件
    - 带Hook的函数组件
 
-我可以在Hooks中看到很多便利，我挺满意它们提供的API。令人惊讶的是React如何演变，社区似乎总能找到聪明的解决方法。
+我可以看到Hooks带来的诸多便利，也挺满意它们提供的API。还有，令人惊讶的是不管React如何演变，社区似乎总能找到聪明的解决方法。
 
 
 ### React Hooks学习资源
@@ -433,11 +433,11 @@ useEffect替代了componentDidMount，componentDidUpdate和componentWillUnmount�
 ### 附录
 有时可能不需要React来构建UI。当我不确定该项目会发展成什么样子的时候，我会创建一个不依赖任何JS库的原型项目，在这类项目中，我通常用module模式来组织代码。
 
-即使是使用vanilla JavaScript来组织和整理你的代码，也是每个JavaScript开发人员最重要的财富和能力。为了更多地了解JavaScript中的module模式，建议阅读 
+即使是使用vanilla JavaScript来组织代码，也是每个JavaScript开发人员最重要的财富和能力。为了更多地了解JavaScript中的module模式，建议阅读 
   -《Mastering the module pattern 》（Todd Motto） 
   -《JavaScript design patterns》（Addy Osmani）.
 
-另一方面，跟踪UI中的状态变化确实很难。对于这种工作，许多图书馆已经诞生并死亡。我最喜欢的是Redux，甚至可以使用vanilla JavaScript。
+另一方面，追踪UI中的状态变化确实很难。为了处理这种工作，很多库经历了由生到死。我最喜欢的是Redux，甚至可以使用vanilla JavaScript。
 
 谢谢阅读！下次见！
 ### 总结
