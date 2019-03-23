@@ -1,5 +1,5 @@
 ---
-title: "「译」Getting Started With React Hooks(new)"
+title: "「译」React Hooks(2019)入门教程"
 date: "2019-03-15"
 template: "post"
 draft: false
@@ -14,19 +14,14 @@ description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用
 ## React Hooks（2019）入门教程
 ![1](./images/2.png)
 
-
 ### 你将学到
- 如何使用React Hooks
-
- 如何在React Class Components中实现相同的逻辑
-
+- 如何使用React Hooks，以及如何定制自己的hook
+- 如何在React Class组件中实现相同的逻辑
 
 ### 起步准备
 要继续学习本教程，你应该基本了解：
-
 - ES6（箭头函数，解构，类）
 - React
-
 
 ### 项目安装
 请确保已经配置好React开发环境，并且是最新版本的Node.js，再执行：
@@ -65,7 +60,7 @@ export default class Button extends Component {
   }
 }
 ```
-从上面的代码中可以看出，当单击按钮时，组件内部状态会被setState改变，按钮会响应变化并更新文本。
+从上面的代码中可以看出，当单击按钮时，组件内部状态会被setState改变，按钮会响应state变化并更新文本。
 
 不使用构造函数的话，可以得到更简洁的版本：
 ```js
@@ -302,9 +297,9 @@ export default function DataLoader(props) {
 但同样，这种重构没有意义，因为React Hooks的诞生是有原因的：在组件之间共享逻辑。
 
 ### 定制你的React Hooks
-我们可以将我们的逻辑封装在React Hooks中，然后在我们感觉需要时导入该 Hooks，而不是HOC和。 在我们的示例中，我们可以创建用于获取数据的自定义挂钩。
+我们可以将我们的逻辑封装在React Hooks中，然后在我们感觉需要时导入该 Hooks，而不是HOCs和render props。 在示例中，我们可以创建用于获取数据的自定义挂钩。
 
-根据React文档，自定义Hooks是一个以“use”开头的JavaScript函数。No BB Show me the Code，让我们马上定制一个‘useFetch’ hook：
+安装React文档规范，自定义Hooks是一个以“use”开头的JavaScript函数。那，让我们马上定制一个‘useFetch’ hook：
 
 ```js
 // useFetch.js
@@ -338,13 +333,13 @@ export default function DataLoader(props) {
 }
 ```
 
-这就是Hooks如此吸引人的原因：终于，我们有了一个不错的、标准的、干净的方式来封装和共享逻辑。
+这就是Hooks如此吸引人的原因：我们有了一个标准的、干净的方式来封装和共享逻辑。
 
 注：我没有处理上面代码中fetch error的情况，自己动手处理试试吧！
 
 ### 我可以在useEffect中使用async/await吗？
 
-当使用useEffect时，我想在Hooks里尝试async/await。让我们在看一眼自定义Hook：
+当使用useEffect时，我想在Hooks里尝试async/await。让我们再看一眼自定义Hook：
 
 ```js
 // useFetch.js
@@ -382,7 +377,7 @@ export default function useFetch(url) {
 
 事实证明你不能用useEffect返回一个Promise。 JavaScript异步函数总是返回一个promise，而useEffect只能返回另一个函数。 也就是说，如果你要在useEffect中使用setInterval定时器，你应该返回一个函数（闭包）来清除setIntervel。
 
-因此，为了让React高兴，我们可以像这样重写我们的异步逻辑：
+那么，我们可以像这样重写我们的异步逻辑：
 ```js
 // useFetch.js
 import { useState, useEffect } from "react";
@@ -399,7 +394,7 @@ export default function useFetch(url) {
   return data;
 }
 ```
-然后，你的自定义Hook又可以用了。
+OK，自定义Hook又可以用了。
 
 ### 结束
 hooks是react的一个不错的扩充，他于2018年10月作为RFC诞生，很快就进入了React 16.8。可以将React Hooks理解为存活在React组件之外的封装状态。
