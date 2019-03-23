@@ -8,7 +8,7 @@ translators: ["lizhentao"]
 tags:
   - "React"
   - "翻译"
-description: "带你一步步深入React Hooks(new 16.8)，并教你如何用useState和useEffect定制自己的Hook函数"
+description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用useState和useEffect定制自己的Hook函数"
 ---
 
 ## React Hooks（2019）入门教程
@@ -409,38 +409,31 @@ React hooks是一个不错的扩充，他们于2018年10月作为RFC诞生，很
 
 React Hooks使render props和HOC变得过时，并为共享逻辑提供了更好的开体验。使用React Hooks，你可以在React组件之间复用常见的逻辑片段。
 
-React还附带了很多预定义的Hooks。最重要的是useState和useEffect。 useState可以使用React组件中的状态，而无需借助ES6 classes。
+React还附带了很多预定义的Hooks。其中最重要的是useState和useEffect。 
+useState可以使用React组件中的状态，而无需借助ES6 classes。
+useEffect替代了componentDidMount，componentDidUpdate和componentWillUnmount并提供了统一的API。
+其他Hooks，建议阅读官方文档了解更多信息。
 
-useEffect替换了提供统一API的componentDidMount，componentDidUpdate和componentWillUnmount。还有很多其他的Hooks，建议阅读官方文档以了解更多信息。
-
-很容易预见React的发展方向：功能组件遍布各处！但即便如此，我们还是有三种方法可以在React中表达组件：
-   - fuction components
+很容易预见React的发展方向：我们将会有三种组件形式：
+   - 函数组件
    - 类组件
-   - 带挂钩的功能组件
+   - 带Hook的函数组件
 
-我可以在 Hooks中看到很多方便，我对它们提供的API感到满意。令人惊讶的是React如何发展，社区似乎总能找到解决问题的聪明方法。
+我可以在Hooks中看到很多便利，我挺满意它们提供的API。令人惊讶的是React如何演变，社区似乎总能找到聪明的解决方法。
 
 
 ### React Hooks学习资源
-React官方文档是学习Hooks的第一站：Hooks简介是对Hooks如何以及为什么在这里的高级概述。 Hooks一目了然更深入，这是深入了解 Hooks的起点。
+- React官方文档是学习Hooks的第一步
 
-Tania Rascia在React with Hooks中使用Build a CRUD App对 Hooks进行了很好的介绍。说到更高级的用例Matt Hamlin是一个很好的写入useReducer，另一个React挂钩用于管理状态变化。
+- [Build a CRUD App in React with Hooks](https://www.taniarascia.com/crud-app-in-react-with-hooks/)
 
-有趣的是，你使用useReducer的方式类似于Redux reducer。这也证明了Redux在React社区中的影响力（自从Dan Abramov落后于Redux和React之后，这不应该是一个惊喜）。我强烈建议你学习Redux，如果你还没有学，那么在学习useReducer之前它会有很多帮助。
+- Redux：如果你还没学过，那么抓紧去学吧，它能提供很多思路上的帮助。
 
 
 ### 附录
-在文章的开头我说：“使用jQuery，几乎不可能清楚地构建项目，更不用说定义数据应如何在UI中流动”。
+有时可能不需要React来构建UI。当我不确定该项目会发展成什么样子的时候，我会创建一个不依赖任何JS库的原型项目，在这类项目中，我通常用module模式来组织代码。
 
-and
-
-“这同样适用于JavaScript：即使有了self-disclipine和最佳实践，也需要靠运气在fuctions之间追踪状态和功能”
-
-有时可能不需要React来构建UI。当我不确定该项目应该往什么方向做的时候，我会创建一个不依赖任何JS库的原型项目。
-
-在这类项目中，我用module模式来组织代码。
-
-能够正确组织和记录你的代码，即使使用vanilla JavaScript也是每个JavaScript开发人员最重要的财富。为了更多地了解JavaScript中的module模式，建议阅读 
+即使是使用vanilla JavaScript来组织和整理你的代码，也是每个JavaScript开发人员最重要的财富和能力。为了更多地了解JavaScript中的module模式，建议阅读 
   -《Mastering the module pattern 》（Todd Motto） 
   -《JavaScript design patterns》（Addy Osmani）.
 
