@@ -1,5 +1,5 @@
 ---
-title: "「译」Getting Started With React Hooks"
+title: "「译」Getting Started With React Hooks(new)"
 date: "2019-03-15"
 template: "post"
 draft: false
@@ -8,7 +8,7 @@ translators: ["lizhentao"]
 tags:
   - "React"
   - "翻译"
-description: "带你一步步深入React Hooks(16.8)，并教你如何定制自己的Hook函数"
+description: "带你一步步深入React Hooks(new 16.8)，并教你如何用useState和useEffect定制自己的Hook函数"
 ---
 
 ## React Hooks（2019）入门教程
@@ -409,9 +409,9 @@ React hooks是一个不错的扩充，他们于2018年10月作为RFC诞生，很
 
 React Hooks使render props和HOC变得过时，并为共享逻辑提供了更好的开体验。使用React Hooks，你可以在React组件之间复用常见的逻辑片段。
 
-React附带一堆预定义的 Hooks。最重要的是useState和useEffect。 useState可以在React组件中使用本地状态，而无需使用ES6类。
+React还附带了很多预定义的Hooks。最重要的是useState和useEffect。 useState可以使用React组件中的状态，而无需借助ES6 classes。
 
-useEffect替换了提供统一API的componentDidMount，componentDidUpdate和componentWillUnmount。还有很多其他的 Hooks，我建议阅读官方文档以了解更多信息。
+useEffect替换了提供统一API的componentDidMount，componentDidUpdate和componentWillUnmount。还有很多其他的Hooks，建议阅读官方文档以了解更多信息。
 
 很容易预见React的发展方向：功能组件遍布各处！但即便如此，我们还是有三种方法可以在React中表达组件：
    - fuction components
@@ -426,7 +426,7 @@ React官方文档是学习Hooks的第一站：Hooks简介是对Hooks如何以及
 
 Tania Rascia在React with Hooks中使用Build a CRUD App对 Hooks进行了很好的介绍。说到更高级的用例Matt Hamlin是一个很好的写入useReducer，另一个React挂钩用于管理状态变化。
 
-有趣的是，你使用useReducer的方式类似于很多Redux reducer。这证明了Redux在React社区中的影响力（自从Dan Abramov落后于Redux和React之后，这不应该是一个惊喜）。我强烈建议你学习Redux，如果你还没有完成，那么在学习useReducer之前它会有很多帮助。
+有趣的是，你使用useReducer的方式类似于Redux reducer。这也证明了Redux在React社区中的影响力（自从Dan Abramov落后于Redux和React之后，这不应该是一个惊喜）。我强烈建议你学习Redux，如果你还没有学，那么在学习useReducer之前它会有很多帮助。
 
 
 ### 附录
@@ -436,11 +436,13 @@ and
 
 “这同样适用于JavaScript：即使有了self-disclipine和最佳实践，也需要靠运气在fuctions之间追踪状态和功能”
 
-有时可能不需要React来构建用户界面。当我不确定该项目应该往什么方向做的时候，我会创建一个不依赖任何JS库的原型项目。
+有时可能不需要React来构建UI。当我不确定该项目应该往什么方向做的时候，我会创建一个不依赖任何JS库的原型项目。
 
-在这些项目中，我依靠module来组织代码。
+在这类项目中，我用module模式来组织代码。
 
-能够正确组织和记录你的代码，即使使用vanilla JavaScript也是每个JavaScript开发人员的宝贵资产。为了更多地了解JavaScript中的模块模式，我建议阅读由Todd Motto掌握模块模式和Addy Osmani的JavaScript设计模式。
+能够正确组织和记录你的代码，即使使用vanilla JavaScript也是每个JavaScript开发人员最重要的财富。为了更多地了解JavaScript中的module模式，建议阅读 
+  -《Mastering the module pattern 》（Todd Motto） 
+  -《JavaScript design patterns》（Addy Osmani）.
 
 另一方面，跟踪UI中的状态变化确实很难。对于这种工作，许多图书馆已经诞生并死亡。我最喜欢的是Redux，甚至可以使用vanilla JavaScript。
 
