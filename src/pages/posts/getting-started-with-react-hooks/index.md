@@ -297,7 +297,7 @@ export default function DataLoader(props) {
 但同样，这种重构没有意义，因为React Hooks的诞生是有原因的：在组件之间共享逻辑。
 
 ### 定制你的React Hooks
-我们可以将我们的逻辑封装在React Hooks中，然后在我们感觉需要时导入该 Hooks，而不是HOCs和render props。 在示例中，我们可以创建用于获取数据的自定义挂钩。
+我们可以将我们的逻辑封装在React Hooks中，然后在我们感觉需要时导入该 Hooks，而不是HOCs和render props。 在示例中，我们可以创建用于获取数据的自定义Hook。
 
 安装React文档规范，自定义Hooks是一个以“use”开头的JavaScript函数。那，让我们马上定制一个‘useFetch’ hook：
 
