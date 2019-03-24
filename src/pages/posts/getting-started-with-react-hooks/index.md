@@ -8,15 +8,16 @@ translators: ["lizhentao"]
 tags:
   - "React"
   - "翻译"
-description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用useState和useEffect定制自己的Hook函数useFetch"
+description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用useState和useEffect定制自己的Hook函数"
 ---
+
 
 ## React Hooks（2019）入门教程
 ![1](./images/2.png)
 
 ### 你将学到
-- 如何使用React Hooks，以及如何定制自己的hook
-- 如何在React Class组件中实现相同的逻辑
+- 如何使用React Hooks
+- 如何定制自己的hook
 
 ### 起步准备
 要继续学习本教程，你应该基本了解：
@@ -136,7 +137,7 @@ export default function Button() {
 
 前往下一节！
 
-### 起步时还有componentDidMount（render props）
+### 还记得componentDidMount（render props）么？
 在React中获取数据！ 你还记得使用componentDidMount的旧时代吗？ 你可以在componentDidMount中fetch(url)获取数据然后收工。 下面是从API获取数组并渲染成一个List的例子：
 
 ```js
