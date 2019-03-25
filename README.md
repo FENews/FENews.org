@@ -1,11 +1,14 @@
 # FENews.org
 
-[![Build Status](https://travis-ci.com/FENews/FENews.org.svg?branch=master)](https://travis-ci.com/FENews/FENews.org)
+[![Greenkeeper badge](https://badges.greenkeeper.io/FENews/FENews.org.svg)](https://greenkeeper.io/)
 
 
 FENews 是由一群热爱技术的前端小伙伴自发组成的团队。团队会定期创作/翻译前端相关的技术文章，同时我们也欢迎外部投稿或加入我们的核心编辑团队。如果您对我们感兴趣，请关注我们的公众号：
 
 ![公众号](./src/assets/wechat-qr-code.jpg)
+
+## 规范与流程
+开始写作之前请务必阅读 [wiki](https://github.com/FENews/FENews.org/wiki/%E8%A7%84%E8%8C%83%E4%B8%8E%E6%B5%81%E7%A8%8B%E8%AF%B4%E6%98%8E)
 
 ## 开始写作
 1. 首先，fork 这个项目。
@@ -19,9 +22,8 @@ FENews 是由一群热爱技术的前端小伙伴自发组成的团队。团队�
     # 每次开始写作前，同步 upstream 的 master 分支
     git pull upstream master
    ```
-5. `yarn develop` 启动开发环境。
-6. 进入项目根目录，在 `content/posts` 文件夹下面新建markdown文件，文件名格式：`2019-01-25---title.md`。
-7. 开始编辑上一步创建的文章。
-8. 完成后提 `PR`，等待审核校对完成后方可发布。
+5. `yarn start` 启动开发环境。
+
+
 
 <!-- ## Contributors -->
