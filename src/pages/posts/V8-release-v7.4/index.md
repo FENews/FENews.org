@@ -8,8 +8,9 @@ translators: ["leyayun"]
 tags:
   - "V8"
   - "翻译"
-description: ""
+description: "每六周，我们创建一个新的 V8 分支做为我们发布进程的一部分。每一个版本都是在一个新的 Chrome Beta 版本之前从 V8 的 master 分支切出来。今天我们宣布发布最新的 V8 v7.4 分支，在对应的 Chrome 74 Stable 版本发布前的几周，它都将做为 Beta 版本存在。"
 ---
+
 Every six weeks, we create a new branch of V8 as part of our [release process](https://v8.dev/docs/release-process). Each version is branched from V8’s Git master immediately before a Chrome Beta milestone. Today we’re pleased to announce our newest branch, [V8 version 7.4](https://chromium.googlesource.com/v8/v8.git/+log/branch-heads/7.4), which is in beta until its release in coordination with Chrome 74 Stable in several weeks. V8 v7.4 is filled with all sorts of developer-facing goodies. This post provides a preview of some of the highlights in anticipation of the release.
 
 每六周，我们创建一个新的 V8 分支做为我们发布进程的一部分。每一个版本都是在一个新的 Chrome Beta 版本之前从 V8 的 master 分支切出来。今天我们宣布发布最新的 V8 v7.4 分支，在对应的 Chrome 74 Stable 版本发布前的几周，它都将做为 Beta 版本存在。
@@ -197,3 +198,6 @@ Please use `git log branch-heads/7.3..branch-heads/7.4 include/v8.h` to get a li
 Developers with an [active V8 checkout](https://v8.dev/docs/source-code#using-git) can use `git checkout -b 7.4 -t branch-heads/7.4` to experiment with the new features in V8 v7.4. Alternatively you can [subscribe to Chrome’s Beta channel](https://www.google.com/chrome/beta/) and try the new features out yourself soon.
 
 开发者可以通过 `git checkout -b 7.4 -t branch-heads/7.4` 切到 V8 v7.4的活动分支体验这些新特性。或者，你可以订阅 Chrome 的 Beta 频道，并尽早尝试新功能。
+
+
+原文：https://v8.dev/blog/v8-release-74
