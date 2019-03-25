@@ -11,13 +11,11 @@ tags:
 description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用useState和useEffect定制自己的Hook函数"
 ---
 
-
-## React Hooks（2019）入门教程
 ![1](./images/2.png)
 
-### 你将学到
+### 本教程将带你学习
 - 如何使用React Hooks
-- 如何定制自己的hook
+- 如何定制自己的Hook
 
 ### 起步准备
 要继续学习本教程，你应该基本了解：
@@ -34,11 +32,11 @@ description: "带你一步步深入React Hooks(new in 16.8)，并教你如何用
 
 首先让我们快速回顾一下React。
 
-React是一个用于构建用户界面的库，其优点之一是react本身会强制开发人员使用严格数据流。还记得jQuery吗？使用jQuery几乎不可能清晰地构建项目，更不用说如何定义UI中的数据流，并且很难跟踪哪些功能正在改变哪个UI。
+React是一个用于构建用户界面的库，其优点之一是React本身会强制开发人员使用严格数据流。还记得jQuery吗？使用jQuery几乎不可能清晰地构建项目，更不用说如何定义UI中的数据流，并且很难跟踪哪些功能正在改变哪个UI。
 
-这同样适用于JavaScript：通过大量的练习和实践，有可能找到一种更好的项目结构（参考模块模式），不过还是要靠运气在各个fuction之间追踪状态和交互（参考Redux）。
+这同样适用于JavaScript：通过大量的练习和实践，有可能找到一种更好的项目结构（参考模块模式），不过还是要靠运气在各函数之间追踪状态和交互（参考Redux）。
 
-React在某种程度上缓解了这些问题：通过强制执行清晰的structure（container和function组件）和严格数据流（组件对state和props的change做出即时响应），会比以前更容易创建合理的UI逻辑。
+React在某种程度上缓解了这些问题：通过强制执行清晰的 structure（container和function组件）和严格数据流（组件对 state和props的change做出即时响应），会比以前更容易创建合理的UI逻辑。
 
 React的核心思想是，一个UI组件响应一个state变化。到目前为止，表达这种数据流的基本形式是ES6 Class。看下面的示例：
 
@@ -118,7 +116,7 @@ export default function Button() {
 }
 ```
 
-要在onClick处理程序中调用setButtonText状态更新程序，可以使用箭头函数。 但如果你更喜欢使用常规fuction，可以：
+要在onClick处理程序中调用setButtonText状态更新程序，可以使用箭头函数。 但如果你更喜欢使用常规函数，可以：
 
 ```js
 import React, { useState } from "react";
@@ -133,7 +131,7 @@ export default function Button() {
 
 老实说，除了特殊需求外，我更喜欢常规函数而不是箭头函数。另一方面，程序员写的代码是给其他程序员看的，可读性很必要。
 
-好了，React hooks！本可以在这里结束这篇文章的，不过我还是挺想向你展示下如何使用Hooks获取数据～～
+好了，这就是React Hooks！本可以在这里结束这篇文章的，不过我还是挺想向你展示下如何使用Hooks获取数据～～
 
 前往下一节！
 
@@ -371,12 +369,12 @@ export default function useFetch(url) {
 }
 ```
 
-对么？ 然后我打开控制台，React正在冲着我尖叫：
+对么？ 然后我打开控制台，React正在疯狂报错：
 ![1](./images/1.png)
 
 “警告：effect函数除了函数之外不能返回任何内容。”然后还完整解释我做错了什么，该怎么改。 嗯...很好！
 
-事实证明你不能用useEffect返回一个Promise。 JavaScript异步函数总是返回一个promise，而useEffect只能返回另一个函数。 也就是说，如果你要在useEffect中使用setInterval定时器，你应该返回一个函数（闭包）来清除setIntervel。
+事实证明你不能用useEffect返回一个Promise。JavaScript异步函数总是返回一个promise，而useEffect只能返回另一个函数。 也就是说，如果你要在useEffect中使用setInterval定时器，你应该返回一个函数（闭包）来清除setIntervel。
 
 那么，我们可以像这样重写我们的异步逻辑：
 ```js
@@ -398,16 +396,16 @@ export default function useFetch(url) {
 OK，自定义Hook又可以用了。
 
 ### 结束
-hooks是react的一个不错的扩充，他于2018年10月作为RFC诞生，很快就进入了React 16.8。可以将React Hooks理解为存活在React组件之外的封装状态。
+Hooks是React的一个不错的扩充，他于2018年10月作为RFC诞生，很快就进入了React 16.8。可以将React Hooks理解为存活在React组件之外的封装状态。
 
-React Hooks使render props和HOC变得过时，并为共享逻辑提供了更好的开发体验。使用React Hooks，你可以在React组件之间复用常见的逻辑片段。
+React Hooks使render props和HOC显得过时，并为逻辑复用提供了更好的开发体验。使用React Hooks，你可以在React组件之间复用常见的逻辑片段。
 
 React还附带了很多预定义的Hooks。其中最重要的是useState和useEffect。 
 useState可以使用React组件中的状态，而无需借助ES6 classes。
 useEffect替代了componentDidMount，componentDidUpdate和componentWillUnmount并提供了统一的API。
 其他Hooks，建议阅读官方文档了解更多信息。
 
-很容易预见React的发展方向：未来将会有三种组件形式：
+很容易预见React的发展方向：未来将会有三种组件形式
  - 函数组件
  - 类组件
  - 带Hook的函数组件
@@ -424,13 +422,13 @@ useEffect替代了componentDidMount，componentDidUpdate和componentWillUnmount�
 
 
 ### 附录
-有时可能不需要React来构建UI。当不确定该项目会发展成什么样子时，我会创建一个不依赖任何JS库的原型项目，在这类项目中，我通常用module模式来组织代码。
+有时可能不需要React来构建UI。当不确定该项目会发展成什么样子时，我会创建一个不依赖任何JS库的原型项目，在这类项目中，我通常用模块化方式来组织代码。
 
-即使是使用vanilla JavaScript来组织代码，也是每个JavaScript开发人员最重要的财富和能力。为了更多地了解JavaScript中的module模式，建议阅读 
- - 《Mastering the module pattern 》（Todd Motto）
+即使是使用原生JavaScript来组织代码，也是每个JavaScript开发人员最重要的财富和能力。为了更多地了解JavaScript中的模块化方式，建议阅读 
+ - 《Mastering the module pattern》（Todd Motto）
  - 《JavaScript design patterns》（Addy Osmani）
 
-另一方面，追踪UI中的状态变化确实很难，为了应对这种工作，诞生了很多库/方案，也消亡了很多。我很喜欢Redux，vanilla JavaScript也不错。
+另一方面，追踪UI中的状态变化确实很难，为了应对这种情况，诞生了很多解决方案，大多数也都消亡了。我很喜欢Redux，即使在原生JavaScript使用也挺不错。
 
 谢谢阅读！下次见！
 ### 总结
