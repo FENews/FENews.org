@@ -1,5 +1,5 @@
 ---
-title: "ES6 箭头函数适用场景"
+title: "ES6 箭头函数的适用场景"
 date: "2019-03-24"
 template: "post"
 draft: false
@@ -25,14 +25,14 @@ function timesTwo(params) {
 timesTwo(4);  // 8
 ```
 
-而 ES6 箭头函数示例：
+ES6 箭头函数示例：
 
 ```js
 var timesTwo = params => params * 2
 timesTwo(4);  // 8
 ```
 
-后者看起来简洁很多！我们可以省略花括号而直接隐式的返回结果（但是只是在没有块体的情况下）。
+后者看起来简洁很多！我们可以省略花括号而直接隐式的返回结果（仅在没有块体的情况下）。
 
 理解箭头函数与常规 ES5 函数的不同表现很重要。
 
@@ -50,7 +50,7 @@ timesTwo(4);  // 8
 () => 42
 ```
 
-实际上，你甚至不需要括号！
+实际上，甚至不需要括号！
 
 ```js
 _ => 42
@@ -66,7 +66,7 @@ x => 42 || (x) => 42
 
 ### **3. 多参数**
 
-多参数情况，括号是必须的：
+多参数情况呢，括号却是必须的：
 
 ```js
 (x, y) => 42
@@ -76,9 +76,9 @@ x => 42 || (x) => 42
 
 在最基本的表现形式中，函数表达式生成值，而函数声明执行操作。
 
-箭头函数中，声明需要花括号包裹并且需要写 return。
+在箭头函数中，声明需要花括号包裹并且需要写 return。
 
-下面是一个带有 if 语句的箭头函数栗子：
+下面是一个带有 if 语句的箭头函数例子：
 
 ```js
 var feedTheCat = (cat) => {
@@ -112,9 +112,9 @@ x =>({ y: x })
 
 ![syntactically anonymous](./images/1__4a_Zan4-WX7vh7G0XQZjw.jpeg)
 
-箭头函数都是匿名的，那么意味着箭头函数都没有名称。
+箭头函数都是匿名的，意味着箭头函数都没有名称。
 
-### **匿名会带来一些问题：**
+### **匿名会带来的一些问题：**
 
 **1、很难调试**
 当程序出错时，无法追踪匿名的函数或者具体出错行数。
@@ -126,9 +126,9 @@ x =>({ y: x })
 
 ![Photo by davide ragusa on Unsplash](./images/0_H1ltbktHxMkmFDdK.jpeg)
 
-在经典函数表达式中，`this` 关键字根据函数被调用的上下文绑定到不同的值。但是箭头函数需要通过语法绑定，这意味着箭头函数内部会使用包含函数代码的外部 `this`。
+在经典函数表达式中，`this` 关键字根据函数被调用的上下文绑定到不同的值。但是箭头函数 `this` 指向词法作用域，即定义时所在的对象。
 
-来看一个关于 setTimeout ES5 写法的栗子：
+来看一个关于 setTimeout ES5 写法的例子：
 
 ```js
 // ES5
@@ -142,7 +142,7 @@ var obj = {
 };
 ````
 
-在上面 ES5 的例子中，`.bind(this)` 将上下文的 `this` 传递给函数内部。否则，默认为 undefined。
+在上面 ES5 的例子中，`.bind(this)` 将上下文的 `this` 传递给函数内部。否则，默认 `this` 为 undefined。
 
 ```js
 // ES6
@@ -156,15 +156,13 @@ var obj = {
 };
 ```
 
-ES6 箭头函数不能绑定 `this` 关键字，所以向上查找，然后使用已经定义 `this` 的作用域。
+ES6 箭头函数不能绑定 `this` 关键字，所以它将在词法上向上查找，然后使用定义它所在的作用域。
 
 ## 不适用场景
 
 对箭头函数有一定的了解之后，希望你能理解它们为何不能完全替代普通函数。
 
 这里列出一些不适用它们的场景：
-
-1、Object methods
 
 ### **1、对象中的方法**
 
@@ -194,13 +192,13 @@ button.addEventListener('click', () => {
 
 ### **3、当箭头函数影响到代码的可读性时**
 
-之前提到的很多语法值得尝试的。普通函数我们可以知道预期返回。但是对于箭头函数却很难从代码上解读接结果。
+之前提到的很多语法值得尝试的。普通函数我们可以知道预期返回。但是对于箭头函数却很难从代码上解读结果。
 
 ## 适用场景
 
 在任何需要绑定 `this` 至当前上下文，而不是函数本身时，箭头函数十分适用。
 
-尽管箭头函数是匿名的，我依然喜欢在 `map` 和 `reduce` 中使用，它使得代码可读性更高，我认为，优点胜于缺点。
+尽管箭头函数是匿名的，我依然喜欢在 `map` 和 `reduce` 中使用，它使得代码可读性更高，我认为它的优点是多余缺点的。
 
 感谢阅读我的文章，如果你喜欢请鼓掌，并阅读我的其他文章，如
  [How I built my Pomodoro Clock app, and the lessons I leHow I built my Pomodoro Clock app, arned along the way](https://medium.freecodecamp.org/how-i-built-my-pomodoro-clock-app-and-the-lessons-i-learned-along-the-way-51288983f5ee), and [Let’s demystify JavaScript’s ‘new’ keyword](https://medium.freecodecamp.org/demystifying-javascripts-new-keyword-874df126184c).
