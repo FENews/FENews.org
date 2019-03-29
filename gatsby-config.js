@@ -38,11 +38,11 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               inlineCodeMarker: null,
               showLineNumbers: false,
               noInlineHighlight: false,
-            }
+            },
           },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -85,9 +85,17 @@ module.exports = {
         path: `${__dirname}/src/data`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-sentry',
+      options: {
+        dsn: 'https://2bac2527d53d4dad8db23f741054f787@sentry.io/1426625',
+        environment: process.env.NODE_ENV,
+        enabled: (() => ['production', 'stage'].indexOf(process.env.NODE_ENV) !== -1)(),
+      },
+    },
   ],
   mapping: {
-    "MarkdownRemark.frontmatter.authors": `AuthorsYaml`,
-    "MarkdownRemark.frontmatter.translators": `AuthorsYaml`,
-  }
-}
+    'MarkdownRemark.frontmatter.authors': `AuthorsYaml`,
+    'MarkdownRemark.frontmatter.translators': `AuthorsYaml`,
+  },
+};

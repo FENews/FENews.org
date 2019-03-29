@@ -14,6 +14,7 @@
     "gatsby-plugin-manifest": "^2.0.25",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.11",
+    "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-typography": "^2.2.10",
     "gatsby-remark-copy-linked-files": "^2.0.11",
@@ -51,8 +52,13 @@
   "scripts": {
     "now-build": "yarn build",
     "build": "gatsby build",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "format": "prettier --write src/**/*.{js,jsx,yml,json} gatsby-*.js",
     "start": "gatsby develop",
     "serve": "gatsby serve"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
