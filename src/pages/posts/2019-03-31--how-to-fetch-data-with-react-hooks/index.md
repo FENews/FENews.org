@@ -9,7 +9,7 @@ tags:
   - "JavaScript"
   - "ES6"
   - "翻译"
-description: ""
+description: "通过这篇文章你将学会，如何正确使用 React Hooks"
 ---
 # 如何使用 React Hooks 获取数据？
 
