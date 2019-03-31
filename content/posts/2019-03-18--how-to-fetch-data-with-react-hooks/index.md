@@ -149,4 +149,411 @@ export default App;
 
 ## 如何以编程方式/手动方式触发 hook？
 
-鹅妹子嘤，我们在组件 mounts 的时候获取数据获取。但是如果用 input 输入字段来告诉 API 我们感兴趣的主题呢？“ Redux ”被用来作为默认查询，但是关于“ React ”的主题呢？
+鹅妹子嘤，我们在组件 mounts 的时候获取数据获取。但是如果用 input 输入字段来告诉 API 我们感兴趣的主题呢？“ Redux ”被用来作为默认查询，但是关于“ React ”的主题呢？让我们实现一个 Input 元素来使得其他人能够获取除 “Redux” 之外的文章。那么，我们来为 input 元素定义一个新的 state。
+
+```javascript
+import React, { Fragment, useState, useEffect } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'http://hn.algolia.com/api/v1/search?query=redux',
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Fragment>
+      <input
+        type="text"
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+      <ul>
+        {data.hits.map(item => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </Fragment>
+  );
+}
+
+export default App;
+```
+
+这会儿，这个两个 state 是相对独立的，但是你想要把这两者结合起来仅用于查询 input 元素中指定的文章。通过一下更改，组件在 mounts 的时候就根据 input 元素中的查询关键字取查询文章。
+
+```javascript
+...
+
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://hn.algolia.com/api/v1/search?query=${query}`,
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    ...
+  );
+}
+
+export default App;
+```
+
+但是我们还缺失了一件事情：当我们尝试在 input 元素中输入的关键字的时候，并没有获取新的数据。这是因为你为 effect 的第二个参数传入了一个空数组。effect 不依赖任何变量，因此它只会在组件 mounts 的时候触发。但是现在， effect 依赖于 query 的改变，一旦 query 做了更改，数据获取将会重新执行。
+
+```javascript
+...
+
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://hn.algolia.com/api/v1/search?query=${query}`,
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, [query]);
+
+  return (
+    ...
+  );
+}
+
+export default App;
+```
+
+一旦你更改了 input 的值，数据就会重新获取。但是这样带来了另一个问题：你在 input 元素中的每一个更改都会触发 effect 重新取获取数据。那么如何做一个按钮来触发请求，来手动控制 hook 的触发呢？
+
+```javascript
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://hn.algolia.com/api/v1/search?query=${query}`,
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, [query]);
+
+  return (
+    <Fragment>
+      <input
+        type="text"
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+      <button type="button" onClick={() => setSearch(query)}>
+        Search
+      </button>
+
+      <ul>
+        {data.hits.map(item => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </Fragment>
+  );
+}
+```
+
+让 effect 依赖 search 的更改而不是每一次敲击更改的 query state。用户点击这个按钮后，将设置新的 search state，并手动触发 effect hook。
+
+```javascript
+...
+
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+  const [search, setSearch] = useState('redux');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://hn.algolia.com/api/v1/search?query=${search}`,
+      );
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, [search]);
+
+  return (
+    ...
+  );
+}
+
+export default App;
+```
+
+此外，初始化的 search state 设置为和 query state 相同的状态，是因为组件 mounts 的时候要获取一次数据。但是 search state 和 query state 有相似的值是令人疑惑的。我们为什么不设置一个实际的 URL 来替换 search state 呢？
+
+```javascript
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState('redux');
+  const [url, setUrl] = useState(
+    'http://hn.algolia.com/api/v1/search?query=redux',
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(url);
+
+      setData(result.data);
+    };
+
+    fetchData();
+  }, [url]);
+
+  return (
+    <Fragment>
+      <input
+        type="text"
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+      <button
+        type="button"
+        onClick={() =>
+          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`)
+        }
+      >
+        Search
+      </button>
+
+      <ul>
+        {data.hits.map(item => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </Fragment>
+  );
+}
+```
+
+## 自定义数据获取 hook
+
+为了提取一个自定义 hook 用于数据获取，把所有属于数据获取的东西都移动到这个自定义 hook 方法中，除了包括输入字段的查询条件，还包括 Loading ，错误处理。并确保返回你用在应用组件中必须的变量。
+
+```javascript
+const useHackerNewsApi = () => {
+  const [data, setData] = useState({ hits: [] });
+  const [url, setUrl] = useState(
+    'http://hn.algolia.com/api/v1/search?query=redux',
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [url]);
+
+  const doFetch = () => {
+    setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`);
+  };
+
+  return { data, isLoading, isError, doFetch };
+}
+```
+
+那么现在你新的 hook 就可以用在你的应用中了。
+
+```javascript
+function App() {
+  const [query, setQuery] = useState('redux');
+  const { data, isLoading, isError, doFetch } = useHackerNewsApi();
+
+  return (
+    <Fragment>
+      ...
+    </Fragment>
+  );
+}
+```
+
+下一步，为 `doFetch` 传入 URL state 参数
+
+```javascript
+const useHackerNewsApi = () => {
+  ...
+
+  useEffect(
+    ...
+  );
+
+  const doFetch = url => {
+    setUrl(url);
+  };
+
+  return { data, isLoading, isError, doFetch };
+};
+
+function App() {
+  const [query, setQuery] = useState('redux');
+  const { data, isLoading, isError, doFetch } = useHackerNewsApi();
+
+  return (
+    <Fragment>
+      <form
+        onSubmit={event => {
+          doFetch(
+            `http://hn.algolia.com/api/v1/search?query=${query}`,
+          );
+
+          event.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      ...
+    </Fragment>
+  );
+}
+```
+
+初始化 state 也是可以通用的。将它简单的传递给自定义的 hook。
+
+```javascript
+import React, { Fragment, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const useDataApi = (initialUrl, initialData) => {
+  const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [url]);
+
+  const doFetch = url => {
+    setUrl(url);
+  };
+
+  return { data, isLoading, isError, doFetch };
+};
+
+function App() {
+  const [query, setQuery] = useState('redux');
+  const { data, isLoading, isError, doFetch } = useDataApi(
+    'http://hn.algolia.com/api/v1/search?query=redux',
+    { hits: [] },
+  );
+
+  return (
+    <Fragment>
+      <form
+        onSubmit={event => {
+          doFetch(
+            `http://hn.algolia.com/api/v1/search?query=${query}`,
+          );
+
+          event.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {isError && <div>Something went wrong ...</div>}
+
+      {isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        <ul>
+          {data.hits.map(item => (
+            <li key={item.objectID}>
+              <a href={item.url}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Fragment>
+  );
+}
+
+export default App;
+```
+
+以上就是用自定义 hook 获取数据。hook 本身对 API 没有任何了解。它从外部获取所有的参数，并仅管理必要的状态，例如数据，loading，错误状态。它作为一个自定义 hook 组件用于执行和获取数据。
