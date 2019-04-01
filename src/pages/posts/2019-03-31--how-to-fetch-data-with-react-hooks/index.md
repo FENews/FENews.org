@@ -11,20 +11,21 @@ tags:
   - "翻译"
 description: "通过这篇文章你将学会，如何正确使用 React Hooks"
 ---
+
 # 如何使用 React Hooks 获取数据？
 
-在这个教程中，我将使用 `state`、`effect` 向你们展示*如何使用 `React Hooks` 获取数据*。我们将用广为人知的 [Hacker News API](https://hn.algolia.com/api) 从科技领域获取热门文章。你也将实现用来获取数据的自定义 `hooks` ，它可以在你的应用中的任何地方重复使用，或者作为一个 `Node package` 发布到 `npm` 上。
+在这个教程中，我将使用 `state`、`effect` 向你们展示*如何使用 `React Hooks` 获取数据*。我们将用广为人知的 [Hacker News API](https://hn.algolia.com/api) 从科技领域获取热门文章。你也将实现用来获取数据的自定义 `hooks` ，它可以在你的应用中的任何地方重复使用，或者作为一个 `npm package` 发布到 `npm` 上。
 
 如果你对这个 `React` 的新特性一无所知，请查看 [介绍 `React Hooks`](https://www.robinwieruch.de/react-hooks/)。
 如果你想查看完整的项目，看看在 `React` 中如何使用 `Hooks` 获取数据，请查看这个 [仓库](https://github.com/the-road-to-learn-react/react-hooks-introduction)。
 
-**注意**：在将来，React Hooks 不适用与在 React 中获取数据。相反，Suspense 新特性将负责它。一下的演示是了解 React 中有关 state 和 effect hooks 更多信息的好方法。
+**注意**：在将来，React Hooks 不适用于在 React 中获取数据。相反，Suspense 新特性将负责它。以下的演示是了解 React 中有关 state 和 effect hooks 更多信息的好方法。
 
 * * *
   
 ## 用 React Hooks 获取数据
 
-如果你不熟悉在 React 中获取数据的话，你可以查看我的 [在 React 中获取大量数据](https://www.robinwieruch.de/react-fetching-data/)。它将引导你使用 React 类组件获取数据，如何使用 React props component 和 高阶组件 实现复用，以及如何处理错误信息、加载 spinner。这篇文章里，我将用 React Hooks 在函数组件里向你展示上面的所有功能。
+如果你不熟悉在 React 中获取数据的话，你可以查看我的 [在 React 中获取大量数据](https://www.robinwieruch.de/react-fetching-data/)1。它将引导你使用 React 类组件获取数据，如何使用 React props component 和 高阶组件 实现复用，以及如何处理错误信息、加载 spinner。这篇文章里，我将用 React Hooks 在函数组件里向你展示上面的所有功能。
 
 ```javascript
 import React, { useState } from 'react';
@@ -114,13 +115,13 @@ export default App;
 
 第二个参数可以用于定义 hook 依赖的所有变量（在此数组中分配）。如果其中一个更新，这个 hook 重新执行。如果数组为空，则在更新组件的时候这个 hook 不运行，因为它根本没有监控任何变量。
 
-这个最后一个问题。在这个实例中，我们将会 async/await 通过第三方的 API 来获取数据。根据文档，每个使用 async 批注的方法都将返回一个隐式的 Promise 。
+这个最后一个问题。在这个实例中，我们将会 async/await 通过第三方的 API 来获取数据。根据文档，使用 async 声明的方法都将返回一个隐式的 Promise 。
 
 > async 函数声明定义了一个异步函数，它返回一个 AsyncFunction 对象。异步函数是一个通过事件循环异步操作的函数，使用隐式 Promise 返回其结果。
 
 然后，一个 effect hook 应该不返回任何东西或者返回一个干净的方法。这就是为什么你可能看到如下的提示在你的 chrome log：**07:41:22.910 index.js:1452 Warning: useEffect function must return a cleanup function or nothing. Promises and useEffect(async () => …) are not supported, but you can call an async function inside an effect.. **。
 
-这个就是为什么不允许在 `useEffect` 中直接使用 async 的原因。让我们为它实现一个解决方法，通过在 effect hook 中使用 async 方法。
+这个就是为什么不允许在 `useEffect` 中直接使用 async 的原因。我们可以通过在 effect 函数中使用 async 来解决这个问题。
 
 ```javascript
 import React, { useState, useEffect } from 'react';
@@ -155,7 +156,7 @@ function App() {
 export default App;
 ```
 
-简而言之，这些就是用 React Hooks 获取数据。但是你如果对错误处理，加载指示符，如何触发从表单中获取数据以及如何实现一个可复用的数据获取 hook 感兴趣的话，请继续阅读。
+简而言之，这些就是用 React Hooks 获取数据。但是你如果对错误处理，loading，如何触发从表单中获取数据以及如何实现一个可复用的数据获取 hook 感兴趣的话，请继续阅读。
 
 * * *
 
@@ -569,3 +570,6 @@ export default App;
 ```
 
 以上就是用自定义 hook 获取数据。hook 本身对 API 没有任何了解。它从外部获取所有的参数，并仅管理必要的状态，例如数据，loading，错误状态。它作为一个自定义 hook 组件用于执行和获取数据。
+
+参考链接：
+1： <https://www.robinwieruch.de/react-fetching-data/>
