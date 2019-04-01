@@ -4,17 +4,13 @@ date: "2019-03-31"
 template: "post"
 draft: false
 category: "JavaScript"
-translators: ["$Jason X"]
+translators: ["lzbSun"]
 tags:
   - "JavaScript"
   - "ES6"
   - "翻译"
 description: "通过这篇文章你将学会，如何正确使用 React Hooks"
 ---
-
-作者：rwieruch
-
-译者：$Jason X
 
 在这个教程中，我将使用 `state`、`effect` 向你们展示*如何使用 `React Hooks` 获取数据*。我们将用广为人知的 [Hacker News API](https://hn.algolia.com/api) 从科技领域获取热门文章。你也将实现用来获取数据的自定义 `hooks` ，它可以在你的应用中的任何地方重复使用，或者作为一个 `npm package` 发布到 `npm` 上。
 
