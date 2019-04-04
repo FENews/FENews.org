@@ -8,10 +8,8 @@ category: "React Native"
 tags:
   - "React Native"
   - "翻译"
-description: ""
+description: "网速是可变的，尤其是当你使用移动设备时。作为开发人员，我们经常忘记，许多用户正在功能较差的设备上以很慢的网速运行我们的应用程序。"
 ---
-
-![](images/01.png)
 
 网速是可变的，尤其是当你使用移动设备时。作为开发人员，我们经常忘记，许多用户正在功能较差的设备上以很慢的网速运行我们的应用程序。到山里去，试着访问你的应用程序，看看它表现如何。
 
@@ -74,7 +72,8 @@ export default class App extends React.Component {
 
 这里对比了 Network Link Conditioner 关闭和打开3g时的状态。
 
-![Network Link Conditioner 关闭和打开3g](images/03.gif)
+![Network Link Conditioner 关闭](images/1-1.gif)
+![Network Link Conditioner 打开3g](images/1-2.gif)
 
 ### ProgressiveImage 组件
 
@@ -200,9 +199,8 @@ const styles = StyleSheet.create({
 });
 // ...
 ```
-We’ll then render two Image components. Before we do that though we're going to use object destructuring to pull a few props off of this.props because we'll be overriding/combining them.
 
-然后我们将渲染两个 `Image` 组件。 在此之前，我们将使用对象解构来从 `this.props` 中拉出一些prop ，因为我们将覆盖 / 组合它们。
+然后我们将渲染两个 `Image` 组件。 在此之前，我们将使用对象解构来从 `this.props` 中取出一些prop ，因为我们将覆盖 / 组合它们。
 ```js
 // ProgressiveImage.js
 // ...
@@ -240,11 +238,11 @@ export default ProgressiveImage;
 结果如下:
 
 ![显示缩略图和全尺寸图像](image/06.gif)
-Note: You’ll noticed that the thumbnail image is quite pixelated. You can pass a blurRadius prop to the thumbnail image to blur it. I took a screenshot so you can see the difference (I'm using a blurRadius of 2 for the example).
-
 注意: 你会注意到缩略图是相当像素化。 你可以把 `blurRadius` 属性传递给缩略图来模糊它。我做了一个屏幕截图，这样你就可以看到区别了(例如，我使用的是 blurRadius 为2的模型)。
 
-![不带 blurRadius vs. 不带 blurRadius](images/07.png)
+![不带 blurRadius ](images/2-1.png)
+![带 blurRadius](images/2-2.png)
+
 你还会注意到，如果我们不将 `thumbnailSource` 传递给 `ProgressiveImage` 组件，则一切正常，这意味着即使没有缩略图，我们也可以对所有远程图像使用此组件。
 
 ### 动画过渡
@@ -350,4 +348,4 @@ export default ProgressiveImage;
 代码可以在 [Github](https://github.com/HandlebarLabs/react-native-examples-and-tutorials/tree/master/tutorials/progressive-image-loading) 上找到。
 
 
-原文地址：[https://medium.com/react-native-training/progressive-image-loading-in-react-native-e7a01827feb7](https://medium.com/react-native-training/progressive-image-loading-in-react-native-e7a01827feb7）
+原文地址: [https://medium.com/react-native-training/progressive-image-loading-in-react-native-e7a01827feb7](https://medium.com/react-native-training/progressive-image-loading-in-react-native-e7a01827feb7)
