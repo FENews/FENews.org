@@ -1,6 +1,6 @@
 ---
-title: "使用 JavaScript Set 提升你代码的性能"
-date: "2019-03-14"
+title: "使用 JavaScript 的 Set 集合提升你代码的性能"
+date: "2019-04-09"
 template: "post"
 draft: false
 category: "JavaScript"
@@ -9,7 +9,7 @@ tags:
   - "JavaScript"
   - "Set"
   - "翻译"
-description: ""
+description: "这篇文章，我们将讨论如何通过 JavaScript 的 Set 使你的代码更快，特别是使它具有扩展性。数组和 Set 的功能存在大量交叉。但是使用 Set 可以带来数组所不具备的运行时优势。接下来，我们将探索这是如何实现的。"
 ---
 我确信仍然有很多开发者在工作中一直仅仅使用 number、string、object、array 和 boolean 这些基础的全局对象。
 
@@ -33,15 +33,12 @@ console.log(arr.indexOf(C)); // Result: 2
 
 在直接比较中，Set 相对数组有一些优势，特别是它具有更快的运行时间：
 
-1. **查找元素：** 在数组中使用 `indexOf()` 或 `includes()` 检查元素是否存在比较慢。
-   
-2. **删除元素：** 在 Set 中，你可以通过值删除一个元素。等价于在数组中，基于索引的 `splice()` 功能。正如前面的观点，依赖索引查找比较慢。
-   
-3. **插入元素：** 在 Set 中添加元素比在数组中通过 `push()`、`unshift()` 或其他同类操作要快。
-   
-4. **去重：** Set 对象仅能存储不同的值。如果你想避免存储重复的值，这会比数组具有更大的优势。在数组中你需要一些额外的代码来做去重。
+- **查找元素：** 在数组中使用 `indexOf()` 或 `includes()` 检查元素是否存在比较慢。
+- **删除元素：** 在 Set 中，你可以通过值删除一个元素。等价于在数组中，基于索引的 `splice()` 功能。正如前面的观点，依赖索引查找比较慢。
+- **插入元素：** 在 Set 中添加元素比在数组中通过 `push()`、`unshift()` 或其他同类操作要快。
+- **去重：** Set 对象仅能存储不同的值。如果你想避免存储重复的值，这会比数组具有更大的优势。在数组中你需要一些额外的代码来做去重。
 
-记住：关于 Set 更全面的方法介绍，请阅读 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#Methods)
+注：关于 Set 更全面的方法介绍，请阅读 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#Methods)
 
 ## 时间复杂度对比
 数组中用于搜索元素的方法具有 O(N) 的线性时间复杂度。换句话说，运行时间随着数据大小而增长。相对而言，Set 搜索、删除和插入元素的方法时间复杂度都为 O(1)，这意味着数据的大小几乎不影响这些方法的运行时间。
@@ -73,9 +70,8 @@ result = checkSet(set, 123123);
 console.timeEnd('Set');
 ```
 
-1. Array: 0.173ms
-   Set: 0.023ms
-2. Set 比数组快了 7.54 倍。
+- Array: 0.173ms，Set: 0.023ms
+- Set 比数组快了 7.54 倍。
 
 ### 测试 2: 添加元素
 
@@ -90,9 +86,8 @@ set.add(n);
 console.timeEnd('Set');
 ```
 
-1. Array: 0.018ms
-   Set: 0.003ms
-2. Set 比数组快了 6.73 倍。
+- Array: 0.018ms，Set: 0.003ms
+- Set 比数组快了 6.73 倍。
 
 ### 测试 3: 删除元素
 
@@ -116,9 +111,8 @@ set.delete(n);
 console.timeEnd('Set');
 ```
 
-1. Array: 1.122ms
-   Set: 0.015ms
-2. 在这个测试中，Set 比数组快了 74.13 倍。
+- Array: 1.122ms，Set: 0.015ms
+- 在这个测试中，Set 比数组快了 74.13 倍。
 
 总之，使用 Set 来代替数组我们可以看到显著的运行时间提升。现在让我们看一些集合可能有用的实际例子。
 
@@ -143,8 +137,6 @@ console.log(uniqueCollection) // 结果: ["A", "B", "C", "D"]
 
 ### 问题
 给定一个无序整数数组和一个值 `sum`，如果存在其中两个元素的之和等于 `sum`，返回 `true`。否则，返回 `false`。
-
-So, if we were given the array [3, 5, 1, 4] and the value 9 , our function should return true , because 4 + 5 = 9 .
 
 所以，如果我们给定一个数组 `[3, 5, 1, 4]` 和一个值 `9`，我们的函数需要返回 `true`，因为 `4 + 5 = 9`。
 
@@ -181,8 +173,6 @@ const findSum = (arr, sum) =>
 Because `Set.prototype.has()` has a time complexity of just O(1), using a Set to store compliments rather than an array helps give our overall solution a linear run-time of O(N).
 
 因为 `Set.prototype.has()` 的时间复杂度仅为 O(1) ，所以使用 `Set` 存储匹配值而不是数组，帮助我们整体解决方案达到线性运行时间 O(N)。
-
-If we were instead dependent on `Array.prototype.indexOf()` or `Array.prototype.includes()` , both of which have a time complexity of O(N), overall run-time would be O(N²). Much slower!
 
 如果我们依赖于 `Array.prototype.indexOf()` 或 `Array.prototype.includes()`，这两个方法的时间复杂度都为 O(N)，那么整体运行时间的时间复杂度为 O(N²)。慢太多了！
 
