@@ -1,5 +1,5 @@
 ---
-title: "「译」JavaScript 性能测试- 比较 for/ forEach/ map/ reduce/ filter/ find"
+title: "JavaScript 性能测试- 比较 for/ forEach/ map/ reduce/ filter/ find"
 date: "2019-02-01"
 template: "post"
 draft: false

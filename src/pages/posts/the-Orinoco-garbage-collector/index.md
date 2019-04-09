@@ -1,5 +1,5 @@
 ---
-title: "「译」Orinoco: V8的垃圾回收器"
+title: "Orinoco: V8的垃圾回收器"
 date: "2019-01-29"
 template: "post"
 draft: false

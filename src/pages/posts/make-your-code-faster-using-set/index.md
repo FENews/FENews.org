@@ -170,12 +170,10 @@ const findSum = (arr, sum) =>
   arr.some((set => n => set.has(n) || !set.add(sum - n))(new Set));
 ```
 
-Because `Set.prototype.has()` has a time complexity of just O(1), using a Set to store compliments rather than an array helps give our overall solution a linear run-time of O(N).
-
 因为 `Set.prototype.has()` 的时间复杂度仅为 O(1) ，所以使用 `Set` 存储匹配值而不是数组，帮助我们整体解决方案达到线性运行时间 O(N)。
 
 如果我们依赖于 `Array.prototype.indexOf()` 或 `Array.prototype.includes()`，这两个方法的时间复杂度都为 O(N)，那么整体运行时间的时间复杂度为 O(N²)。慢太多了！
 
-如果你之前没有深入了解过 JavaScript Set，希望我已经解释清除了它是多么有用！
+如果你之前没有深入了解过 JavaScript Set，希望我已经解释清楚了它是多么有用！
 
 原文：https://medium.com/@bretcameron/how-to-make-your-code-faster-using-javascript-sets-b432457a4a77

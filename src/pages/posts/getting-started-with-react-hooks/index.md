@@ -1,5 +1,5 @@
 ---
-title: "「译」React Hooks(2019)入门教程"
+title: "React Hooks(2019)入门教程"
 date: "2019-03-25"
 template: "post"
 draft: false
