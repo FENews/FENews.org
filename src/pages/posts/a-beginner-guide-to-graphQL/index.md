@@ -1,5 +1,5 @@
 ---
-title: "「译」GraphQL入门指南"
+title: "GraphQL入门指南"
 date: "2019-02-14"
 template: "post"
 draft: false
