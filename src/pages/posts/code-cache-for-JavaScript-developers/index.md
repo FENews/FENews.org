@@ -208,11 +208,11 @@ After recording a trace with the `v8` category, look for `v8.compile` slices in 
 
 On a cold run of a script, there is no information about code caching — this means that the script was not involved in producing or consuming cache data.
 
-![chrome-tracing-cold-run@2x](iamges/chrome-tracing-cold-run@2x.png)
+![chrome-tracing-cold-run@2x](images/chrome-tracing-cold-run@2x.png)
 
 On a warm run, there are two `v8.compile` entries per script: one for the actual compilation (as above), and one (after execution) for producing the cache. You can recognize the latter as it has `cacheProduceOptions` and `producedCacheSize` metadata fields.
 
-![chrome-tracing-warm-run@2x](iamges/chrome-tracing-warm-run@2x.png)
+![chrome-tracing-warm-run@2x](images/chrome-tracing-warm-run@2x.png)
 
 On a hot run, you’ll see a `v8.compile` entry for consuming the cache, with metadata fields `cacheConsumeOptions` and `consumedCacheSize`. All sizes are expressed in bytes.
 
