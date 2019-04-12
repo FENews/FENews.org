@@ -7,7 +7,6 @@ category: "graphql
 translators: ["may"]
 tags:
   - "graphql"
-  - "graphql"
   - "翻译"
 description: "通过这篇文章的学习，我们将学习到如何设计出可演进的 GraphQL Schema"
 ---
