@@ -259,7 +259,7 @@ These caches can include cached JS resources. However, since we expect service w
 
 这些缓存包括 JS 资源缓存。然而，因为我们希望 service worker 的缓存主要用于 PWA，所以它与 Chrome 的“自动”缓存的启发式有略微不同。首先，当 JS 资源被添加到缓存的时候，它们立即创建代码缓存，这意味着在第二次加载的时候代码缓存是可用的（而不是像普通缓存一样仅在第三次加载的时可用）。其次，我们为这些脚本生成了“全量”代码缓存，不在有延迟编译，而是全部编译好放到缓存中。这具有快速且可预测的性能的优点，没有执行顺序依赖性，但是以增加的内存使用为代价。请注意，此启发式仅适用于 service worker 缓存，而不适用于 `Cache` API 的其他用途。实际上，当在 service worker外面使用时，现在的 `Cache` API 不会执行代码缓存。
 
-## 追踪
+## Tracing
 
 None of the above suggestions is guaranteed to speed up your web app. Unfortunately, code caching information is not currently exposed in DevTools, so the most robust way to find out which of your web app's scripts are code-cached is to use the slightly lower-level `chrome://tracing`.
 
@@ -274,30 +274,44 @@ None of the above suggestions is guaranteed to speed up your web app. Unfortunat
 
 Tracing records the behaviour of the entire browser, including other tabs, windows, and extensions, so it works best when done in a clean user profile, with no extensions installed, and with no other browser tabs open:
 
+Tracing 记录着整个浏览器的行为，包含其他 tab、窗口和扩展程序，因此最好在干净的用户配置——没有其他扩展程序安装且没有其他 tab 页打开的时候，完成分析：
+
 ```js
-# Start a new Chrome browser session with a clean user profile
+# 开始一次干净的用户配置的 Chrome 浏览会话
 google-chrome --user-data-dir="$(mktemp -d)"
 ```
 
 When collecting a trace, you have to select what categories to trace. In most cases you can simply select the “Web developer” set of categories, but you can also pick categories manually. The important category for code caching is v8.
 
+当收集追踪信息时，你需要选中追踪类别。在大多数情况下，你可以简单的选中 "web developer" 这个类别，但你也可以手动选择类别。代码追踪的重要类别是 `v8` 。
+
 ![chrome-tracing-categories-1@2x](images/chrome-tracing-categories-1@2x.png)
 
 After recording a trace with the `v8` category, look for `v8.compile` slices in the trace. (Alternatively, you could enter `v8.compile` in the tracing UI’s search box.) These list the file being compiled, and some metadata about the compilation.
 
+当记录了一次 `v8` 类别的追踪时，在追踪结果中查看 `v8.compile` 片段（或者你可以都搜索框中输入`v8.compile`）。它会列出编译后的文件，已经编译的元数据。
+
 On a cold run of a script, there is no information about code caching — this means that the script was not involved in producing or consuming cache data.
+
+在脚本冷运行时，是没有代码缓存是信息的，这就意味着脚本不参与生成或使用缓存数据。
 
 ![chrome-tracing-cold-run@2x](images/chrome-tracing-cold-run@2x.png)
 
 On a warm run, there are two `v8.compile` entries per script: one for the actual compilation (as above), and one (after execution) for producing the cache. You can recognize the latter as it has `cacheProduceOptions` and `producedCacheSize` metadata fields.
 
+在暖运行时，每个脚本有两个 `v8.compile` 入口：一个是实际编译，另一个（在执行后）是为了产生缓存。你可以通过它是否有 `cacheProduceOptions` 和 `producedCacheSize` 两个元数据字段来判断。 
+
 ![chrome-tracing-warm-run@2x](images/chrome-tracing-warm-run@2x.png)
 
 On a hot run, you’ll see a `v8.compile` entry for consuming the cache, with metadata fields `cacheConsumeOptions` and `consumedCacheSize`. All sizes are expressed in bytes.
 
+在热运行时，你将看到一个用于消费缓存的 `v8.compile` 入口，有 `cacheConsumeOptions` 和 `consumedCacheSize` 两个元数据字段。所有大小都以字节表示。
+
 ![chrome-tracing-hot-run@2x](images/chrome-tracing-hot-run@2x.png)
 
-## Conclusion
+## 总结
 For most developers, code caching should “just work”. It works best, like any cache, when things stay unchanged, and works on heuristics which can change between versions. Nevertheless, code caching does have behaviors that can be used, and limitations which can be avoided, and careful analysis using chrome://tracing can help you tweak and optimize the use of caches by your web app.
+
+对于大多数开发人员来说，代码缓存应该“正常工作”。当事物保持不变时，它就像任何缓存一样工作得最好，并且它工作在不同版本可以发生变化的启发式方法上。 尽管如此，代码缓存确实具有可以使用的行为，可以避免的限制以及使用 `chrome://tracing` 的仔细分析可以帮助你调整和优化 Web 应用程序对缓存的使用。
 
 原文：https://v8.dev/blog/code-caching-for-devs
