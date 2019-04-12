@@ -1,5 +1,5 @@
 ---
-title: "V8 为 JavaScript 开发者做的代码缓存"
+title: "V8 团队给 JavaScript 开发者关于代码缓存的建议"
 date: "2019-04-15"
 template: "post"
 draft: false
@@ -23,7 +23,7 @@ In this blog post, we offer a few pieces of advice for JS developers who want to
 
 While other blog posts and presentations offer more detail on our code caching implementation, it’s worthwhile having a quick recap of how things work. Chrome has two levels of caching for V8 compiled code (both classic scripts and module scripts): a low-cost “best effort” in-memory cache maintained by V8 (the `Isolate` cache), and a full serialized on-disk cache.
 
-虽然其他文章和演讲已经提供代码缓存实现的详细信息，但是我们仍然要快速回顾下它是如何工作的，对于 V8 编译后的代码 Chrome 有两级缓存：一个是由 V8（Isolate缓存） 维护的低成本的“尽力而为”内存缓存和一个完整序列换的硬盘缓存。
+虽然其他文章和演讲已经提供代码缓存实现的详细信息，但是我们仍然要快速回顾下它是如何工作的，对于 V8 编译后的代码 Chrome 有两级缓存：一个是由 V8（Isolate缓存） 维护的低成本的“尽力而为”内存缓存和一个完整序列化的硬盘缓存。
 
 The `Isolate` cache operates on scripts compiled in the same V8 Isolate (i.e. same process, roughly “the same website’s pages when navigating in the same tab”). It is “best-effort” in the sense that it tries to be as fast and as minimal as possible, using data already available to us, at the cost of a potentially lower hit-rate and lack of caching across processes.
 
@@ -70,7 +70,7 @@ In addition to passively doing nothing, you should also try your best to activel
 
 除了被动不做什么，你应该尽可能地主动不做什么。任何形式的缓存内在都依赖于事物没有改变，因此什么都不做是允许缓存数据保持缓存的最佳方式。这儿有几个你什么都不做的方法：
 
-**不要改变代码** 
+#### 不要改变代码
 
 This may be obvious, but it’s worth making explicit — whenever you ship new code, that code is not yet cached. Whenever the browser makes an HTTP request for a script URL, it can include the date of the last fetch of that URL, and if the server knows that the file hasn’t changed, it can send back a 304 Not Modified response, which keeps our code cache hot. Otherwise, a 200 OK response updates our cached resource, and clears the code cache, reverting it back to a cold run.
 
@@ -82,7 +82,8 @@ It’s tempting to always push your latest code changes immediately, particularl
 
 它总是立即推送你最新的代码更改，特使是如果你想要衡量某次更改的影响的时候，但是对于缓存来说，最好是保留代码或尽可能地减少更新。可以考虑限制每周的上线次数小于 `x`，`x` 是你调整权衡缓存与陈旧性的滑块。
 
-**不要改变 URLs**
+#### 不要改变 URLs
+
 Code caches are (currently) associated with the URL of a script, as that makes them easy to look up without having to read the actual script contents. This means that changing the URL of a script (including any query parameters!) creates a new resource entry in our resource cache, and with it a new cold cache entry.
 
 代码缓存与脚本的 URL 存在关联，这是为了便于检查而无需查看实际的脚本内容。这意味着改变脚本的 URL（包括改变请求查询参数） 会在我们的缓存资源中创建一个新的资源入口，并伴随着一个冷缓存入口。
@@ -93,7 +94,7 @@ Of course, this can also be used to force cache clearing, though that is also an
 
 当然，这可以被用来强制清除缓存，尽管那也是一个实现细节。也许有一天我们会使用源文件内容关联缓存而不是源文件的 URL，那么这个建议将不在有效。
 
-**不要改变代码执行行为** 
+#### 不要改变代码执行行为
 
 One of the more recent optimizations to our code caching implementation is to only serialize the compiled code after it has executed. This is to try to catch lazily compiled functions, which are only compiled during execution, not during the initial compile.
 
@@ -123,7 +124,7 @@ Certainly the advice to do “nothing”, whether passively or actively, is not 
 
 ![with-great-power](images/with-great-power.jpg)
 
-**将库从使用代码中分离**
+#### 将库从使用代码中分离
 Code caching is done on a coarse, per-script basis, meaning that changes to any part of the script invalidate the cache for the entire script. If your shipping code consists of both stable and changing parts in a single script, e.g. libraries and business logic, then changes to the business logic code invalidate the cache of the library code.
 
 代码缓存粗略的在每个脚本上完成，意味着脚本的每一部分改动都会导致整个脚本的缓存失效。如果你将稳定的部分和经常变动的部分放在一个脚本文件中，例如：库和业务逻辑，业务逻辑代码的改变会使库代码的缓存也无效。
@@ -136,7 +137,7 @@ This has additional benefits if the libraries are shared across different pages 
 
 如果你的库在你网站的不同的页面被共享，这样做还有其他的收益：由于代码缓存附加到脚本，因此库的代码换在也在页面之间共享。
 
-**合并库文件到使用它们的代码中**
+#### 合并库文件到使用它们的代码中
 
 Code caching is done after each script is executed, meaning that the code cache of a script will include exactly those functions in that script that were compiled when the script finishes executing. This has several important consequences for library code:
 
@@ -155,7 +156,7 @@ One solution to this is to merge libraries and their uses into a single script, 
 
 对此一个解决方案是合并库和使用它们的代码到单个脚本中，以至于代码缓存可以“发现”库的那些部分被使用。不幸的是，这与上一条建议相违背，因为没有银弹。通常来说，我们不建议将所有 JS 脚本合并到一个大的 bundle 中，将其分成多个较小脚本往往更有利于除代码缓存之外的其他原因（如：多个网络请求、流编译、页面交互等）。
 
-**利用 IIFE 启发式** 
+#### 利用 IIFE 启发式
 
 Only the functions that are compiled by the time the script finishes executing count towards the code cache, so there are many kinds of function that won’t be cached despite executing at some later point. Event handlers (even `onload`), promise chains, unused library functions, and anything else that is lazily compiled without being called by the time `</script>` is seen, all stays lazy and is not cached.
 
@@ -192,7 +193,7 @@ This means that functions that should be in the code cache can be forced into it
 
 这意味着可以通过将那些应该被缓存的函数包裹在括号里强制加入到缓存中。但是，如果不正确的使用，可能会对网页启动时间产生影响，通常来说这有点滥用启发式，因此除非真的有必要，我们不建议这么做。
 
-**合并小文件**
+#### 合并小文件
 
 Chrome has a minimum size for code caches, currently set to 1 KiB of source code. This means that smaller scripts are not cached at all, since we consider the overheads to be greater than the benefits.
 
@@ -202,7 +203,7 @@ Chrome 有个代码缓存的最小文件大小限制，现在是 1 Kib 。这意
 
 如果你的网站有很多小的脚本，则开销计算可能不在以相同的方式进行。你应该考虑合并小文件使它们超出最小代码大小，并从常规的减少脚本开销的方式受益。
 
-**避免使用内联脚本**
+#### 避免使用内联脚本
 
 Script tags whose source is inline in the HTML do not have an external source file that they are associated with, and therefore can’t be cached with the above mechanism. Chrome does try to cache inline scripts, by attaching their cache to the HTML document’s resource, but these caches then become dependent on the entire HTML document not changing, and are not shared between pages.
 
@@ -210,7 +211,7 @@ So, for non-trivial scripts which could benefit from code caching, avoid inlinin
 
 HTML 中的内联脚本没有关联外部的源文件，因此不能被上述机制缓存。Chrome 尝试通过将它们附加 HTML 文档资源缓存，但是这些缓存依赖于整个 HTML 文档没有变化，且不能在页面间共享。
 
-**使用 service worker 缓存**
+#### 使用 service worker 缓存
 
 Service workers are a mechanism for your code to intercept network requests for resources in your page. In particular, they let you build a local cache of some of your resources, and serve the resource from cache whenever they are requested. This is particularly useful for pages that want to continue to work offline, such as PWAs.
 
