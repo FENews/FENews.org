@@ -64,7 +64,7 @@ Ideally, the best thing you as a JS developer can do to improve code caching is 
 
 Code caching is, at the end of the day, a browser implementation detail; a heuristic-based data/space trade-off performance optimization, whose implementation and heuristics can (and do!) change regularly. We, as V8 engineers, do our best to make these heuristics work for everyone in the evolving web, and over-optimising for the current code caching implementation details may cause disappointment after a few releases, when those details change. In addition, other JavaScript engines are likely to have different heuristics for their code caching implementation. So in many ways, our best advice for getting code cached is like our advice for writing JS: write clean idiomatic code, and we’ll do our best to optimise how we cache it.
 
-代码缓存终究是浏览器实现的细节。基于启发法的数据与空间的权衡性能优化，它的实现和启发法可能定期变化。做为 V8 工程师，我们会尽我们所能使启发法适用于在不断发展的 Web 中的每一个人，而且对当前代码缓存实现细节的过度的优化可能会在一些版本发布后，当这些细节改变后引起失望。另外，其他的一些 JavaScript 引擎可能使用了不同的启发法实现代码缓存。因此从各方面来说，对于使用代码缓存我们最好的建议是：书写整洁且符合习惯的代码，而且我们会尽可能的优化它。
+代码缓存终究是浏览器实现的细节。基于启发式的数据与空间的权衡性能优化，它的实现和启发式可能定期变化。做为 V8 工程师，我们会尽我们所能使启发式适用于在不断发展的 Web 中的每一个人，而且对当前代码缓存实现细节的过度的优化可能会在一些版本发布后，当这些细节改变后引起失望。另外，其他的一些 JavaScript 引擎可能使用了不同的启发式实现代码缓存。因此从各方面来说，对于使用代码缓存我们最好的建议是：书写整洁且符合习惯的代码，而且我们会尽可能的优化它。
 
 In addition to passively doing nothing, you should also try your best to actively do nothing. Any form of caching is inherently dependent on things not changing, thus doing nothing is the best way of allowing cached data to stay cached. There are a couple of ways you can actively do nothing.
 
@@ -119,7 +119,7 @@ In this case, only `A()` or `B()` is compiled and executed on the warm run, and 
 
 Certainly the advice to do “nothing”, whether passively or actively, is not very satisfying. So in addition to doing “nothing”, given our current heuristics and implementation, there are some things you can do. Please remember, though, that heurisics can change, this advice may change, and there is no substitute for profiling.
 
-当然无论是被动还是主动“什么都不做”的建议都不能让人满意。因此除了“什么都不做”，鉴于我们目前的启发法和实现，你可以做一些事情。请记住，启发法和建议都可能改变，且没有一个代替分析。
+当然无论是被动还是主动“什么都不做”的建议都不能让人满意。因此除了“什么都不做”，鉴于我们目前的启发式和实现，你可以做一些事情。请记住，启发式和建议都可能改变，且没有一个代替分析。
 
 ![with-great-power](images/with-great-power.jpg)
 
@@ -155,7 +155,7 @@ One solution to this is to merge libraries and their uses into a single script, 
 
 对此一个解决方案是合并库和使用它们的代码到单个脚本中，以至于代码缓存可以“发现”库的那些部分被使用。不幸的是，这与上一条建议相违背，因为没有银弹。通常来说，我们不建议将所有 JS 脚本合并到一个大的 bundle 中，将其分成多个较小脚本往往更有利于除代码缓存之外的其他原因（如：多个网络请求、流编译、页面交互等）。
 
-**利用 IIFE 启发法** 
+**利用 IIFE 启发式** 
 
 Only the functions that are compiled by the time the script finishes executing count towards the code cache, so there are many kinds of function that won’t be cached despite executing at some later point. Event handlers (even `onload`), promise chains, unused library functions, and anything else that is lazily compiled without being called by the time `</script>` is seen, all stays lazy and is not cached.
 
@@ -163,7 +163,7 @@ Only the functions that are compiled by the time the script finishes executing c
 
 One way to force these functions to be cached is to force them to be compiled, and a common way of forcing compilation is by using IIFE heuristics. IIFEs (immediately-invoked function expressions) are a pattern where a function is called immediately after being created:
 
-一种方法强制这些函数被缓存就是强制它们被编译，且一个常用的强制编译方法是使用 IIFE 启发法。IIFE（立即执行函数表达式）是一种创建函数后立即点用函数的模式。
+一种方法强制这些函数被缓存就是强制它们被编译，且一个常用的强制编译方法是使用 IIFE 启发式。IIFE（立即执行函数表达式）是一种创建函数后立即点用函数的模式。
 
 ```js
 (function foo() {
@@ -175,9 +175,9 @@ Since IIFEs are called immediately, most JavaScript engines try to detect them a
 
 Since this heuristic is applied early, it triggers a compile even if the function is not actually immediately invoked:
 
-因为 IIFE 表达式会被立即调用，为了避免支付延迟编译的成本，大多数 JavaScript 引擎会尝试探测它们并立即编译，然后进行完全编译。有各种启发法可以尽早探测出 IIFE 表达式（在函数被解析之前），最常用的是通过 `function` 关键字之前的 `(`。
+因为 IIFE 表达式会被立即调用，为了避免支付延迟编译的成本，大多数 JavaScript 引擎会尝试探测它们并立即编译，然后进行完全编译。有各种启发式可以尽早探测出 IIFE 表达式（在函数被解析之前），最常用的是通过 `function` 关键字之前的 `(`。
 
-因为这个启发法在早期被应用，所以即使函数实际不是立即执行也会被编译：
+因为这个启发式在早期被应用，所以即使函数实际不是立即执行也会被编译：
 
 ```js
 const foo = function() {
@@ -192,23 +192,33 @@ This means that functions that should be in the code cache can be forced into it
 
 这意味着可以通过将那些应该被缓存的函数包裹在括号里强制加入到缓存中。但是，如果不正确的使用，可能会对网页启动时间产生影响，通常来说这有点滥用启发式，因此除非真的有必要，我们不建议这么做。
 
-**Group small files together**
+**合并小文件**
 
 Chrome has a minimum size for code caches, currently set to 1 KiB of source code. This means that smaller scripts are not cached at all, since we consider the overheads to be greater than the benefits.
 
 If your website has many such small scripts, the overhead calculation may not apply in the same way anymore. You may want to consider merging them together so that they exceed the minimum code size, as well as benefiting from generally reducing script overheads.
 
-**Avoid inline scripts**
+Chrome 有个代码缓存的最小文件大小限制，现在是 1 Kib 。这意味着小于 1 Kib 的脚本不能被缓存，因为我们认为开销大于收益。
+
+如果你的网站有很多小的脚本，则开销计算可能不在以相同的方式进行。你应该考虑合并小文件使它们超出最小代码大小，并从常规的减少脚本开销的方式受益。
+
+**避免使用内联脚本**
 
 Script tags whose source is inline in the HTML do not have an external source file that they are associated with, and therefore can’t be cached with the above mechanism. Chrome does try to cache inline scripts, by attaching their cache to the HTML document’s resource, but these caches then become dependent on the entire HTML document not changing, and are not shared between pages.
 
 So, for non-trivial scripts which could benefit from code caching, avoid inlining them into the HTML, and prefer to include them as external files.
 
-**Use service worker caches**
+HTML 中的内联脚本没有关联外部的源文件，因此不能被上述机制缓存。Chrome 尝试通过将它们附加 HTML 文档资源缓存，但是这些缓存依赖于整个 HTML 文档没有变化，且不能在页面间共享。
+
+**使用 service worker 缓存**
 
 Service workers are a mechanism for your code to intercept network requests for resources in your page. In particular, they let you build a local cache of some of your resources, and serve the resource from cache whenever they are requested. This is particularly useful for pages that want to continue to work offline, such as PWAs.
 
+service worker 是一种让你的代码可以拦截你页面中的网络资源请求的一种机制。特别是，它们可以让你构建本地资源缓存，当你发送请求的时候，会从本地缓存提供资源。如果你想构建离线应用这点特别有用，例如：PWA 应用。
+
 A typical example of a site using a service worker registers the service worker in some main script file:
+
+一个典型的栗子，网站使用 service worker 在主脚本中注册 service worker：
 
 ```js
 // main.mjs
@@ -216,6 +226,7 @@ navigator.serviceWorker.register('/sw.js');
 ```
 
 And the service worker adds event handlers for installation (creating a cache) and fetching (serving resources, potentially from cache).
+service worker 为安装（创建资源）和获取（从潜在的缓存提供资源）事件添加处理程序。
 
 ```js
 // sw.js
@@ -246,14 +257,20 @@ self.addEventListener('fetch', (event) => {
 
 These caches can include cached JS resources. However, since we expect service worker caches to be predominantly used for PWAs, we have slightly different heuristics for them compared to the normal “automatic” caching in Chrome. Firstly, they immediately create a code cache whenever the JS resource is added to the cache, meaning that the code cache is available already on second load (rather than only on third load, as is the case in the normal cache). Secondly, we generate a “full” code cache for these scripts — we no longer compile functions lazily, but instead compile everything and place it in the cache. This has the advantage of having fast and predictable performance, with no execution order dependencies, though at the cost of increased memory use. Note that this heuristic applies only to service worker caches, and not to other uses of the `Cache` API. Indeed, currently the `Cache` API does not perform code caching at all when used outside of service workers.
 
-## Tracing
+这些缓存包括 JS 资源缓存。然而，因为我们希望 service worker 的缓存主要用于 PWA，所以它与 Chrome 的“自动”缓存的启发式有略微不同。首先，当 JS 资源被添加到缓存的时候，它们立即创建代码缓存，这意味着在第二次加载的时候代码缓存是可用的（而不是像普通缓存一样仅在第三次加载的时可用）。其次，我们为这些脚本生成了“全量”代码缓存，不在有延迟编译，而是全部编译好放到缓存中。这具有快速且可预测的性能的优点，没有执行顺序依赖性，但是以增加的内存使用为代价。请注意，此启发式仅适用于 service worker 缓存，而不适用于 `Cache` API 的其他用途。实际上，当在 service worker外面使用时，现在的 `Cache` API 不会执行代码缓存。
+
+## 追踪
 
 None of the above suggestions is guaranteed to speed up your web app. Unfortunately, code caching information is not currently exposed in DevTools, so the most robust way to find out which of your web app's scripts are code-cached is to use the slightly lower-level `chrome://tracing`.
 
+上面的那些建议都不能保证提升你 web 应用的速度。不幸的是，代码缓存信息现在还没有暴露到 Devtool 中，因此最可靠的方式去查看你 web 应用的脚本缓存是使用 `chrome://tracing`。
+
 `chrome://tracing` records instrumented traces of Chrome during some period of time, where the resulting trace visualization looks something like this:
 
+`chrome://tracing` 记录了一段时间内的 Chrome 追踪信息，它生成的追踪结果可视化如下：
+
 ![chrome-tracing-visualization@2x](images/chrome-tracing-visualization@2x.png)
-<p style="text-align: center"><small>The chrome://tracing UI with a recording of a warm cache run</small></p>
+<p style="text-align: center"><small> chrome://tracing 记录的暖缓存 UI </small></p>
 
 Tracing records the behaviour of the entire browser, including other tabs, windows, and extensions, so it works best when done in a clean user profile, with no extensions installed, and with no other browser tabs open:
 
