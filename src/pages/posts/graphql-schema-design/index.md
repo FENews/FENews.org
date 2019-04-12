@@ -3,7 +3,7 @@ title: "GraphQL Schema 设计：构建可演进的 Schema"
 date: "2019-04-12"
 template: "post"
 draft: false
-category: "graphql
+category: "graphql"
 translators: ["may"]
 tags:
   - "graphql"
