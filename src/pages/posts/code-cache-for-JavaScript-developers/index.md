@@ -209,8 +209,6 @@ google-chrome --user-data-dir="$(mktemp -d)"
 
 ![chrome-tracing-warm-run@2x](images/chrome-tracing-warm-run@2x.png)
 
-On a hot run, you’ll see a `v8.compile` entry for consuming the cache, with metadata fields `cacheConsumeOptions` and `consumedCacheSize`. All sizes are expressed in bytes.
-
 在热运行时，你将看到一个用于消费缓存的 `v8.compile` 入口，有 `cacheConsumeOptions` 和 `consumedCacheSize` 两个元数据字段。所有大小都以字节表示。
 
 ![chrome-tracing-hot-run@2x](images/chrome-tracing-hot-run@2x.png)
