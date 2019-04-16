@@ -96,16 +96,16 @@ person
 
 Decorator模式：动态将职责附加到对象上。如果要扩展功能，装饰者提供了比继承更具弹性的代替方案。装饰者模式遵循了两个设计原则：
 
-> 1. Favor composition over inheritance
-> 1. The Open-Closed Principle: Classes should be open for extension, but closed for modification
+> 1. Favor composition over inheritance. 
+> 2. The Open-Closed Principle: Classes should be open for extension, but closed for modification.
 
 装饰者模式的要点:
 
 1. 装饰者和被装饰对象有相同的超类型。
-1. 可以用一个或多个装饰者包装一个对象。
-1. 装饰者可以在被装饰者所委托的行为之前或之后，加上自己的行为，以达到特定的目的。
-1. 对象可以在任何时候被装饰，所以可以在运行时动态的，不限量的用你喜欢的装饰者来装饰对象。
-1. 装饰模式的用意是保持接口并增加对象的职责。
+2. 可以用一个或多个装饰者包装一个对象。
+3. 装饰者可以在被装饰者所委托的行为之前或之后，加上自己的行为，以达到特定的目的。
+4. 对象可以在任何时候被装饰，所以可以在运行时动态的，不限量的用你喜欢的装饰者来装饰对象。
+5. 装饰模式的用意是保持接口并增加对象的职责。
 
 下面看一个例子来说明：
 
@@ -156,7 +156,7 @@ console.log(mb.screenSize()) //13.3
 
 调用过程如下：
 
-![调用图]()
+![调用图](images/process.png)
 
 > Decorator 模式和通过高阶函数里动态修改原有属性本质是一样的，都是在执行了被委托的行为的基础上加了自己的行为。高级函数被委托的行为是传入的函数，Decorator 被委托的行为是被包装对象里相同名字的函数。
 

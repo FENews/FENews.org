@@ -17,7 +17,7 @@ stAnnesTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     fontSize: rhythm(0.6),
     borderLeft: 0,
     borderColor: 'transparent',
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   'blockquote p': {
     display: 'inline-block',
