@@ -1,6 +1,6 @@
 ---
 title: "Flutter 引擎架构"
-date: "2019-03-24"
+date: "2019-04-19"
 category: "Flutter"
 authors: ['hixie']
 translators: ["xueqingxiao"]
@@ -11,23 +11,9 @@ tags:
 description: "Flutter 就是一个 Dart 框架和高性能引擎的结合体。"
 ---
 
-Flutter combines [a Dart framework](https://github.com/flutter/flutter) with a high-performance [engine](https://github.com/flutter/engine).
-
 Flutter 就是[一个 Dart 框架](https://github.com/flutter/flutter)和高性能[引擎](https://github.com/flutter/engine)的结合体。
 
-The Flutter Engine is a portable runtime for high-quality mobile applications. It implements Flutter's core libraries, including animation and graphics, file and network I/O, accessibility support, plugin architecture, and a Dart runtime and toolchain for developing, compiling, and running Flutter applications.
-
 Flutter 引擎是一个用于运行高品质移动应用的可移植运行时。它实现了 Flutter 的核心库，动画和图形，文件和网络的 I/O，支持可访问性（accessibility），插件架构，以及用于开发，编译和运行 Flutter 应用程序的 Dart 运行时和开发工具。
-
-## Architecture overview
-
-Flutter's engine takes core technologies, Skia, a 2D graphics rendering library, and Dart, a VM for a garbage-collected object-oriented language, and hosts them in a shell. Different platforms have different shells, for example we have shells for [Android](https://github.com/flutter/engine/tree/master/shell/platform/android) and [iOS](https://github.com/flutter/engine/tree/master/shell/platform/darwin). We also have an [embedder API](https://github.com/flutter/engine/tree/master/shell/platform/embedder) which allows Flutter's engine to be used as a library (see [Custom Flutter Engine Embedders](https://github.com/flutter/flutter/wiki/Custom-Flutter-Engine-Embedders)).
-
-The shells implement platform-specific code such as communicating with IMEs (on-screen keyboards) and the system's application lifecycle events.
-
-The Dart VM implements the normal Dart core libraries, plus an additional library called dart:ui to provide low-level access to Skia features and the shell. The shells can also communicate directly to Dart code via Platform Channels which bypass the engine.
-
-![flutter_overview](./images/flutter_overview.png)
 
 ## 架构概览
 
@@ -39,28 +25,11 @@ Dart 虚拟机实现了基础的 Dart 核心库，另外还有一个叫 `dart:ui
 
 ![flutter_overview](./images/flutter_overview.png)
 
-## Threading
-
 ## 线程
-
-### Overview
-
-The Flutter engine does not create or manage its own threads. Instead, it is the responsibility of the embedder to create and manage threads (and their message loops) for the Flutter engine. The embedder gives the Flutter engine task runners for the threads it manages. In addition to the threads managed by the embedder for the engine, the Dart VM also has its own thread pool. Neither the Flutter engine or the embedder have any access to the threads in this pool.
 
 ### 概览
 
 Flutter 引擎不会自己创建或者管理自身的线程。相反，嵌入环境（embedder）负责给 Flutter 引擎 创建和管理线程（以及消息循环）。嵌入环境将自己管理的线程作为 task runner 提供给Flutter 引擎。除了嵌入环境管理的线程，Dart 虚拟机也有自己的线程池。不论是 Flutter 引擎还是嵌入环境都无法访问 Dart 虚拟机线程池中的线程。
-
-### Task Runner Configuration
-
-The Flutter engine requires the embedder to give it references to 4 task runners. The engine does not care if the references are to the same task runner, or, if multiple task runners are serviced on the same thread. For optimum performance, the embedder should create a dedicated thread per task runner. Though the engine does not care about the threads the task runners are serviced on, it does expect that the threading configuration remain stable for the entire lifetime of the engine. That is, once the embedder decides to service a task runner on a particular thread, it should execute tasks for that task runner only on that one thread (till the engine is torn down).
-
-The main task runners are:
-
-- Platform Task Runner
-- UI Task Runner
-- GPU Task Runner
-- IO Task Runner
 
 ###  Task Runner 配置
 
@@ -75,33 +44,24 @@ Flutter 引擎需要嵌入环境给4个 task runner 提供引用。Flutter 引�
 
 ### Platform Task Runner
 
-This is the task runner for the thread the embedder considers as its main thread. For example, this is typically the Android Main Thread or the Main Thread referenced by Foundation on Apple platforms.
-
-Any significance assigned to the thread for this task runner is entirely assigned by the embedder. The Flutter engine assigns no special meaning to this thread. In fact, multiple Flutter engines can be launched with platform task runners based on different threads. This is how the Flutter Content Handler in Fuchsia works. A new Flutter engine is created in the process for each Flutter application and a new platform thread is created for each engine.
-
-Interacting with the Flutter engine in any way must happen on the platform thread. Interacting with the engine on any other thread will trip assertions in unoptimized builds and is not thread safe in release builds. There are numerous components in the Flutter engine that are not thread safe. Once the Flutter engine is setup and running, the embedder does not have to post tasks to any of the task runners used to configure the engine as long as all accesses to the embedder API are made on the platform thread.
-
-In addition to being the thread on which the embedder interacts with the engine after it is launched, this task runner also executes any pending platform messages. This is handy because accessing most platform APIs is only safe on the platform’s main thread. Plugins don’t have to rethread their calls to the main thread. If plugins manage their own worker threads, it is their responsibility to queue responses back onto the platform thread before they can be submitted back to the engine for processing by Dart code. The rule of always interacting with the engine on the platform thread holds here.
-
-Even though blocking the platform thread for inordinate amounts of time will not cause jank in Flutter applications, platforms do impose restrictions on expensive operations on this thread. So it is advised that any expensive work in response to platform messages be performed on separate worker threads (unrelated to the four threads discussed above) before having the responses queued back on the the platform thread for submission to the engine. Not doing so may result in platform-specific watchdogs terminating the application.
-
-### Platform Task Runner
-
-这是嵌入环境线程的 task runner, 可以认为是主线程的 task runner。这个通常是 Android 的主线程 或者在 Apple 平台上的 Foundation 引用的线程。
+嵌入环境线程的 task runner, 可以认为是主线程的 task runner。这个通常是 Android 的主线程 或者在 Apple 平台上的 Foundation 引用的线程。
 
 分配给 task runner 对应线程的不论什么优先级的任务，这些任务的分配都是由嵌入环境来决定的。Flutter 引擎没有给这个线程赋予任何特殊的意义。事实上，可以使用基于不同线程的 Platform Task Runner 来启动多个 Flutter 引擎。这就是 Fuchsia 操作系统中 Flutter Content Handler 的工作原理。在每一个 Flutter 应用实例创建的过程中就会对应的创建一个 Flutter 引擎的实例，相应的也会为每一个 Flutter 引擎的实例创建对应的平台线程。
 
-除了作为嵌入环境启动之后与 Flutter 引擎进行交互的线程之外，task runner 还要执行正在等待的平台消息。这是非常方便的，因为访问 Platform 上的大多数 API 只有在 Platform 的主线程上是安全的。 to be continued...
+不论以什么方式和 Flutter 引擎交互，都必须在平台的线程上进行。在其他线程上和引擎交互在未优化版本中会跳过断言，并且这在发布版本中是线程不安全的。Flutter 引擎中许多组件都是线程不安全的。一旦 Flutter 引擎设置好并开始运行，只要对 Flutter 引擎的嵌入 API 都是在平台线程上进行访问的，嵌入环境就不需要发布任务到任何 task runner 去配置 Flutter 引擎。
+
+除了作为嵌入环境启动之后与 Flutter 引擎进行交互的线程之外，task runner 还要执行正在等待的平台消息。这是非常方便的，因为访问 Platform 上的大多数 API 只有在 Platform 的主线程上是安全的。插件就不需要把自己的调用重新穿入（rethread）到主线程上。如果插件管理自己的工作线程，那么插件就要负责将响应队列返回给平台线程，然后才能把响应提交给引擎上的 Dart 代码去处理。始终在平台线程上与引擎交互的规则在这里得到保证。
 
 ### UI Task Runner
 
 The UI task runner is where the engine executes all Dart code for the root isolate. The root isolate is a special isolate that has the necessary bindings for Flutter to function. This isolate runs the application's main Dart code. Bindings are set up on this isolate by the engine to schedule and submit frames. For each frame that Flutter has to render:
-  - The root isolate has to tell the engine that a frame needs to be rendered.
-  - The engine will ask the platform that it should be notified on the next vsync.
-  - The platform waits for the next vsync.
-  - On vsync, the engine will wake up the Dart code and perform the following:
-    - Update animation interpolators.
-    - Rebuild the widgets in the application in a layout phase.
+
+  - root isolate 必须告诉引擎需要渲染一帧。
+  - 引擎会询问平台是不是在下一个 vsync 的时候通知 UI Task runner。
+  - 平台会等待下一个 vsync
+  - 在 vsync 中, 引擎会唤醒 Dart 代码并[执行以下操作](https://docs.flutter.io/flutter/widgets/WidgetsBinding/drawFrame.html)：
+    - 更新动画插值器（interpolators）。
+    - 在布局阶段重建应用程序中的 widget。
     - Lay out the newly constructed and widgets and paint them into a tree of layers that are immediately submitted to the engine. Nothing is actually rasterized here; only a description of what needs to be painted is constructed as part of the paint phase.
     - Construct or update a tree of nodes containing semantic information about widgets on screen. This is used to update platform specific accessibility components.
 
@@ -153,3 +113,5 @@ Our text rendering stack is as follows:
 - A minikin derivative we call libtxt (font selection, bidi, line breaking).
 - HarfBuzz (glyph selection, shaping).
 - Skia (rendering/GPU back-end), which uses FreeType for font rendering on Android and Fuchsia, and CoreGraphics for font rendering on iOS.
+
+原文地址：[https://github.com/flutter/flutter/wiki/The-Engine-architecture](https://github.com/flutter/flutter/wiki/The-Engine-architecture)
