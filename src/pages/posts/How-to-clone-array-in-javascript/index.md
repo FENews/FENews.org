@@ -1,5 +1,5 @@
 ---
-title: "「译」如何在JavaScript中克隆数组"
+title: "如何在JavaScript中克隆数组"
 date: "2019-04-22"
 template: "post"
 draft: false
