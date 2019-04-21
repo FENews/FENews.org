@@ -1,5 +1,5 @@
 ---
-title: "如何在JavaScript中克隆数组"
+title: "如何在 JavaScript 中克隆数组"
 date: "2019-04-22"
 template: "post"
 draft: false
@@ -8,15 +8,15 @@ translators: ["allen"]
 tags:
   - "Javascript"
   - "翻译"
-description: 学习在JavaScript中克隆数组的不同实现
+description: 学习在 JavaScript 中克隆数组的不同实现
 ---
 
 ![clone-array](./clone-array.png)
 
-JavaScript有很多方法可以做任何事情，现在我们研究数组。
+JavaScript 有很多方法可以做任何事情，现在我们研究数组。
 
 # 1.扩展运算符(浅拷贝)
-自从ES6发布以来，这一直是最受欢迎的方法。 这是一个简短的语法，你会发现它在使用像React和Redux这样的库时非常有用。
+自从 ES6 发布以来，这一直是最受欢迎的方法。 这是一个简短的语法，你会发现它在使用像 React 和 Redux 这样的库时非常有用。
 
 ```
     numbers = [1, 2, 3];
@@ -44,7 +44,7 @@ JavaScript有很多方法可以做任何事情，现在我们研究数组。
     // They've both been changed because they share references
 ```
 
-# 2.for循环(浅拷贝)
+# 2.for 循环(浅拷贝)
 由于我们的圈子中流行的函数式编程，使得这种方法最不受欢迎
 
 ```
@@ -56,7 +56,7 @@ JavaScript有很多方法可以做任何事情，现在我们研究数组。
     }
 ```
 
-**注意**：这不能安全地复制多维数组。 由于您使用的是=运算符，因此它将通过引用而不是值来分配对象/数组。
+**注意**：这不能安全地复制多维数组。 由于你使用的是 = 运算符，因此它将通过引用而不是值来分配对象/数组。
 
 这可以
 ```
@@ -82,8 +82,8 @@ JavaScript有很多方法可以做任何事情，现在我们研究数组。
     // They've both been changed because they share references
 ```
 
-# 3.while循环(浅拷贝)
-同for循环一样，不纯的、命令式的, blah,blah,blah...但有效！
+# 3.while 循环(浅拷贝)
+同 for 循环一样，不纯的、命令式的, blah, blah, blah...但有效！
 
 ```
     numbers = [1, 2, 3];
@@ -123,12 +123,12 @@ JavaScript有很多方法可以做任何事情，现在我们研究数组。
     // They've both been changed because they share references
 ```
 
-# 4.Array.map(浅拷贝)
-回到现代领域，我们将找到map函数，基于数学，map是将一组转换为另一种类型的集合，同时保留结构的概念。 
+# 4.Array.map (浅拷贝)
+回到现代领域，我们将找到 map 函数，基于数学，map 是将一组转换为另一种类型的集合，同时保留结构的概念。 
 
-这意味着Array.map每次都返回一个长度相同的数组。
+这意味着 Array.map 每次都返回一个长度相同的数组。
 
-要使列表中数字加倍，可以使用map带加倍函数
+要使列表中数字加倍，可以使用 map 带加倍函数
 
 ```
     numbers = [1, 2, 3];
@@ -138,14 +138,14 @@ JavaScript有很多方法可以做任何事情，现在我们研究数组。
 ```
 
 ## 什么是克隆
-没错，这篇文章是关于克隆数组的。 要复制数组，只需返回map调用中的元素即可。
+没错，这篇文章是关于克隆数组的。 要复制数组，只需返回 map 调用中的元素即可。
 
 ```
     numbers = [1, 2, 3];
     numbersCopy = numbers.map((x) => x);
 ```
 
-如果你想更数学一点，（x）=> x被称为身份。 它返回给出的任何参数。
+如果你想更数学一点，（x）=> x 被称为身份。 它返回给出的任何参数。
 
 map(identity) 复制一个列表.
 
@@ -157,10 +157,10 @@ map(identity) 复制一个列表.
 
 **注意**：这也通过引用而不是按值分配对象/数组。
 
-# 5.Array.filter(浅拷贝)
-此函数返回一个数组，就像map一样，但它不能保证长度相同。
+# 5.Array.filter (浅拷贝)
+此函数返回一个数组，就像 map 一样，但它不能保证长度相同。
 
-如果您要过滤偶数数字怎么办？
+如果你要过滤偶数数字怎么办？
 
 ```
     [1, 2, 3].filter((x) => x % 2 === 0)
@@ -169,7 +169,7 @@ map(identity) 复制一个列表.
 
 输入数组长度为3，但结果长度为1。
 
-如果filter始终返回true，就会重复
+如果 filter 始终返回 true，就会重复
 
 ```
     numbers = [1, 2, 3];
@@ -180,8 +180,8 @@ map(identity) 复制一个列表.
 
 **注意**：这也通过引用而不是按值分配对象/数组。
 
-# 6.Array.reduce(浅拷贝)
-使用reduce来克隆数组感觉非常不好，因为它远比此强大，让我们开始...
+# 6.Array.reduce (浅拷贝)
+使用 reduce 来克隆数组感觉非常不好，因为它远比此强大，让我们开始...
 
 ```
     numbers = [1, 2, 3];
@@ -193,14 +193,14 @@ map(identity) 复制一个列表.
     }, []);
 ```
 
-reduce在循环遍历列表时转换初始值。
+reduce 在循环遍历列表时转换初始值。
 
 这里的初始值是一个空数组，我们将逐步填充每个元素。 必须从要在下一次迭代中使用的函数返回该数组。
 
 **注意**：这也通过引用而不是按值分配对象/数组。
 
 # 7.Array.slice(浅拷贝)
-slice根据您提供的开始/结束索引返回数组的副本。
+slice 根据你提供的开始/结束索引返回数组的副本。
 
 如果我们想要前3个元素：
 
@@ -221,9 +221,9 @@ slice根据您提供的开始/结束索引返回数组的副本。
 **注意**：这也通过引用而不是按值分配对象/数组。
 
 # 8.JSON.parse 和 JSON.stringify (深拷贝)
-JSON.stringify将对象转换为字符串
+JSON.stringify 将对象转换为字符串
 
-JSON.parse将字符串转换为对象
+JSON.parse 将字符串转换为对象
 
 组合它们可以将对象转换为字符串，然后反转该过程以创建全新的数据结构。
 
@@ -243,15 +243,15 @@ JSON.parse将字符串转换为对象
     // These two arrays are completely separate!
 ```
 
-# 9.Array.concat(浅拷贝)
-concat将数组与值或其他数组组合在一起。
+# 9.Array.concat (浅拷贝)
+concat 将数组与值或其他数组组合在一起。
 
 ```
     [1, 2, 3].concat(4); // [1, 2, 3, 4]
     [1, 2, 3].concat([4, 5]); // [1, 2, 3, 4, 5]
 ```
 
-如果您不提供任何内容或空数组，则返回副本。
+如果你不提供任何内容或空数组，则返回副本。
 
 ```
     [1, 2, 3].concat(); // [1, 2, 3]
@@ -260,7 +260,7 @@ concat将数组与值或其他数组组合在一起。
 
 **注意**：这也通过引用而不是按值分配对象/数组。
 
-# 9.Array.from(浅拷贝)
+# 9.Array.from (浅拷贝)
 这可以将任何可迭代对象转换为数组。 给数组返回一个副本。
 
 ```
@@ -274,7 +274,7 @@ concat将数组与值或其他数组组合在一起。
 # 总结
 嗯，这很有趣
 
-我试着只用一步就克隆了。 如果您采用多种方法和技术，您会发现更多方法。
+我试着只用一步就克隆了。 如果你采用多种方法和技术，你会发现更多方法。
 
 
 原文地址: [https://medium.freecodecamp.org/how-to-clone-an-array-in-javascript-1d3183468f6a?from=singlemessage](https://medium.freecodecamp.org/how-to-clone-an-array-in-javascript-1d3183468f6a?from=singlemessage)
