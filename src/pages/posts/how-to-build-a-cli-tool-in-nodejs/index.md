@@ -1,6 +1,6 @@
 ---
 title: "如何在NodeJS中构建CLI工具"
-date: "2019-04-12"
+date: "2019-04-24"
 template: "post"
 draft: false
 category: "NodeJS"
