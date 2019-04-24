@@ -24,7 +24,7 @@
     "gatsby-remark-smartypants": "^2.0.9",
     "gatsby-source-filesystem": "^2.0.31",
     "gatsby-transformer-remark": "^2.3.10",
-    "gatsby-transformer-sharp": "^2.1.17",
+    "gatsby-transformer-sharp": "^2.1.18",
     "gatsby-transformer-yaml": "^2.1.11",
     "prismjs": "^1.15.0",
     "react": "^16.8.4",
