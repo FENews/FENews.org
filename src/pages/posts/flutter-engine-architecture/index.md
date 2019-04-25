@@ -1,6 +1,6 @@
 ---
 title: "Flutter 引擎架构"
-date: "2019-04-19"
+date: "2019-04-26"
 category: "Flutter"
 authors: ['hixie']
 translators: ["xueqingxiao"]
@@ -56,26 +56,26 @@ Flutter 引擎需要嵌入环境给4个 task runner 提供引用。Flutter 引�
 
 The UI task runner is where the engine executes all Dart code for the root isolate. The root isolate is a special isolate that has the necessary bindings for Flutter to function. This isolate runs the application's main Dart code. Bindings are set up on this isolate by the engine to schedule and submit frames. For each frame that Flutter has to render:
 
-  - root isolate 必须告诉引擎需要渲染一帧。
+  - 根隔离（root isolate）必须告诉引擎需要渲染的每一帧。
   - 引擎会询问平台是不是在下一个 vsync 的时候通知 UI Task runner。
   - 平台会等待下一个 vsync
   - 在 vsync 中, 引擎会唤醒 Dart 代码并[执行以下操作](https://docs.flutter.io/flutter/widgets/WidgetsBinding/drawFrame.html)：
     - 更新动画插值器（interpolators）。
     - 在布局阶段重建应用程序中的 widget。
-    - Lay out the newly constructed and widgets and paint them into a tree of layers that are immediately submitted to the engine. Nothing is actually rasterized here; only a description of what needs to be painted is constructed as part of the paint phase.
-    - Construct or update a tree of nodes containing semantic information about widgets on screen. This is used to update platform specific accessibility components.
+    - 布局新实例化的 widgets 并立即绘制图层树并提交给引擎，并没有实际的渲染到屏幕上（rasterized）；这里只构造出在渲染阶段所需要渲染的描述。
+    - 构造或者更新包含语义信息的的 widgets 节点树，这将会用来更新特定平台的可访问（accessibility）组件。
 
-Apart from building frames for the engine to eventually render, the root isolate also executes all responses for platform plugin messages, timers, microtasks and asynchronous I/O (from sockets, file handles, etc.).
+除了为引擎构建最终要渲染的每一帧之外，根隔离还要执行平台上插件消息的所有响应，定时器（timers），微任务（microtask）和异步 I/O （socket，文件句柄（handles）等）。
 
-Since the UI thread constructs the layer tree that determines what the engine will eventually paint onto the screen, it is the source of truth for everything on the screen. Consequently, performing long operations on this thread will cause jank in Flutter applications (a few milliseconds is enough to miss the next frame!). Long operations can typically only be performed by Dart code since the engine will not schedule any native code tasks on this task runner. Because of this, this task runner (or thread) is typically referred to as the Dart thread. It is possible for the embedder to post tasks onto this task runner. This may cause jank in Flutter and embedders are advised not to do this and instead assign a dedicated thread for this task runner.
+由 UI 线程构造的图层树决定了引擎最终在屏幕上渲染什么，图层树是屏幕上所有内容的真实来源。因此在在 UI 线程上做耗时的操作将导致 Flutter 应用的卡顿（几毫秒足以导致错过下一帧！）。耗时操作一般是执行 Dart 代码导致的，因为引擎不会在 UI task runner 上调度任何 native 代码的任务。因此，UI task runner（线程）通常被称为 Dart 线程。嵌入器可以发布任务到这个 task runner 上。这有可能导致 Flutter 应用的卡顿，建议不要执行这样的操作，而是应该给这样的操作分配特定的线程。
 
-If it is unavoidable for Dart code to perform expensive work, it is advised that this code be moved into a separate Dart isolate (e.g. using the compute method). Dart code executing on a non-root isolate executes on a thread from a Dart VM managed thread pool. This cannot cause jank in a Flutter application. Terminating the root isolate will also terminate all isolates spawned by that root isolate. Also, non-root isolates are incapable of scheduling frames and do not have bindings that the Flutter framework depends on. Due to this, you cannot interact with the Flutter framework in any meaningful way on the secondary isolate. Use secondary isolates for tasks that require heavy computation.
+如果在 Dart 代码里做耗时操作是不可避免的，建议将这样的代码移动到独立的 Dart isolate 里（比如：使用 compute 方法）。如果 Dart 代码在非根隔离上执行，那么这段代码将会在 Dart VM 管理的线程池里的线程中执行。这不会导致 Flutter 应用内的卡顿。终止根隔离也会导致在该根隔离上创建的所有隔离终止。此外，非根隔离无法调度帧，也没有 Flutter 框架依赖的绑定。因此，在次隔离上无法和 Flutter 框架进行有意义的交互，对于需要大量计算的任务请使用次隔离。
 
 ### GPU Task Runner
 
-The GPU task runner executes tasks that need to access the GPU on the device. The layer tree created by the Dart code on the UI task runner is client-rendering-API agnostic. That is, the same layer tree can be used to render a frame using OpenGL, Vulkan, software or really any other backend configured for Skia. Components on the GPU task runner take the layer tree and construct the appropriate GPU commands. The GPU task runner components are also responsible for setting up all the GPU resources for a particular frame. This includes talking to the platform to set up the framebuffer, managing surface lifecycle, and ensuring that textures and buffers for a particular frame are fully prepared.
+GPU Task Runner 执行访问设备上 GPU 的 任务。执行在 UI task runner 上的 Dart 代码创建的图层树是客户端的渲染 API 是感知不到的。也就是说，相同的图层树可以使用 OpenGL，Vulkan 或者为 Skia 配置的其它渲染库来渲染帧。GPU task runner 使用图层树构造出相对应的 GPU 指令。GPU task runner 还负责为特定帧设置所有GPU资源。这包括，与平台通信来设置帧缓冲区，管理 surface 生命周期，并确保完全准备特定帧的 texture（GPU 显存中一段连续的空间） 和缓冲区。
 
-Depending on how long it takes for the layer tree to be processed and the GPU to finish displaying the frame, the various components of the GPU task runner may delay scheduling of further frames on the UI thread. Typically, the UI and GPU task runners are on different threads. In such cases, the GPU thread can be in the process of submitting a frame to the GPU while the UI thread is already preparing the next frame. The pipelining mechanism makes sure that the UI thread does not schedule too much work for the GPU.
+根据处理图层树所需的时间以及GPU完成显示帧所需的时间，GPU task runner 上的各种组件可以延迟 UI 线程上的其他帧的调度， 通常，UI和GPU任务运行程序位于不同的线程上。在这种情况下，GPU 线程可能处于向 GPU 提交帧的过程中，而 UI 线程已经在准备下一帧。流水线操作机制确保 UI 线程不会为 GPU 安排太多工作。
 
 Since the GPU task runner components can introduce frame scheduling delays on the UI thread, performing too much work on the GPU thread will cause jank in Flutter applications. Typically, there is no opportunity for the user to perform custom tasks on this task runner because neither platform code nor Dart code can access this task runner. However, it is still possible for the embedder to schedule tasks on this thread. For this reason, it is recommended that embedders provide a dedicated thread for the GPU task runner per engine instance.
 
@@ -87,31 +87,31 @@ The main function of the IO task runner is reading compressed images from an ass
 
 There is no way for user code to access this thread either via Dart or native plugins. Even the embedder is free to schedule tasks on this thread that are fairly expensive. This won’t cause jank in Flutter applications but may delay having the futures images and other resources be resolved in a timely manner. Even so, it is recommended that custom embedders set up a dedicated thread for this task runner.
 
-## Current Platform Specific Threading Configurations
+## 当前平台特定线程的配置
 
-As mentioned, the engine can support multiple threading configurations, the configurations currently used by the supported platforms are:
+就像之前提到的，引擎支持多线程的配置，支持多线程配置的平台有：
 
 ### iOS
 
-A dedicated thread is created for the UI, GPU and IO task runners per engine instance. All engine instances share the same platform thread and task runner.
+为每一个引擎实例的 UI，GPU 和 IO task runner 创建专用线程。在同一平台上所有的引擎实例共享平台线程和 task runner。
 
 ### Android
 
-A dedicated thread is created for the UI, GPU and IO task runners per engine instance. All engine instances share the same platform thread and task runner.
+为每一个引擎实例的 UI，GPU 和 IO task runner 创建专用线程。在同一平台上所有的引擎实例共享平台线程和 task runner。
 
 ### Fuchsia
 
-A dedicated thread is created for the UI, GPU, IO and Platform task runners per engine instance.
+为每一个引擎实例的 UI，GPU 和 IO task runner 创建专用线程。
 
-### Flutter Tester (used by flutter test)
+### Flutter Tester (用来给 Flutter 做测试的)
 
-The same main thread is used for the UI, GPU, IO and Platform task runners for the single instance engine supported in the process.
+进程中单实例引擎的 UI, GPU, IO 和 平台的 task runner 使用相同的主线程。
 
-## Text rendering
-Our text rendering stack is as follows:
+## 文本渲染
+我们的文本渲染过程如下：
 
-- A minikin derivative we call libtxt (font selection, bidi, line breaking).
-- HarfBuzz (glyph selection, shaping).
-- Skia (rendering/GPU back-end), which uses FreeType for font rendering on Android and Fuchsia, and CoreGraphics for font rendering on iOS.
+- 一个小的库 libtxt： 字体选择, bidi, 断行（line breaking）。
+- HarfBuzz： 字形（glyph）选择, shaping。
+- Skia： (渲染/GPU 后台), 它在Android和Fuchsia上使用FreeType进行字体渲染，在iOS上使用CoreGraphics进行字体渲染。
 
 原文地址：[https://github.com/flutter/flutter/wiki/The-Engine-architecture](https://github.com/flutter/flutter/wiki/The-Engine-architecture)
