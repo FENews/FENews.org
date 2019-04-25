@@ -8,10 +8,10 @@ tags:
   - "Flutter"
   - "Architecture"
   - "翻译"
-description: "Flutter 就是一个 Dart 框架和高性能引擎的结合体。"
+description: "Flutter 结合了一个 Dart 框架和一个高性能的引擎。"
 ---
 
-Flutter 就是[一个 Dart 框架](https://github.com/flutter/flutter)和高性能[引擎](https://github.com/flutter/engine)的结合体。
+Flutter 结合了一个 [Dart 框架](https://github.com/flutter/flutter)和一个高性能的[引擎](https://github.com/flutter/engine)。
 
 Flutter 引擎是一个用于运行高品质移动应用的可移植运行时。它实现了 Flutter 的核心库，动画和图形，文件和网络的 I/O，支持可访问性（accessibility），插件架构，以及用于开发，编译和运行 Flutter 应用程序的 Dart 运行时和开发工具。
 
@@ -54,8 +54,7 @@ Flutter 引擎需要嵌入环境给4个 task runner 提供引用。Flutter 引�
 
 ### UI Task Runner
 
-The UI task runner is where the engine executes all Dart code for the root isolate. The root isolate is a special isolate that has the necessary bindings for Flutter to function. This isolate runs the application's main Dart code. Bindings are set up on this isolate by the engine to schedule and submit frames. For each frame that Flutter has to render:
-
+UI task runner 是引擎在根隔离（root isolate ）上执行所有 Dart 代码的地方。根隔离是一种特殊的隔离，具有 Flutter 功能所必须的绑定。 根隔离运行应用的主 Dart 代码。引擎在根隔离上设定绑定以及调度和提交帧。对于 Flutter 必须渲染的每个帧会做以下操作：
   - 根隔离（root isolate）必须告诉引擎需要渲染的每一帧。
   - 引擎会询问平台是不是在下一个 vsync 的时候通知 UI Task runner。
   - 平台会等待下一个 vsync
@@ -77,15 +76,15 @@ GPU Task Runner 执行访问设备上 GPU 的 任务。执行在 UI task runner 
 
 根据处理图层树所需的时间以及GPU完成显示帧所需的时间，GPU task runner 上的各种组件可以延迟 UI 线程上的其他帧的调度， 通常，UI和GPU任务运行程序位于不同的线程上。在这种情况下，GPU 线程可能处于向 GPU 提交帧的过程中，而 UI 线程已经在准备下一帧。流水线操作机制确保 UI 线程不会为 GPU 安排太多工作。
 
-Since the GPU task runner components can introduce frame scheduling delays on the UI thread, performing too much work on the GPU thread will cause jank in Flutter applications. Typically, there is no opportunity for the user to perform custom tasks on this task runner because neither platform code nor Dart code can access this task runner. However, it is still possible for the embedder to schedule tasks on this thread. For this reason, it is recommended that embedders provide a dedicated thread for the GPU task runner per engine instance.
+由于GPU task runner 的组件可能会在 UI 线程上引起帧调度延迟，因此在 GPU 线程上执行太多工作将导致 Flutter 应用程序的卡顿。通常，用户没有机会在 GPU task runner 上执行自定义任务，因为平台代码和 Dart 代码都无法访问 GPU task runner。但是，嵌入器仍然可以在此线程上安排任务。因此，建议嵌入器为每个引擎实例的 GPU task runner 提供专用线程。
 
 ### IO Task Runner
 
-All the task runners mentioned so far have pretty strong restrictions on the kinds of operations that can be performed on this. Blocking the platform task runner for an inordinate amount of time may trigger the platform's watchdog, and blocking either the UI or GPU task runners will cause jank in Flutter applications. However, there are tasks necessary for the GPU thread that require doing some very expensive work. This expensive work is performed on the IO task runner.
+到目前为止，所有提到的 task runner 都对可以执行的操作类型有很强的限制。过长时间阻塞的 platform task runner 可能会触发平台的 watchdog，阻塞 UI 或 GPU task runner 将导致 Flutter 应用程序的卡顿。但是，GPU 线程需要执行一些非常昂贵的操作。这些昂贵的操作是在 IO task runner 上执行的。
 
-The main function of the IO task runner is reading compressed images from an asset store and making sure these images are ready for rendering on the GPU task runner. To make sure a texture is ready for rendering, it first has to be read as a blob of compressed data (typically PNG, JPEG, etc.) from an asset store, decompressed into a GPU friendly format and uploaded to the GPU. These operations are expensive and will cause jank if performed on the GPU task runner. Since only the GPU task runner can access the GPU, the IO task runner components set up a special context that is in the same sharegroup as the main GPU task runner context. This happens very early during engine setup and is also the reason there is a single task runner for IO tasks. In reality, the reading of the compressed bytes and decompression can happen on a thread pool. The IO task runner is special because access to the context is only safe from a specific thread. The only way to get a resource like ui.Image is via an async call; this allows the framework to talk to the IO runner so that it can asynchronously perform all the texture operations mentioned. The image can then be immediately used in a frame without the GPU thread having to do expensive work.
+IO task runner 的主要功能是从 asset store 读取压缩图像，并确保这些图像已准备好在 GPU task runner 上渲染。为了确保 texture 已准备好进行渲染，首先必须将其作为压缩数据（通常为PNG，JPEG等）从 asset store 读取，解压缩为 GPU 友好格式并传递给 GPU。这些操作很昂贵，如果在 GPU task runner 上执行，将导致卡顿。由于只有 GPU task runner 可以访问 GPU，因此 IO task runner 组件会设置一个特殊的上下文，该上下文与主 GPU task runner 上下文位于同一个共享组中。这在引擎设置的早期就会发生，也是 IO 任务有一个 task runner 的原因。实际上，压缩字节的读取和解压可以在线程池上进行。IO task runner 是比较特殊的，因为只能从特定线程访问上下文才是安全的操作。获取像 ui.Image 这样的资源的唯一方法是通过异步调用；允许框架与 IO task runner 通信，以便它可以异步执行所提到的所有 texture 操作。然后可以立即在帧中使用该图像，而 GPU 线程不必进行昂贵的操作。
 
-There is no way for user code to access this thread either via Dart or native plugins. Even the embedder is free to schedule tasks on this thread that are fairly expensive. This won’t cause jank in Flutter applications but may delay having the futures images and other resources be resolved in a timely manner. Even so, it is recommended that custom embedders set up a dedicated thread for this task runner.
+用户代码无法通过 Dart 或原生插件访问此线程。甚至嵌入器也可以自由地在这个线程上调度相当昂贵的任务。这不会导致 Flutter 应用程序的卡顿，但可能会延迟未来对图片和其他资源的的及时的处理。即便如此，建议自定义嵌入器为 IO task runner 设置专用线程。
 
 ## 当前平台特定线程的配置
 
@@ -110,7 +109,7 @@ There is no way for user code to access this thread either via Dart or native pl
 ## 文本渲染
 我们的文本渲染过程如下：
 
-- 一个小的库 libtxt： 字体选择, bidi, 断行（line breaking）。
+- libtxt： 字体选择, bidi, 断行（line breaking）。
 - HarfBuzz： 字形（glyph）选择, shaping。
 - Skia： (渲染/GPU 后台), 它在Android和Fuchsia上使用FreeType进行字体渲染，在iOS上使用CoreGraphics进行字体渲染。
 
