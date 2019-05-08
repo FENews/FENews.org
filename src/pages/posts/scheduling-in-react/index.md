@@ -1,4 +1,15 @@
-# React 新特性：调用系统
+---
+title: "React 新特性：调用系统"
+date: "2019-05-08"
+template: "post"
+draft: false
+category: "React schedule"
+translators: ["lzbSun"]
+tags:
+  - "React"
+  - "翻译"
+description: "在现代应用中，用户界面通常必须同时处理多个任务。例如，搜索组件可能需要在提供自动完成结果时响应用户输入，并且 dashboard 可能需要在从服务器加载数据更新图表的同时并将分析数据发送到后端。"
+---
 
 在现代应用中，用户界面通常必须同时处理多个任务。例如，搜索组件可能需要在提供自动完成结果时响应用户输入，并且 dashboard 可能需要在从服务器加载数据更新图表的同时并将分析数据发送到后端。
 
