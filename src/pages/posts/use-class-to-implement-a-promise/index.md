@@ -1,4 +1,3 @@
-```
 ---
 title: "用 class 写法实现一个 Promise"
 date: "2019-05-10"
@@ -12,7 +11,6 @@ tags:
   - "原创"
 description: "本文分析 Promise 特性的了解，完整实现了 Promise 所有功能。"
 ---
-```
 
 ## 1.前言
 
