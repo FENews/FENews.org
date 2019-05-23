@@ -9,16 +9,14 @@ authors: ['Kevin Ghadyani']
 tags:
   - 'JavaScript'
   - '翻译'
-description: '编程的世界有许多套路，可以让我们的程序设计更加优雅。'
+description: '把困难的问题分解成小块'
 ---
-
-把困难的问题分解成小块
 
 我想看看别人对软件工程的看法，于是开始在 YouTube 上疯狂观看 TechLead。在接下来的几天里，我为他在谷歌工作时提出的一个面试问题想出了各种各样的解决方案。
 
-### 这段[视频](https://www.youtube.com/watch?v=IWvbPIYQPFM&feature=youtu.be)让我兴奋不已
+### 这段视频让我兴奋不已
 
-模拟谷歌面试(软件工程师)
+[模拟谷歌面试(软件工程师)](https://v.qq.com/x/page/d0874pl79rc.html)
 
 TechLead 提出了一个他在<strong>谷歌 100 多次面试中提出的问题</strong>。这让我好奇地想出了一个使用 RxJS 的解决方案。这篇文章将重温传统的方法。
 
@@ -561,8 +559,6 @@ module.exports = getLargestContiguousNodesIterative2;
 
 基于 TechLeads 的其他视频，他在谷歌使用 Java。我假设他采访的职位关心执行速度。 他们可能有一大堆处理大量数据的工作任务，所以像这样的解决方案可能是必要的。
 
-But then, it could’ve been a job working on HTML and CSS, and he was just trolling the interviewee; who knows!
-
 但是，这也可能是一份处理 HTML 和 CSS 的工作， 谁知道呢！
 
 ### 总结
@@ -573,4 +569,4 @@ But then, it could’ve been a job working on HTML and CSS, and he was just trol
 
 这是一个非常有趣和令人沮丧的问题。 一开始看起来真的很困难，但是在把它分成几部分之后，所有的部分都一起来了:)。
 
-更多阅读
+原文：[https://medium.freecodecamp.org/bet-you-cant-solve-this-google-interview-question-4a6e5a4dc8ee](https://medium.freecodecamp.org/bet-you-cant-solve-this-google-interview-question-4a6e5a4dc8ee)
