@@ -11,71 +11,57 @@ tags:
   - "翻译"
 description: ""
 ---
+> Kubernetes 是用来编排容器化应用的。Docker 是比较优秀的容器。当你需要在多台机器上运行应用并且需要进行缩放扩展和分配负载等操作，你就需要 Kubernetes 。
 
-> Kubernetes is about orchestrating containerized apps. Docker is great for your first few containers. As soon as you need to run on multiple machines and need to scale/up down and distribute the load and so on, you need an orchestrator - you need Kubernetes
+因为这个主题比较大，所以这篇文章只是 Kubernetes 系列文章的第一部分。
+- 第一部分 - 作为入门，我们将介绍基础概念、部署和 Minikube（这部分正是我们这篇文章要讲的）。
+- 第二部分介绍服务（Services）和标签（Labeling），深入 Pods 和 Nodes 。
+- 第三部分我们将介绍对应用进行缩放。
+- 第四部分 - 自动缩放，这部分我们关注如何设置自动缩放用来处理突然增长的请求。
 
-This is the first part of a series of articles on Kubernetes, cause this topic is BIG!.
+这本，我希望可以覆盖下面的内容：
+- 为什么 Kubernetes 和容器编排如此广泛。
+- 入门：Minikube 基础，讲解 Minikube，简单的部署例子
+- Deployments 是什么和部署应用
 
-- Part I - from the beginning, Part I, Basics, Deployment and Minikube we are here
-- Part II introducing Services and Labeling In this part, we deepen our knowledge of Pods and Nodes. We also introduce Services and labeling using labels to query our artifacts.
-- Part III Scaling Here we cover how to scale our app
-- Part IV - Auto scaling In this part we look at how to set up auto-scaling so we can handle sudden large increases of incoming requests
+# 为什么需要编排
+一切都开始于容器。容器给予我们创建可复制环境的能力，所以可以让 dev、staging、和 prod 等不同环境都以同样的方式查看和运行。我们获得了可预测性，并且他们从主机操作系统中获取资源时也很轻量级。对于开发和运维来说这是一个绝大的突破性进展，但是容器的 API 只在同时管理少量容器时好用。大型系统可能由成百上千个容器组成，同样需要我们做调度、负载均衡、分配等。
 
-In this part I hope to cover the following:
-
-- Why Kubernetes and Orchestration in General
-- Hello world: Minikube basics, talking through Minikube, simple deploy example
-- Cluster and basic commands, Nodes, 
-- Deployments, what it is and deploying an app
-- Pods and Nodes, explain concepts and troubleshooting
-
-#  Why Orchestration
-Well, it all started with containers. Containers gave us the ability to create repeatable environments so dev, staging, and prod all looked and functioned the same way. We got predictability and they were also light-weight as they drew resources from the host operating system. Such a great breakthrough for Developers and Ops but the Container API is really only good for managing a few containers at a time. Larger systems might consist of 100s or 1000+ containers and needs to be managed as well so we can do things like scheduling, load balancing, distribution and more.
-
-At this point, we need orchestration the ability for a system to handle all these container instances. This is where Kubernetes comes in.
-
-# Resources
-- [Kubernetes.io](https://kubernetes.io/) One of the best resources to learn about Kubernetes is at this official Kubernetes site by Google.
-- [Kubernetes overview](https://azure.microsoft.com/en-gb/topic/what-is-kubernetes/?wt.mc_id=devto-blog-chnoring) An overview on Kubernetes, all its parts and how it works
+# 资源
+- [Kubernetes.io](https://kubernetes.io/) 最好的 Kubernetes 学习资源就是 Google 官方的 Kubernetes 网站
+- [Kubernetes overview](https://azure.microsoft.com/en-gb/topic/what-is-kubernetes/?wt.mc_id=devto-blog-chnoring) Kubernetes 组成和如何工作的概览
 - [Free Azure Account](https://azure.microsoft.com/en-gb/free/?wt.mc_id=devto-blog-chnoring) If you want to try out AKS, Azure Kubernetes Service, you will need a free Azure account
 - [Kubernetes in the Cloud](https://azure.microsoft.com/en-gb/services/kubernetes-service/?wt.mc_id=devto-blog-chnoring) Do you feel you know everything about Kubernetes already and just want to learn how to use a managed service? Then this link is for you
 - [Documentation on AKS, Azure Kubernetes Service](https://docs.microsoft.com/en-gb/azure/aks/?wt.mc_id=devto-blog-chnoring) Azure Kubernetes Service, a managed Kubernetes
 - [Best practices on AKS](https://docs.microsoft.com/en-us/azure/aks/best-practices?wt.mc_id=devto-blog-chnoring) You already know AKS and want to learn how to use it better?
 
 # Kubernetes 
-So what do we know about Kubernetes?
+那么我们对 Kubernetes 了解多少呢？
+> 它是一个开源系统，用于自动化容器化应用程序的部署，扩展和管理
 
-> It's an open-source system for automating deployment, scaling, and management of containerized applications
-
-Let'start with the name. It's Greek for Helmsman, the person who steers the ship. Which is why the logo looks like this, a steering wheel on a boat:
+让我们从它的名字开始。这是赫尔曼(Helmsman)的希腊语：驾驶这艘船的人。这也是为什么它的 logo 是一个船的方向盘：
 
 ![k8s logo](images/k8s-logo.png)
 
-It's Also called K8s so K ubernete s, 8 characters in the middle are removed. Now you can impress your friends that you know why it's referred to as K8.
+Kubernetes 也被叫做 K8s，***K ubernete s*** 中间8个字母省略。现在你可以和你的朋友吹你知道为什么它被叫做 K8 了。
 
-Here is some more Jeopardy knowledge on its origin. Kubernetes was born out of systems called Borg and Omega. It was donated to CNCF, Cloud Native Computing Foundation in 2014. It's written in Go/Golang.
+这里有关于它起源的知识。K8s 诞生于叫做 Borg 和 Omega 的系统。2014 年它被捐献给 CNCF (Cloud Native Computing Foundation)，云原生计算基金。它使用 Go/Golang 写的。
 
-If we see past all this trivia knowledge, it was built by Google as a response to their own experience handling a ton of containers. It's also Open Source and battle-tested to handle really large systems, like planet-scale large systems.
+如果我们看到所有这些琐碎的知识，由 Google 通过他们处理大量容器的经验所建立。而且它是开源和经过实战测试的，可以处理真正的大型系统，如行星级大型系统。
 
-So the sales pitch is:
+所以它的销售宣传是：
+> 运行数十亿容器一个礼拜，Kubernetes 可以缩放而不需要增加运维团队人数。
 
-> Run billions of containers a week, Kubernetes can scale without increasing your ops team
+听起来很棒，我们都能达到 Google 数十亿容器的大小？不，即使你只有 10 到 100 个容器，它也适合你。
 
-Sounds amazing right, billions of containers cause we are all Google size. No? :) Well even if you have something like 10-100 containers, it's for you.
+# 开始实践
 
-#  Getting started
-
-Ok ok, let's say I buy into all of this, how do I get started?
-
-> Impatient ey, sure let's start to do something practical with Minikube
-
-Ok, sounds good I'm a coder, I like practical stuff. What is Minikube?
-
-> Minikube is a tool that lets us run Kubernetes locally
-
-Oh, sweet, millions of containers on my little machine?
-
-> Well, no, let's start with a few and learn Kubernetes basics while at it.
+ok，让我们说下如何开始？
+> 已经急不可耐了，当然我们将从 Minikube 开始做一些实用的事情
+听起来不错，我是一个码农，我喜欢实用的好东西。什么是 Minikube 呢？
+> Minikube 是一个工具可以让我们在本地运行 K8s
+噢，数十亿容器在我的小机器上？
+> 当然不是，让我们从少量容器开始学习 Kubernetes 基础。
 
 ## Installation
 
