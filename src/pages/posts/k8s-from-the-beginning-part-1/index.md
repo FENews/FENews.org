@@ -63,7 +63,7 @@ ok，让我们说下如何开始？
 噢，数十亿容器在我的小机器上？
 > 当然不是，让我们从少量容器开始学习 Kubernetes 基础。
 
-## Installation
+## 安装
 
 To install Minikube lets go to this [installation page](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
@@ -73,77 +73,84 @@ It's just a few short steps that means we install
 - Kubectl (Kube control tool)
 - Minikube
 
-## Run
+通过[安装页面](https://kubernetes.io/docs/tasks/tools/install-minikube/) 安装 Minikube。
 
-Get that thing up and running by typing:
+只需要几个简单的安装步骤：
+- Hypervisor
+- Kubectrl
+- Minikube
+
+## 运行
+
+我们从下面的命令开始:
 
 ```bash
 minikube start
 ```
 
-It should look something like this:
+运行的结果看起来像这样:
 
 ![minikube start](images/minikube-start.png)
 
-You can also ensure that kubectl have been correctly installed and running:
+你可以通过下面的命令确保 kubectl 已经正确安装：
 
 ```bash
 kubectl version
 ```
 
-Should give you something like this in response:
+运行结果如下:
 
 ![minikube start](images/kubectl-version.png)
 
-Ok, now we are ready to learn Kubernetes.
+Ok, 我们可以开始学习 Kubernetes 了。
 
-##  Learning kubectl and basic concepts
+##  学习 kubectl 和基础概念
 
 In learning Kubernetes lets do so by learning more about kubectl a command line program that lets us interact with our Cluster and lets us deploy and manage applications on said Cluster.
 
-The word Cluster just means a group of similar things but in the context of Kubernetes, it means a Master and multiple worker machines called Nodes. Nodes were historically called Minions 
+在开始学习 Kubernetes 之前，我们先学习如果使用它的命令行工具 `kubectl` 来操作集群，下面我将开始在集群上部署和管理应用程序。
+
+集群指的是在 Kubernetes 上下文中一组相似的东西，它由一个主服务器（Master）和若干称作节点（Nodes）的工作机器组成。节点也曾被称作小黄人（Minions）。
 
 ![minions](images/minions.gif)
 
-, but not so anymore.
-
-The master decides what will run on the Nodes, which includes things like scheduled workloads or containerized apps. Which brings us to our next command:
+主服务器决定在节点上运行什么，包括预定工作负载或容器化应用程序等。 这将我们带到下一个命令：
 
 ```bash
 kubectl get nodes
 ```
 
-This should give us a result like this:
+结果如下:
 
 ![kubectl get nodes](images/kubectl-get-nodes.png)
 
-What this tells us what Nodes we have available to do work.
+这告诉了我们那些节点可以工作。
 
-Next up let's try to run our first app on Kubernetes with the run command like so:
+接下来让我们在 Kubernetes 上运行第一个应用：
 
 ```bash
 kubectl run kubernetes-first-app --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 ```
 
-This should give us a response like so:
+它将得到如下结果:
 
 ![kubectl run](images/kubectl-run.png)
 
-Next up lets check that everything is up and running with the command:
+然后我们可以通过下面的命令查看运行结果:
 
 ```bash
 kubectl get deployments
 ```
 
-This shows the following in the terminal: 
+我们将得到下面的结果: 
 
 ![kubectl run](images/kubectl-get-deployments.png)
-
-In putting our app on the Kluster, by invoking the run command, Kubernetes performed a few things behind the scenes, it:
-
-- **searched** for a suitable node where an instance of the application could be run, there was only one node so it got chosen
-- **scheduled** the application to run on that Node
-- **configured** the cluster to reschedule the instance on a new Node when needed
+  
+在将我们的应用通过命令部署到集群上的过程，Kubernetes 在幕后执行了一些我们看不到的操作：
+- **查找**适合应用实例运行的节点，因为这里只有一个节点所以直接会被选中
+- **安排**应用实例在节点上运行
+- **配置**集群在需要的重新安排实例到新的节点
+  
 Next up we are going to introduce the concept Pod, so what is a Pod?
 
 A Pod is the smallest deployable unit and consists of one or many containers, for example, Docker containers. That's all we are going to say about Pods at the moment but if you really really want to know more have a read [here](https://kubernetes.io/docs/concepts/workloads/pods/pod/)
