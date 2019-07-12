@@ -1,15 +1,16 @@
 ---
 title: "Kubernetes 入门指南（一）"
-date: "2019-06-19"
+date: "2019-07-15"
 template: "post"
 draft: false
 category: "Kubernetes"
 translators: ["leyayun"]
 tags:
   - "Kubernetes"
+  - "k8s"
   - "devops"
   - "翻译"
-description: ""
+description: "Kubernetes 是用来编排容器化应用的。Docker 是比较优秀的容器。当你需要在多台机器上运行应用并且需要进行缩放扩展和分配负载等操作，你就需要 Kubernetes。"
 ---
 > Kubernetes 是用来编排容器化应用的。Docker 是比较优秀的容器。当你需要在多台机器上运行应用并且需要进行缩放扩展和分配负载等操作，你就需要 Kubernetes 。
 
@@ -26,14 +27,6 @@ description: ""
 
 # 为什么需要编排
 一切都开始于容器。容器给予我们创建可复制环境的能力，所以可以让 dev、staging、和 prod 等不同环境都以同样的方式查看和运行。我们获得了可预测性，并且他们从主机操作系统中获取资源时也很轻量级。对于开发和运维来说这是一个绝大的突破性进展，但是容器的 API 只在同时管理少量容器时好用。大型系统可能由成百上千个容器组成，同样需要我们做调度、负载均衡、分配等。
-
-# 资源
-- [Kubernetes.io](https://kubernetes.io/) 最好的 Kubernetes 学习资源就是 Google 官方的 Kubernetes 网站
-- [Kubernetes overview](https://azure.microsoft.com/en-gb/topic/what-is-kubernetes/?wt.mc_id=devto-blog-chnoring) Kubernetes 组成和如何工作的概览
-- [Free Azure Account](https://azure.microsoft.com/en-gb/free/?wt.mc_id=devto-blog-chnoring) If you want to try out AKS, Azure Kubernetes Service, you will need a free Azure account
-- [Kubernetes in the Cloud](https://azure.microsoft.com/en-gb/services/kubernetes-service/?wt.mc_id=devto-blog-chnoring) Do you feel you know everything about Kubernetes already and just want to learn how to use a managed service? Then this link is for you
-- [Documentation on AKS, Azure Kubernetes Service](https://docs.microsoft.com/en-gb/azure/aks/?wt.mc_id=devto-blog-chnoring) Azure Kubernetes Service, a managed Kubernetes
-- [Best practices on AKS](https://docs.microsoft.com/en-us/azure/aks/best-practices?wt.mc_id=devto-blog-chnoring) You already know AKS and want to learn how to use it better?
 
 # Kubernetes 
 那么我们对 Kubernetes 了解多少呢？
@@ -106,8 +99,6 @@ Ok, 我们可以开始学习 Kubernetes 了。
 
 ##  学习 kubectl 和基础概念
 
-In learning Kubernetes lets do so by learning more about kubectl a command line program that lets us interact with our Cluster and lets us deploy and manage applications on said Cluster.
-
 在开始学习 Kubernetes 之前，我们先学习如果使用它的命令行工具 `kubectl` 来操作集群，下面我将开始在集群上部署和管理应用程序。
 
 集群指的是在 Kubernetes 上下文中一组相似的东西，它由一个主服务器（Master）和若干称作节点（Nodes）的工作机器组成。节点也曾被称作小黄人（Minions）。
@@ -151,73 +142,72 @@ kubectl get deployments
 - **安排**应用实例在节点上运行
 - **配置**集群在需要的重新安排实例到新的节点
   
-Next up we are going to introduce the concept Pod, so what is a Pod?
+接下来我们将介绍 Pod 的概念，那么什么是 Pod ？
 
-A Pod is the smallest deployable unit and consists of one or many containers, for example, Docker containers. That's all we are going to say about Pods at the moment but if you really really want to know more have a read [here](https://kubernetes.io/docs/concepts/workloads/pods/pod/)
+一个 Pod 是最小的可部署单元，由一个或多个容器组成，例如：Docker 容器。我们在这里只介绍这么多，如果你真的想了解更多可以阅读[这里](https://kubernetes.io/docs/concepts/workloads/pods/pod/)。
 
-The reason for mentioning Pods at this point is that our container and app is placed inside of a Pod. Furthermore, Pods runs in a private isolated network that, although visible from other Pods and services, it cannot be accessed outside the network. Which means we can't reach our app with say a curl command.
+之所以在这里提到 Pod 是因为我们的容器和app就是放在一个 Pod 里面。此外，Pods在一个私有的隔离网络中运行，虽然从其他Pod和服务中可以看到，但它无法在网络外部访问。这意味着我们无法通过 `curl` 命令访问我们的应用。
 
-We can change that though. There is more than one way to expose our application to the outside world for now however we will use a proxy.
+但是有很多方法可以将我们的应用暴露出来，这里我们将使用代理。
 
-Now open up a 2nd terminal window and type:
-
+现在打开第二个命令行窗口并输入：
 ```bash
 kubectl proxy
 ```
 
-This will expose the kubectl as an API that we can query with HTTP request. The result should look like:
+这将 `kubectl` 做为一个 API 暴露出来，因此我们可以通过 HTTP 请求查询。结果如下：
 
 ![kubectl proxy](images/kubectl-proxy.png)
 
-Instead of typing `kubectl version` we can now type `curl http://localhost:8001/version` and get the same results:
+现在我们可以使用 `curl http://localhost:8001/version` 来代替 `kubectl version`，得到同样的结果：
 
 ![curl](images/curl.png)
 
-The API Server inside of Kubernetes have created an endpoint for each pod by its pod name. So the next step is to find out the pod name:
+Kubernetes 里的 API 服务器已经为每一个 Pod 通过 Pod 名称创建一个 endpoint 。下一步就是查看 pod 名称: 
 
 ```bash
 kubectl get pods
 ```
 
-This will list all the pods you have, it should just be one pod at this point and look something like this:
+上面的命令将列出全部的 pod ，现在只有一个 pod ，如下：
 
 ![kubectl get pods](images/kubectl-get-pods.png)
 
-Then you can just save that down to a variable like so:
+然后你可以用一个变量保存它：
 
 ![kubectl get pods](images/pod-name.png)
 
-Lastly, we can now do an HTTP call to learn more about our pod:
+最后，你可以发起一个 HTTP 调用，查看 pod 的详细信息
 
 ```bash
 curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME
 ```
 
-This will give us a long JSON response back (I trimmed it a bit but it goes on and on...)
+这将返回一个很长的 JSON 信息（我已经截掉一部分，但是它仍然很长很长...）
 
 ![curl pod](images/curl-pod.png)
 
-Maybe that's not super interesting for us as app developers. We want to know how our app is doing. Best way to know that is looking at the logs. Let's do that with this command:
+也许这不是我们开发人员所感兴趣的信息。我们想知道我们的应用的运行情况。最好的方法就是看日志。我们可以通过下面的命令查看日志：
 
 ```bash
 kubectl logs $POD_NAME
 ```
 
-As you can see below we know get logs from our app:
+正如你看到的，我们拿到了应用的日志：
 
 ![kubectl-logs-pod](images/kubectl-logs-pod.png)
 
-Now that we know the Pods name we can do all sorts of things like checking its environment variables or even step inside the container and look at the content.
+现在我们知道了 Pods 的名字，我们可以做各种各样的事情，比如查看它的环境变量，甚至可以进入到容器内部查看内容。
 
 ```bash
 kubectl exec $POD_NAME env
 ```
 
-This yields the following result:
+结果如下:
 
 ![kubectl-exec](images/kubectl-exec.png)
 
-Now lets step inside the container:
+现在我们进入容器内:
 
 ```bash
 kubectl exec -ti $POD_NAME bash
@@ -225,7 +215,7 @@ kubectl exec -ti $POD_NAME bash
 
 ![kubectl-exec-ti](images/kubectl-exec-ti.png)
 
-We are inside! This means we can see what the source code looks like even:
+我们已经先容器内了。我们可以查看源代码：
 
 ```bash
 cat server.js
@@ -233,25 +223,30 @@ cat server.js
 
 ![cat server](images/cat-server.png)
 
-Inside of our container, we can now reach the running app by typing:
+在容器内我们可以使用下面的命令访问应用：
 
 ```bash
 curl http://localhost:8080
 ```
 
-# Summary
+# 总结
 
-This is where we will stop for now.
-What did we actually learn?
+我们本篇的内容就到这里。回顾下我们学到的内容：
+- Kubernetes 的起源
+- 你为什么需要编排
+- 主服务器（Master）、节点（Nodes）、Pods 的概念
+- Minikube、kubectl 和如何部署镜像到集群
 
-- Kubernetes, its origin what it is
-- Orchestration why you will soon need it
-- Concepts like Master, Nodes and Pods
-- Minikube, kubectl and how to deploy an image onto our Cluster
+感觉你还有很多东西要学？你是对的，这个主题很大。这只是个开始。
 
-Feel like you have a ton more to learn? You're right this is a big topic.
+我希望你能坚持学习接下来的部分，我们将介绍更多关于 Nodes、Pods、Services、Scaling、Updating 的知识，最终知道如何管理云服务。
 
-I hope you follow along on the next upcoming parts where we will learn more about Nodes, Pods, Services, Scaling, Updating and eventually how to use a managed service in the Cloud.
-
+# 资源
+- [Kubernetes.io](https://kubernetes.io/) 最好的 Kubernetes 学习资源就是 Google 官方的 Kubernetes 网站
+- [Kubernetes overview](https://azure.microsoft.com/en-gb/topic/what-is-kubernetes/?wt.mc_id=devto-blog-chnoring) Kubernetes 组成和如何工作的概览
+- [Free Azure Account](https://azure.microsoft.com/en-gb/free/?wt.mc_id=devto-blog-chnoring) 如果你想尝试 AKS (Azure Kubernetes Service) ，你需要一个 Azure 免费账号。
+- [Kubernetes in the Cloud](https://azure.microsoft.com/en-gb/services/kubernetes-service/?wt.mc_id=devto-blog-chnoring) 你觉得自己已经知道 Kubernetes 所有的知识，你像学习如果管理服务？这个链接正适合你
+- [Documentation on AKS, Azure Kubernetes Service](https://docs.microsoft.com/en-gb/azure/aks/?wt.mc_id=devto-blog-chnoring) Azure Kubernetes Service
+- [Best practices on AKS](https://docs.microsoft.com/en-us/azure/aks/best-practices?wt.mc_id=devto-blog-chnoring) 你已经了解 AKS 想知道如何更好的使用？
 
 原文链接: https://dev.to/azure/kubernetes-from-the-beginning-part-i-4ifd
