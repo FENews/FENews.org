@@ -58,14 +58,6 @@ ok，让我们说下如何开始？
 
 ## 安装
 
-To install Minikube lets go to this [installation page](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-
-It's just a few short steps that means we install
-
-- a Hypervisor
-- Kubectl (Kube control tool)
-- Minikube
-
 通过[安装页面](https://kubernetes.io/docs/tasks/tools/install-minikube/) 安装 Minikube。
 
 只需要几个简单的安装步骤：
