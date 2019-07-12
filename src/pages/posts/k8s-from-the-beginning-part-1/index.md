@@ -101,11 +101,11 @@ Ok, 我们可以开始学习 Kubernetes 了。
 
 在开始学习 Kubernetes 之前，我们先学习如果使用它的命令行工具 `kubectl` 来操作集群，下面我将开始在集群上部署和管理应用程序。
 
-集群指的是在 Kubernetes 上下文中一组相似的东西，它由一个主服务器（Master）和若干称作节点（Nodes）的工作机器组成。节点也曾被称作小黄人（Minions）。
+集群指的是在 Kubernetes 上下文中一组相似的东西，它由一个 Master 和若干称作 Nodes 的工作机器组成。节点也曾被称作小黄人（Minions）。
 
 ![minions](images/minions.gif)
 
-主服务器决定在节点上运行什么，包括预定工作负载或容器化应用程序等。 这将我们带到下一个命令：
+Master 决定在节点上运行什么，包括预定工作负载或容器化应用程序等。 这将我们带到下一个命令：
 
 ```bash
 kubectl get nodes
@@ -234,7 +234,7 @@ curl http://localhost:8080
 我们本篇的内容就到这里。回顾下我们学到的内容：
 - Kubernetes 的起源
 - 你为什么需要编排
-- 主服务器（Master）、节点（Nodes）、Pods 的概念
+- Master、Nodes、Pods 的概念
 - Minikube、kubectl 和如何部署镜像到集群
 
 感觉你还有很多东西要学？你是对的，这个主题很大。这只是个开始。
