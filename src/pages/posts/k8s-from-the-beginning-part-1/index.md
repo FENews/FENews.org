@@ -20,7 +20,7 @@ description: "Kubernetes 是用来编排容器化应用的。Docker 是比较优
 - 第三部分我们将介绍对应用进行缩放。
 - 第四部分 - 自动缩放，这部分我们关注如何设置自动缩放用来处理突然增长的请求。
 
-这本，我希望可以覆盖下面的内容：
+这篇文章，我希望可以覆盖下面的内容：
 - 为什么 Kubernetes 和容器编排如此广泛。
 - 入门：Minikube 基础，讲解 Minikube，简单的部署例子
 - Deployments 是什么和部署应用
@@ -91,7 +91,7 @@ Ok, 我们可以开始学习 Kubernetes 了。
 
 ##  学习 kubectl 和基础概念
 
-在开始学习 Kubernetes 之前，我们先学习如果使用它的命令行工具 `kubectl` 来操作集群，下面我将开始在集群上部署和管理应用程序。
+在开始学习 Kubernetes 之前，我们先学习如何使用它的命令行工具 `kubectl` 来操作集群，下面我将开始在集群上部署和管理应用程序。
 
 集群指的是在 Kubernetes 上下文中一组相似的东西，它由一个 Master 和若干称作 Nodes 的工作机器组成。节点也曾被称作小黄人（Minions）。
 
@@ -107,7 +107,7 @@ kubectl get nodes
 
 ![kubectl get nodes](images/kubectl-get-nodes.png)
 
-这告诉了我们那些节点可以工作。
+这告诉了我们哪些节点可以工作。
 
 接下来让我们在 Kubernetes 上运行第一个应用：
 
@@ -207,7 +207,7 @@ kubectl exec -ti $POD_NAME bash
 
 ![kubectl-exec-ti](images/kubectl-exec-ti.png)
 
-我们已经先容器内了。我们可以查看源代码：
+我们已经在容器内了。我们可以查看源代码：
 
 ```bash
 cat server.js
