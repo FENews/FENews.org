@@ -197,7 +197,7 @@ kubectl exec $POD_NAME env
 
 结果如下:
 
-![kubectl-exec](images/kubectl-exec.png)
+![kube-exec](images/kube-exec.png)
 
 现在我们进入容器内:
 
