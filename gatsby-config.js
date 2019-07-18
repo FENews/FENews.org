@@ -5,6 +5,7 @@ module.exports = {
     siteUrl: `https://fenews.org`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
