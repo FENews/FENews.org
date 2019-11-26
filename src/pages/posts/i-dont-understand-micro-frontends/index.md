@@ -10,13 +10,16 @@ tags:
   - "FE Eng"
   - "Micro Frontend"
   - "翻译"
-description: ""
+description: "译者：“我也不太理解微前端（逃”"
 ---
 
 ### I don’t understand micro-frontends.
+
 ### 我不太理解微前端。
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">What they are supposed to look like / What they actually look like <a href="https://t.co/GLzEf0CTgb">pic.twitter.com/GLzEf0CTgb</a></p>&mdash; Laura Coalla (@laurazenc) <a href="https://twitter.com/laurazenc/status/1132557544763940864?ref_src=twsrc%5Etfw">May 26, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+> Brilliant micro-frontends joke 🤣😂
 
 > 特别逗的微前端笑话 🤣😂
 
@@ -38,19 +41,33 @@ I won’t be able to cover all the topics discussed in the Twitter’s thread bu
 
 First of all and foremost, I’m not writing this post for blaming or attacking anyone or even for starting a social flame, I respect any point of view, sometimes I share the same point of view of other people and sometimes not, this behaviour brings on the table innovation and new ideas so I’m totally up for it.
 
+### 声明
+
+首先必须要声明的一点是，我写这篇文章不是为了喷任何人，也不是为了引战，我尊重所有的观点，有时候我赞同别人的观点，有时候我也会反对别人的观点，讨论会产生革新的想法，所以我尽力。
+
 Considering a few people mentioned my name in this is tweet started by Dan, I’d like to share my thoughts because I truly believe we can have a genuine discussion about micro-frontends with great benefits for everyone covering common questions that I receive weekly on socials, my personal email, after my presentations and so on.
 
+考虑到 Dan 一开始发推的时候就有人艾特我，我相信我们就微前端这个话题可以进行一次真正的讨论，并且对大家都能有所收益，所以我准备分享一下自己的想法，这里可能会涵盖到我收到的邮件，社交网站上的常见问题，和我演讲后的内容等等。
+
 Other people got in touch with me regarding the aforementioned tweet: I didn’t reply straight to the tweet because discussing an interesting topic like this one in 280 characters is really limiting and prone to be misunderstood or omitting some important details.
+
+有写人在推上艾特我，我没有直接回复，因为讨论这么有趣的一个话题 在 280 字限制的推文里有很多限制，而且可能会造成一些误解或者漏掉一些细节。
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I would be interested to hear from <a href="https://twitter.com/lucamezzalira?ref_src=twsrc%5Etfw">@lucamezzalira</a></p>&mdash; Natalie Marleny (@NatalieMarleny) <a href="https://twitter.com/NatalieMarleny/status/1132564638317580288?ref_src=twsrc%5Etfw">May 26, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 ### Why micro-frontends instead of a good component model?
 
+### 为什么要用微前端去代替就目前而言比较好的组件模型？
+
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Definitely something for <a href="https://twitter.com/lucamezzalira?ref_src=twsrc%5Etfw">@lucamezzalira</a> :)</p>&mdash; Azzawi (@MahmoudAlazzawi) <a href="https://twitter.com/MahmoudAlazzawi/status/1132566537301311488?ref_src=twsrc%5Etfw">May 26, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 Components are definitely valid solutions, many companies are using them every day with great success, but are not the silver bullet for everything; the project, the team, the business, but more in general, the context has to fit otherwise we try to fit a square into a circle and we don’t always get what is expected.
 
+组件是特别好的解决方案，很多公司用组件也取得不错的效果，但是对于项目，项目组和业务来说没有银弹，一般来说，上下文必须是合适的，不然就好比尝试将一个正方形变成一个圆，并不是每次都能得到期望的结果。
+
 Exploring new possibilities, challenging our beliefs and “standard way of doing things” move our industry forward consolidating existing standards or introducing new ones.
+
+探索新的可能性，或者挑战现有的信念和“做事的标准”，有助于向我们行业的标砖添砖加瓦或者引入新的标准。
 
 Let’s start with this, ```Micro-frontends are not trying to replace components```, it’s a possibility we have that doesn’t fit in all the projects like components are not the answer for everything.
 
