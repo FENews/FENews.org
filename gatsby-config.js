@@ -94,6 +94,7 @@ module.exports = {
         enabled: (() => ['production', 'stage'].indexOf(process.env.NODE_ENV) !== -1)(),
       },
     },
+    `gatsby-plugin-twitter`
   ],
   mapping: {
     'MarkdownRemark.frontmatter.authors': `AuthorsYaml`,
