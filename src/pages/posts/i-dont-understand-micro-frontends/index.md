@@ -71,16 +71,28 @@ Exploring new possibilities, challenging our beliefs and “standard way of doin
 
 Let’s start with this, ```Micro-frontends are not trying to replace components```, it’s a possibility we have that doesn’t fit in all the projects like components are not the answer for everything.
 
+让我们从```微前端不是为了去代替组件```这个点开始，微前端有可能不适合所有项目，就像组件不能解决所有的问题一样。
+
 ```Use the right tool for the right job, that should be our goal. Remember that developing software is empirical, not scientific.```
+
+```软件开发更多的是经验性的（empirical）而不是科学性的，用正确的工具去做正确的事，这是我们的目标。```
 
 I’ve seen large organizations with terrible codebases and practices having a successful product and I saw also the complete opposite, we cannot look only to one side of the coin.
 
+我见过大型公司的有很成功的产品，但是代码库及其糟糕，相反也见过代码库非常漂亮但是产品却不怎么成功。就好比硬币有两面，我们不能只看一面。
+
 So far I tried micro-frontends only at scale (roughly 200 people — frontend and backend engineers — working on the same project), in conjunction with microservices and team ownership are working pretty well compared to the previous model we had in my company.
+
+目前为止，我只在规模这个纬度去实践过微前端（大概200人左右的前后端工程在同一个项目上协作），将微服务和团队所有权（team ownership）相结合，和之前的研发模式相比取得了不错的效果。
 
 Are they working in smaller projects? Ideally, but I’d like to try them first.
 On paper, everything looks fine, it’s getting into the details where you realise the limitations and find new challenges. If you have any experience I’d love to hear from you!
 
+微前端是不是同样适用于小项目？理想情况下，答案是肯定的。但是我们可以先尝试验证下。从理论上来说是没有任何问题的，但是如果你深入实践就会发现一些局限性和问题。你如果有相关的经验，欢迎告诉我。
+
 Regarding micro-frontends, there are different flavours, for instance, we can use iframes for composing a final view, or instead use [Edge Side Include or Client Side Include](https://gustafnk.github.io/microservice-websites/), even use a pre-rendering strategy like [Open Components](https://opencomponents.github.io/) or like [Interface Framework](https://jobs.zalando.com/tech/blog/front-end-micro-services/) and cache the results at CDNs level. 
+
+关于微前端有很多方式去实现，比如，我们可以通过 iframe 组合成最终的界面，或者可以使用ESI（[Edge Side Include](https://gustafnk.github.io/microservice-websites/#edge-side-includes)）和CSI（[Edge Side Include](https://gustafnk.github.io/microservice-websites/#client-side-includes)）注入，甚至使用诸如 [Open Components](https://opencomponents.github.io/) 或 [Interface Framework](https://jobs.zalando.com/tech/blog/front-end-micro-services/) 之类的预渲染策略，并将结果缓存在CDN。
 
 Another approach is [using an orchestrator](https://medium.com/dazn-tech/orchestrating-micro-frontends-a5d2674cbf33) that is serving SPAs, single HTML pages or SSR applications, the orchestrator can be on the edge, on the origin or client side, an example of orchestrator could be [Single-SPA](https://single-spa.js.org/).
 Those methodologies suggest that we have 2 main approaches to identify a micro-frontend size:
