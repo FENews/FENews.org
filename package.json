@@ -38,7 +38,7 @@
     "typography-theme-st-annes": "^0.16.19"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "prettier": "^2.0.0"
   },
   "homepage": "http://fenews.org",
   "keywords": [
